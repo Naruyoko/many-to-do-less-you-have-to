@@ -1,2 +1,2 @@
-document.write('<img src=*./files/pictures/loading.png" />');
+document.write('<img src=*./files/pictures/title.png" />');
 var game{};
