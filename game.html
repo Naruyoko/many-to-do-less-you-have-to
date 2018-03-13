@@ -1,2 +1,14 @@
 <img src="./files/pictures/title.png" />
+<link rel="stylesheet" href="stylesheet.css" type="text/css">
+<script>
+  var loading=true;
 <script src="./script.js" />
+<script>
+  function waituntilload(){
+    if (!loading){
+      clearInterval(waituntilloadinterval);
+      var passiveinterval=setInterval(passive,100);
+    }
+  }
+  var waituntilloadinterval=setInterval(waituntilload,100);
+</script>
