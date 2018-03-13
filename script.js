@@ -30,9 +30,9 @@ function passive(){
   game.currency.time+=game.production.time*timeelapsed;
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
-  if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="Existance: <p class=\"large\">"+game.currency.existance+"</p>";}
-  if (game.unlocked.time){document.getElementById("disp.time").innerHTML="Time: <p class=\"large\">"+game.currency.time+"</p>";}
-  if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="Thoughts: <p class=\"large\">"+game.currency.thought+"</p>";}
-  if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <p class=\"large\">"+game.currency.energy+"</p>";}
+  if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="Existance: <span class=\"large\">"+game.currency.existance+"</span>";}
+  if (game.unlocked.time){document.getElementById("disp.time").innerHTML="Time: <span class=\"large\">"+game.currency.time+"</span>";}
+  if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="Thoughts: <span class=\"large\">"+game.currency.thought+"</span>";}
+  if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <span class=\"large\">"+game.currency.energy+"</span>";}
 }
 loading=false;
