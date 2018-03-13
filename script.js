@@ -20,9 +20,10 @@ var game={
 };
 var timeelapsed=0;
 var lasttime=0;
-var d=new Date();
+var d;
 function passive(){
   if (lasttime!==0){
+    d=new Date();
     timeelapsed=(d.getTime()-lasttime)/1000;}
   lasttime=d.getTime();
   game.currency.existance+=game.production.existance*timeelapsed;
