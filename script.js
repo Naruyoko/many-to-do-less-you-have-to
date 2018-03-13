@@ -11,6 +11,11 @@ var game{
     thought:0,
     energy:0
   }
+  unlocked:{
+    existance:true,
+    time:false,
+    thought:false,
+    energy:false
 };
 var timeelapsed=0;
 var lasttime=0;
@@ -21,4 +26,8 @@ function passive(){
   game.currency.time+=game.production.time*timeelapsed;
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
+  if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="Existance: <p class=\"large\">"+game.currency.existance+"</p>";
+  if (game.unlocked.time){document.getElementById("disp.time").innerHTML="Time: <p class=\"large\">"+game.currency.time+"</p>";
+  if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="Thoughts: <p class=\"large\">"+game.currency.thought+"</p>";
+  if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <p class=\"large\">"+game.currency.energy+"</p>";
 }
