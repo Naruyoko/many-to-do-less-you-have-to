@@ -10,17 +10,12 @@
     if (!loading){
       clearInterval(waituntilloadinterval);
       document.getElementById("loadpic").src="";
-      var newdiv;
-      newdiv=document.createElement("div");
-      newdiv.setAttribute("id","disp.existance");
-      newdiv=document.createElement("div");
-      newdiv.setAttribute("id","disp.time");
-      newdiv=document.createElement("div");
-      newdiv.setAttribute("id","disp.thought");
-      newdiv=document.createElement("div");
-      newdiv.setAttribute("id","disp.energy");
       var passiveinterval=setInterval(passive,100);
     }
   }
   var waituntilloadinterval=setInterval(waituntilload,100);
 </script>
+<div id="disp.existance"></div>
+<div id="disp.time"></div>
+<div id="disp.thought"></div>
+<div id="disp.energy"></div>
