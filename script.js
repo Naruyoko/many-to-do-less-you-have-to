@@ -10,12 +10,13 @@ var game={
     time:0,
     thought:0,
     energy:0
-  }
+  },
   unlocked:{
     existance:true,
     time:false,
     thought:false,
     energy:false
+  }
 };
 var timeelapsed=0;
 var lasttime=0;
