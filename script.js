@@ -31,3 +31,4 @@ function passive(){
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="Thoughts: <p class=\"large\">"+game.currency.thought+"</p>";
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <p class=\"large\">"+game.currency.energy+"</p>";
 }
+loading=false;
