@@ -1,4 +1,4 @@
-var game{
+var game={
   currency:{
     existance:0,
     time:0,
