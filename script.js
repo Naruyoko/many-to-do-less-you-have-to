@@ -24,9 +24,9 @@ var game={
 };
 function showhide(x,t){
   if (t){
-      x.class="";
+      x.className="";
   }else{
-      x.class="hidden";
+      x.className="hidden";
   }
 }
 var timeelapsed=0;
@@ -54,10 +54,10 @@ function convexisti(){
     game.production.existivity=(game.currency.existance+1)*0.01*Math.pow(1.2,game.currency.etime);
     game.unlocked.existance=true;
     if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){
-      document.getElementById("button.convexisti").class="unavailable";
+      document.getElementById("button.convexisti").className="unavailable";
       showhide(document.getElementById("button.convexista"),true);
     }
-  }
+  }afd
   game.currency.existivity=0;
 }
 function convexista(){
@@ -67,8 +67,8 @@ function convexista(){
     game.currency.existance=0;
     game.production.existivity=0.01*Math.pow(1.2,game.currency.etime);
     game.unlocked.etime=true;
-    document.getElementById("button.convexisti").style="";
-    document.getElementById("button.convexista").style="unavailable";
+    document.getElementById("button.convexisti").className="";
+    document.getElementById("button.convexista").className="unavailable";
   }
 }
 loading=false;
