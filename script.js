@@ -34,7 +34,7 @@ function passive(){
   game.currency.existability=2/(1+Math.exp(-game.currency.existivity))-1;
   game.currency.time+=game.production.time*timeelapsed;
   game.currency.thought+=game.production.thought*timeelapsed;
-  game.currency.energy+=game.production.energy*timelapsed;
+  game.currency.energy+=game.production.energy*timeelapsed;
   if (game.unlocked.existivity){document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*10)/10+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability)/10+"%</span> change of existing.";}
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"laarge\">"+game.currency.existance+"</span> existances. They produce <span class=\"large\">"+game.production.existivity+"</span> existivity each second.";}
   if (game.unlocked.time){document.getElementById("disp.time").innerHTML="Time: <span class=\"large\">"+game.currency.time+"</span>";}
