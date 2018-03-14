@@ -20,7 +20,7 @@ var game={
 };
 var timeelapsed=0;
 var lasttime=0;
-var d=new Date()
+var d=new Date();
 function passive(){
   if (lasttime!==0){
     timeelapsed=(d.getTime()-lasttime)/1000;}
