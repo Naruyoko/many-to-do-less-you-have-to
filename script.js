@@ -49,8 +49,8 @@ function passive(){
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <span class=\"large\">"+game.currency.energy+"</span>";}
 }
 function convexisti(){
-  if (!(game.currency.existance>=Math.pow(2,game.currency.etime+4))){return;}
-  if (!(Math.random()<game.currency.existability)){
+  if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){return;}
+  if (Math.random()<game.currency.existability){
     game.currency.existance++;
     game.production.existivity=(game.currency.existance+1)*0.01*Math.pow(1.2,game.currency.etime);
     game.unlocked.existance=true;
@@ -62,7 +62,7 @@ function convexisti(){
   game.currency.existivity=0;
 }
 function convexista(){
-  if (!(game.currency.existance>=Math.pow(2,game.currency.etime+4))){return;}
+  if (game.currency.existance<Math.pow(2,game.currency.etime+4)){return;}
   game.currency.etime++;
   game.currency.existivity=0;
   game.currency.existance=0;
