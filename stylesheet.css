@@ -1,4 +1,15 @@
 * {color:#808080;font-size:14px;}
 .large {color:#000000;font-size:20px;}
-button * {display:inline-block;}
+button * {
+  display:inline-block;
+  background-color:#f7f7f7;
+  border: 1px solid #4CAF50;
+  border-radius:2px;
+  color:#070707;
+}
 .hidden {display:none;}
+button.unavailable {
+  opacoty:0.6;
+  cursor: not-allowed;
+  color:#ff0000;
+}
