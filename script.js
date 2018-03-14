@@ -24,7 +24,7 @@ var game={
 };
 function showhide(x,t){
   if (t){
-      x.style.display="block";
+      x.style.display="inline-block";
   }else{
       x.style.display="none";
   }
