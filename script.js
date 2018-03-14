@@ -57,7 +57,7 @@ function convexisti(){
       document.getElementById("button.convexisti").className="unavailable";
       showhide(document.getElementById("button.convexista"),true);
     }
-  }afd
+  }
   game.currency.existivity=0;
 }
 function convexista(){
