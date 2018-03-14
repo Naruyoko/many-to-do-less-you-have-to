@@ -1,2 +1,4 @@
 * {color:#808080;font-size:14px;}
 .large {color:#000000;font-size:20px;}
+button.* {display:inline-block;}
+button.hidden {display:none;}
