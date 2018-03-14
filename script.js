@@ -43,17 +43,32 @@ function passive(){
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
   if (game.unlocked.existivity){document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability)/10+"%</span> change of existing.";}
-  if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+game.currency.existance+"</span> existances. They produce <span class=\"large\">"+game.production.existivity+"</span> existivity each second.";}
-  if (game.unlocked.etime){document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+game.currency.etime+"</span> seconds. It boosts";}
+  if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+game.currency.existance+"</span> existances. They produce <span class=\"large\">"+Math.round(game.production.existivity*100)/100+"</span> existivity each second.";}
+  if (game.unlocked.etime){document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+Math.round(game.currency.etime)+"</span> seconds. It boosts";}
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="Thoughts: <span class=\"large\">"+game.currency.thought+"</span>";}
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <span class=\"large\">"+game.currency.energy+"</span>";}
 }
-function existconv(){
+function convexisti(){
   if (Math.random()<game.currency.existability){
     game.currency.existance++;
-    game.production.existivity=(game.currency.existance+1)*0.01;
+    game.production.existivity=(game.currency.existance+1)*0.01*Math.pow(1.2,game.currency.etime);
     game.unlocked.existance=true;
+    if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){
+      showhide(document.getElementById("button.convexisti"),false);
+      showhide(document.getElementById("button.convexista"),true);
+    }
   }
   game.currency.existivity=0;
+}
+function convexista(){
+  if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){
+    game.currency.etime++;
+    game.currency.existivity=0;
+    game.currency.existance=0;
+    game.production.existivity=0.01*Math.pow(1.2,game.currency.etime);
+    game.unlocked.etime=true;
+    showhide(document.getElementById("button.convexisti"),true);
+    showhide(document.getElementById("button.convexista"),false);
+  }
 }
 loading=false;
