@@ -24,9 +24,9 @@ var game={
 };
 function showhide(x,t){
   if (t){
-      x.style.display="inline-block";
+      x.class="";
   }else{
-      x.style.display="none";
+      x.class="hidden";
   }
 }
 var timeelapsed=0;
@@ -54,7 +54,7 @@ function convexisti(){
     game.production.existivity=(game.currency.existance+1)*0.01*Math.pow(1.2,game.currency.etime);
     game.unlocked.existance=true;
     if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){
-      showhide(document.getElementById("button.convexisti"),false);
+      document.getElementById("button.convexisti").class="unavailable";
       showhide(document.getElementById("button.convexista"),true);
     }
   }
@@ -67,8 +67,8 @@ function convexista(){
     game.currency.existance=0;
     game.production.existivity=0.01*Math.pow(1.2,game.currency.etime);
     game.unlocked.etime=true;
-    showhide(document.getElementById("button.convexisti"),true);
-    showhide(document.getElementById("button.convexista"),false);
+    document.getElementById("button.convexisti").style="";
+    document.getElementById("button.convexista").style="unavailable";
   }
 }
 loading=false;
