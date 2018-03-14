@@ -36,7 +36,7 @@ function passive(){
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
   if (game.unlocked.existivity){document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability)/10+"%</span> change of existing.";}
-  if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"laarge\">"+game.currency.existance+"</span> existances. They produce <span class=\"large\">"+game.production.existivity+"</span> existivity each second.";}
+  if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+game.currency.existance+"</span> existances. They produce <span class=\"large\">"+game.production.existivity+"</span> existivity each second.";}
   if (game.unlocked.time){document.getElementById("disp.time").innerHTML="Time: <span class=\"large\">"+game.currency.time+"</span>";}
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="Thoughts: <span class=\"large\">"+game.currency.thought+"</span>";}
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <span class=\"large\">"+game.currency.energy+"</span>";}
