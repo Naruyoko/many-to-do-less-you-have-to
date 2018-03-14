@@ -27,7 +27,7 @@ function passive(){
     timeelapsed=(d.getTime()-lasttime)/1000;}
   lasttime=d.getTime();
   game.currency.existivity+=game.production.existivity*timeelapsed;
-  game.currency.existance=2/(1+Math.exp(game.currency.existivity))-1;
+  game.currency.existance=2/(1+Math.exp(-game.currency.existivity))-1;
   game.currency.time+=game.production.time*timeelapsed;
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
