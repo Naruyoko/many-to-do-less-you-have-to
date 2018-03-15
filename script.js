@@ -67,12 +67,14 @@ function passive(){
     }
   }
   if (!(document.getElementById("button.convetime").className=="hidden")){
-    if (game.currency.etime<game.currency.thought*2+4){
+    if ((game.currency.etime<game.currency.thought*2+4)||(game.currency.existivity<400*Math.pow(game.currency.thought,2))){
       document.getElementById("button.convetime").className="unavailable";
     }else{
       document.getElementById("button.convetime").className="";
     }
   }
+  document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+Math.round(Math.pow(2,game.currency.etime+4))+" existances";
+  document.getElementById("button.convexista").innerHTML="Thought the word.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(400*Math.pow(game.currency.thought,2))+" existivity";
 }
 function convexisti(){
   if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){return;}
@@ -92,7 +94,7 @@ function convexista(){
   if (game.currency.etime>=4){showhide(document.getElementById("button.convetime"),true);}
 }
 function convetime(){
-  if (game.currency.etime<game.currency.thought*2+4){return;}
+  if ((game.currency.etime<game.currency.thought*2+4)||(game.currency.existivity<400*Math.pow(game.currency.thought,2))){return;}
   game.currency.thought++;
   game.currency.etime=0;
   game.currency.existivity=0;
