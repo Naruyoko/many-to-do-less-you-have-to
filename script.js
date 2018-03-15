@@ -25,7 +25,7 @@ var game={
   canbuy:{
     existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etime+4);}),
     etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etime+4))&&(game.currency.etime<game.currency.thought*2+4);}),
-    thought:(function (){return (game.currency.etime>=game.currency.thought*2+4)&&(game.currency.existivity>=400*Math.pow(game.currency.thought+1,2));}),
+    thought:(function (){return (game.currency.etime>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2));}),
     energy:(function (){return false;})
   }
 };
@@ -88,7 +88,7 @@ function updatedisp(){
     }
   }
   document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+Math.round(Math.pow(2,game.currency.etime+4))+" existances";
-  document.getElementById("button.convetime").innerHTML="Thought the word.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(400*Math.pow(game.currency.thought+1,2))+" existivity";
+  document.getElementById("button.convetime").innerHTML="Thought for the words.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(50*Math.pow(game.currency.thought+2,2))+" existivity";
 }
 function convexisti(){
   if (!game.canbuy.existance()){return;}
