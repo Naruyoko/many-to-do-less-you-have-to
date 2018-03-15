@@ -21,7 +21,7 @@ var game={
     etime:false,
     thought:false,
     energy:false
-  }
+  },
   canbuy:{
     existance:eval("game.currency.existance<Math.pow(2,game.currency.etime+4)"),
     etime:eval("(game.currency.existance>=Math.pow(2,game.currency.etime+4))&&(game.currency.etime<game.currency.thought*2+4)"),
