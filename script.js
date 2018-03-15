@@ -50,6 +50,7 @@ function passive(){
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+game.currency.existance+"</span> existances. They produce <span class=\"large\">"+Math.round(game.production.existivity*100)/100+"</span> existivity each second.";}
   if (game.unlocked.etime){document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+Math.round(game.currency.etime)+"</span> seconds. It boosts the production of existivity by <span class=\"large\">"+Math.round(Math.pow(1.2,game.currency.etime)*100-100)+"%</span>.";}
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="You have <span class=\"large\">"+game.currency.thought+"</span> thoughts and think "+game.currency.thought+" strings per second.";}
+  if (game.unlocked.thought){document.getElementById("disp.word").innerHTML="You have thought of <span class=\"large\">"+game.currency.word+"</span> and finds <span class=\"large\">"+Math.round(game.production.existance*100)/100+"</span> existances per second. Generating: ";}
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <span class=\"large\">"+game.currency.energy+"</span>";}
   if ((document.getElementById("button.convexisti").className=="hidden")||game.currency.existance>=Math.pow(2,game.currency.etime+4)){
     document.getElementById("button.convexisti").className="unavailable";
@@ -103,6 +104,6 @@ function genword(){
     game.currency.word++;
     word="<mark>"+word+"</mark>;
   }
-  document.getElementById("disp.genword")=word;
+  document.getElementById("disp.genword").innerHTML=word;
 }
 loading=false;
