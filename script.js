@@ -67,7 +67,7 @@ function passive(){
     }
   }
   if (!(document.getElementById("button.convetime").className=="hidden")){
-    if ((game.currency.etime<game.currency.thought*2+4)||(game.currency.existivity<400*Math.pow(game.currency.thought,2))){
+    if ((game.currency.etime<game.currency.thought*2+4)||(game.currency.existivity<400*Math.pow(game.currency.thought+1,2))){
       document.getElementById("button.convetime").className="unavailable";
     }else{
       document.getElementById("button.convetime").className="";
@@ -94,7 +94,7 @@ function convexista(){
   if (game.currency.etime>=4){showhide(document.getElementById("button.convetime"),true);}
 }
 function convetime(){
-  if ((game.currency.etime<game.currency.thought*2+4)||(game.currency.existivity<400*Math.pow(game.currency.thought,2))){return;}
+  if ((game.currency.etime<game.currency.thought*2+4)||(game.currency.existivity<400*Math.pow(game.currency.thought+1,2))){return;}
   game.currency.thought++;
   game.currency.etime=0;
   game.currency.existivity=0;
