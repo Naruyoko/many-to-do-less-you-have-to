@@ -88,7 +88,7 @@ function updatedisp(){
     }
   }
   document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+Math.round(Math.pow(2,game.currency.etime+4))+" existances";
-  document.getElementById("button.convetime").innerHTML="Thought the word.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(400*Math.pow(game.currency.thought,2))+" existivity";
+  document.getElementById("button.convetime").innerHTML="Thought the word.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(400*Math.pow(game.currency.thought+1,2))+" existivity";
 }
 function convexisti(){
   if (!game.canbuy.existance()){return;}
