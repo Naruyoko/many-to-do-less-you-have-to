@@ -30,10 +30,14 @@ function showhide(x,t){
       x.className="hidden";
   }
 }
+function passive(){
+  updateprod();
+  updatedisp();
+}
 var timeelapsed=0;
 var lasttime=0;
 var d=new Date();
-function passive(){
+function updateprod(){
   if (lasttime!==0){
     d=new Date();
     timeelapsed=(d.getTime()-lasttime)/1000;}
@@ -46,6 +50,8 @@ function passive(){
   game.currency.etime+=game.production.etime*timeelapsed;
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
+}
+function updatedisp(){
   if (game.unlocked.existivity){document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability)/10+"%</span> change of existing.";}
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+game.currency.existance+"</span> existances. They produce <span class=\"large\">"+Math.round(game.production.existivity*100)/100+"</span> existivity each second.";}
   if (game.unlocked.etime){document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+Math.round(game.currency.etime)+"</span> seconds. It boosts the production of existivity by <span class=\"large\">"+Math.round(Math.pow(1.2,game.currency.etime)*100-100)+"%</span>.";}
