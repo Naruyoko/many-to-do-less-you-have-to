@@ -1,7 +1,7 @@
 var game={
   currency:{
     existivity:0,
-    existability:(function (){return 2/(1+Math.exp(-game.currency.existivity))-1;},
+    existability:(function (){return 2/(1+Math.exp(-game.currency.existivity))-1;}),
     existance:0,
     etime:0, //experienced time
     thought:0,
@@ -23,9 +23,9 @@ var game={
     energy:false
   },
   canbuy:{
-    existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etime+4);},
-    etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etime+4))&&(game.currency.etime<game.currency.thought*2+4);},
-    thought:(function (){return (game.currency.etime>=game.currency.thought*2+4)&&(game.currency.existivity>=400*Math.pow(game.currency.thought+1,2));},
+    existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etime+4);}),
+    etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etime+4))&&(game.currency.etime<game.currency.thought*2+4);}),
+    thought:(function (){return (game.currency.etime>=game.currency.thought*2+4)&&(game.currency.existivity>=400*Math.pow(game.currency.thought+1,2));}),
     energy:(function (){return false;}
   }
 };
