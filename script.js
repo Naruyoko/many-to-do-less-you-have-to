@@ -1,7 +1,7 @@
 var game={
   currency:{
     existivity:0,
-    existability:0,
+    existability:eval("2/(1+Math.exp(-game.currency.existivity))-1"),
     existance:0,
     etime:0, //experienced time
     thought:0,
@@ -22,6 +22,12 @@ var game={
     thought:false,
     energy:false
   }
+  canbuy:{
+    existance:eval("game.currency.existance<Math.pow(2,game.currency.etime+4)"),
+    etime:eval("(game.currency.existance>=Math.pow(2,game.currency.etime+4))&&(game.currency.etime<game.currency.thought*2+4)"),
+    thought:eval("(game.currency.etime>=game.currency.thought*2+4)&&(game.currency.existivity>=400*Math.pow(game.currency.thought+1,2))"),
+    energy:false
+  }
 };
 function showhide(x,t){
   if (t){
@@ -32,20 +38,23 @@ function showhide(x,t){
 }
 function passive(){
   updateprod();
+  updatecurr();
   updatedisp();
 }
 var timeelapsed=0;
 var lasttime=0;
 var d=new Date();
 function updateprod(){
+  game.production.existivity=(Math.floor(game.currency.existance)+1)*0.01*Math.pow(1.2,game.currency.etime)
+  game.production.existance=game.currency.word/100;
+}
+function updatecurr(){
   if (lasttime!==0){
     d=new Date();
     timeelapsed=(d.getTime()-lasttime)/1000;}
   lasttime=d.getTime();
-  game.production.existivity=(Math.floor(game.currency.existance)+1)*0.01*Math.pow(1.2,game.currency.etime)
   game.currency.existivity+=game.production.existivity*timeelapsed;
   game.currency.existability=2/(1+Math.exp(-game.currency.existivity))-1;
-  game.production.existance=game.currency.word/100;
   game.currency.existance+=game.production.existance*timeelapsed;
   game.currency.etime+=game.production.etime*timeelapsed;
   game.currency.thought+=game.production.thought*timeelapsed;
@@ -59,53 +68,56 @@ function updatedisp(){
   if (game.unlocked.thought){document.getElementById("disp.word").innerHTML="You have thought of <span class=\"large\">"+game.currency.word+"</span> <span title=\"More to do, Less you have to.\">words in the title</span> and finds <span class=\"large\">"+Math.round(game.production.existance*100)/100+"</span> existances per second. Recently generated: ";}
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="Energy: <span class=\"large\">"+game.currency.energy+"</span>";}
   if (!(document.getElementById("button.convexisti").className=="hidden")){
-      if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){
-      document.getElementById("button.convexisti").className="unavailable";
-    }else{
+      if (game.canbuy.existance){
       document.getElementById("button.convexisti").className="";
+    }else{
+      document.getElementById("button.convexisti").className="unavailable";
     }
   }
   if (!(document.getElementById("button.convexista").className=="hidden")){
-    if ((game.currency.existance<Math.pow(2,game.currency.etime+4))||(game.currency.etime>=game.currency.thought*2+4)){
-      document.getElementById("button.convexista").className="unavailable";
-    }else{
+    if (game.canbuy.etime){
       document.getElementById("button.convexista").className="";
+    }else{
+      document.getElementById("button.convexista").className="unavailable";
     }
   }
   if (!(document.getElementById("button.convetime").className=="hidden")){
-    if ((game.currency.etime<game.currency.thought*2+4)||(game.currency.existivity<400*Math.pow(game.currency.thought+1,2))){
-      document.getElementById("button.convetime").className="unavailable";
-    }else{
+    if (game.canbuy.thought){
       document.getElementById("button.convetime").className="";
+    }else{
+      document.getElementById("button.convetime").className="unavailable";
     }
   }
   document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+Math.round(Math.pow(2,game.currency.etime+4))+" existances";
   document.getElementById("button.convetime").innerHTML="Thought the word.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(400*Math.pow(game.currency.thought,2))+" existivity";
 }
 function convexisti(){
-  if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){return;}
+  if (!game.canbuy.existance){return;}
   if (Math.random()<game.currency.existability){
     game.currency.existance++;
     game.unlocked.existance=true;
+    updateprod();
     if (game.currency.existance>=16){showhide(document.getElementById("button.convexista"),true);}
   }
   game.currency.existivity=0;
 }
 function convexista(){
-  if (game.currency.existance<Math.pow(2,game.currency.etime+4)||game.currency.etime>=game.currency.thought*2+4){return;}
+  if (!game.canbuy.etime){return;}
   game.currency.etime++;
   game.currency.existivity=0;
   game.currency.existance=0;
   game.unlocked.etime=true;
+  updateprod();
   if (game.currency.etime>=4){showhide(document.getElementById("button.convetime"),true);}
 }
 function convetime(){
-  if ((game.currency.etime<game.currency.thought*2+4)||(game.currency.existivity<400*Math.pow(game.currency.thought+1,2))){return;}
+  if (!game.canbuy.thought){return;}
   game.currency.thought++;
   game.currency.etime=0;
   game.currency.existivity=0;
   game.currency.existance=0;
   game.unlocked.thought=true;
+  updateprod();
   var genwordinterval=setInterval(genword,1000/game.currency.thought);
 }
 function genword(){
