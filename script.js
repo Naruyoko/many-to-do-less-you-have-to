@@ -72,7 +72,6 @@ function convexisti(){
   if (game.currency.existance>=Math.pow(2,game.currency.etime+4)){return;}
   if (Math.random()<game.currency.existability){
     game.currency.existance++;
-    game.production.existivity=(Math.floor(game.currency.existance)+1)*0.01*Math.pow(1.2,game.currency.etime);
     game.unlocked.existance=true;
     if (game.currency.existance>=16){showhide(document.getElementById("button.convexista"),true);}
   }
@@ -83,7 +82,6 @@ function convexista(){
   game.currency.etime++;
   game.currency.existivity=0;
   game.currency.existance=0;
-  game.production.existivity=0.01*Math.pow(1.2,game.currency.etime);
   game.unlocked.etime=true;
   if (game.currency.etime>=4){showhide(document.getElementById("button.convetime"),true);}
 }
