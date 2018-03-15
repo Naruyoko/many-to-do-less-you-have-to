@@ -26,7 +26,7 @@ var game={
     existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etime+4);}),
     etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etime+4))&&(game.currency.etime<game.currency.thought*2+4);}),
     thought:(function (){return (game.currency.etime>=game.currency.thought*2+4)&&(game.currency.existivity>=400*Math.pow(game.currency.thought+1,2));}),
-    energy:(function (){return false;}
+    energy:(function (){return false;})
   }
 };
 function showhide(x,t){
