@@ -74,7 +74,7 @@ function convexisti(){
     game.currency.existance++;
     game.production.existivity=(Math.floor(game.currency.existance)+1)*0.01*Math.pow(1.2,game.currency.etime);
     game.unlocked.existance=true;
-    showhide(document.getElementById("button.convexista"),true);
+    if (game.currency.existance>=16){showhide(document.getElementById("button.convexista"),true);}
   }
   game.currency.existivity=0;
 }
@@ -85,6 +85,7 @@ function convexista(){
   game.currency.existance=0;
   game.production.existivity=0.01*Math.pow(1.2,game.currency.etime);
   game.unlocked.etime=true;
+  if (game.currency.etime>=4){showhide(document.getElementById("button.convetime"),true);}
 }
 function convetime(){
   if (game.currency.etime<game.currency.thought*2+4){return;}
@@ -102,7 +103,7 @@ function genword(){
   for (var i=0;i<wordlength;i++){word+=characterset.charAt(Math.floor(Math.random()*characterset.length));}
   if (["more","to","do","less","you","have","to"].includes(word)){
     game.currency.word++;
-    word="<mark>"+word+"</mark>;
+    word="<mark>"+word+"</mark>";
   }
   document.getElementById("disp.genword").innerHTML=word;
 }
