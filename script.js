@@ -151,6 +151,7 @@ var genwordinterval;
 function convthought(){
   if (!game.canbuy.energy()){return;}
   game.currency.energy++;
+  clearInterval(genwordinterval);
   game.currency.word=0;
   game.currency.thought=0;
   game.currency.etime=0;
