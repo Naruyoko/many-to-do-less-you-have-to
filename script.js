@@ -47,7 +47,7 @@ var d=new Date();
 function updateprod(){
   game.production.existivity=(Math.floor(game.currency.existance)+1)*0.01*Math.pow(1.2,game.currency.etime);
   game.production.existance=game.currency.word/100;
-  game.production.etime=Math.max(Math.pow(Math.floor(game.currency.existance,0.05))-1.4,0)+Math.max(Math.pow(game.currency.existivity,0.001)-1.0075,0);
+  game.production.etime=Math.max(Math.pow(Math.floor(game.currency.existance),0.05)-1.4,0)+Math.max(Math.pow(game.currency.existivity,0.001)-1.0075,0);
 }
 function updatecurr(){
   if (lasttime!==0){
