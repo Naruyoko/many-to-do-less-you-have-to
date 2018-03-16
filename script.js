@@ -134,7 +134,7 @@ function convetime(){
   var genwordinterval;
   clearInterval(genwordinterval);
   genwordinterval=setInterval(genword,1000/game.currency.thought);
-  if (game.currency.thought>=3){showhide(document.getElementById("button.convthoght"),true);}
+  if (game.currency.thought>=3){showhide(document.getElementById("button.convthought"),true);}
 }
 function genword(){
   var word="";
