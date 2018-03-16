@@ -131,7 +131,6 @@ function convetime(){
   game.currency.existance=0;
   game.unlocked.thought=true;
   updateprod();
-  var genwordinterval;
   clearInterval(genwordinterval);
   genwordinterval=setInterval(genword,1000/game.currency.thought);
   if (game.currency.thought>=3){showhide(document.getElementById("button.convthought"),true);}
@@ -148,6 +147,7 @@ function genword(){
   document.getElementById("disp.genword").innerHTML=word;
   return word
 }
+var genwordinterval;
 function convthought(){
   if (!game.canbuy.energy()){return;}
   game.currency.energy++;
