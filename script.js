@@ -108,7 +108,7 @@ function convexisti(){
     game.currency.existance++;
     game.unlocked.existance=true;
     updateprod();
-    ].existance>=16){showhide(document.getElementById("button.convexista"),true);}
+    if (game.currency.existance>=16){showhide(document.getElementById("button.convexista"),true);}
   }
   game.currency.existivity=0;
 }
