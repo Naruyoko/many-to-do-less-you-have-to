@@ -31,7 +31,7 @@ var game={
   }
 };
 var cookieaccepted=false;
-function acceptookie(){
+function acceptcookie(){
   cookieaccepted=true;
   document.getElementById("button.confirmcookie").className="hidden";
 }
@@ -76,7 +76,7 @@ function load(){
   game.currency.word=Number(getCookie("game.currency.word"));
   game.currency.energy=Number(getCookie("game.currency.energy"));
   lasttime=Number(getCookie("lasttime"));
-  cookieaccepted=Number(getCookie("cookieaccepted"));
+  if (getCookie("cookieaccepted")){acceptcookie();}
 }
 function showhide(x,t){
   if (t){
