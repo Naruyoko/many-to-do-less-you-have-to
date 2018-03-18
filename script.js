@@ -30,6 +30,11 @@ var game={
     energy:(function (){return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.8))*5+15);})
   }
 };
+var cookieaccepted=false;
+function acceptookie(){
+  cookieaccepted=true;
+  document.getElementById("button.confirmcookie").className="hidden";
+}
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -52,6 +57,7 @@ function getCookie(cname) {
     return "";
 } //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 12:36 EDT
 function save(){
+  if (!cookieaccepted){return;}
   setCookie("game.currency.existivity",game.currency.existivity,7);
   setCookie("game.currency.existance",game.currency.existance,7);
   setCookie("game.currency.etime",game.currency.etime,7);
@@ -59,6 +65,7 @@ function save(){
   setCookie("game.currency.word",game.currency.word,7);
   setCookie("game.currency.energy",game.currency.energy,7);
   setCookie("lasttime",lasttime,7);
+  setCookie("cookieaccepted",cookieaccpected,7);
 }
 function load(){
   if (!document.cookie){return;}
@@ -68,7 +75,8 @@ function load(){
   game.currency.thought=Number(getCookie("game.currency.thought"));
   game.currency.word=Number(getCookie("game.currency.word"));
   game.currency.energy=Number(getCookie("game.currency.energy"));
-  var lasttime=Number(getCookie("lasttime"));
+  lasttime=Number(getCookie("lasttime"));
+  cookieaccepted=Number(getCookie("cookieaccepted"));
 }
 function showhide(x,t){
   if (t){
@@ -185,7 +193,7 @@ function genword(){
     word="<mark>"+word+"</mark>";
   }
   document.getElementById("disp.genword").innerHTML=word;
-  return word
+  return word;
 }
 var genwordinterval;
 function convthought(){
@@ -201,4 +209,5 @@ function convthought(){
   game.unlocked.energy=true;
   updateprod();
 }
+load();
 loading=false;
