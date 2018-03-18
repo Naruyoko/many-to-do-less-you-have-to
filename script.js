@@ -30,6 +30,46 @@ var game={
     energy:(function (){return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.8))*5+15);})
   }
 };
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+} //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 11:39 EDT
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+} //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 12:36 EDT
+function save(){
+  setCookie("game.currency.existivity",game.currency.existivity,7);
+  setCookie("game.currency.existance",game.currency.existance,7);
+  setCookie("game.currency.etime",game.currency.etime,7);
+  setCookie("game.currency.thought",game.currency.thought,7);
+  setCookie("game.currency.word",game.currency.word,7);
+  setCookie("game.currency.energy",game.currency.energy,7);
+  setCookie("lasttime",lasttime,7);
+}
+function load(){
+  if (!document.cookie){return;}
+  game.currency.existivity=Number(getCookie("game.currency.existivity"));
+  game.currency.existance=Number(getCookie("game.currency.existance"));
+  game.currency.etime=Number(getCookie("game.currency.etime"));
+  game.currency.thought=Number(getCookie("game.currency.thought"));
+  game.currency.word=Number(getCookie("game.currency.word"));
+  game.currency.energy=Number(getCookie("game.currency.energy"));
+  var lasttime=Number(getCookie("lasttime"));
+}
 function showhide(x,t){
   if (t){
       x.className="";
