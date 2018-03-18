@@ -13,7 +13,7 @@ var game={
     existivity:0.01,
     existance:0,
     etime:0,
-    thought:0,
+    thought:0,、
     energy:0
   },
   unlocked:{
@@ -34,6 +34,7 @@ var cookieaccepted=false;
 function acceptcookie(){
   cookieaccepted=true;
   document.getElementById("button.confirmcookie").className="hidden";
+  document.getElementById("button.save").className="";
 }
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
