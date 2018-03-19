@@ -13,7 +13,7 @@ var game={
     existivity:0.01,
     existance:0,
     etime:0,
-    thought:0,、
+    thought:0,
     energy:0
   },
   unlocked:{
