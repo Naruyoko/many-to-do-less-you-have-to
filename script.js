@@ -63,9 +63,15 @@ function savecookie(){
   setCookie("game.currency.existivity",game.currency.existivity,7);
   setCookie("game.currency.existance",game.currency.existance,7);
   setCookie("game.currency.etime",game.currency.etime,7);
+  setCookie("game.currency.etimebought",game.currency.etimebought,7);
   setCookie("game.currency.thought",game.currency.thought,7);
-  setCookie("game.currency.word",game.currency.word,7);
   setCookie("game.currency.energy",game.currency.energy,7);
+  setCookie("game.unlocked.existivity",game.unlocked.existivity,7);
+  setCookie("game.unlocked.existance",game.unlocked.existance,7);
+  setCookie("game.unlocked.etime",game.unlocked.etime,7);
+  setCookie("game.unlocked.thought",game.unlocked.thought,7);
+  setCookie("game.unlocked.word",game.unlocked.word,7);
+  setCookie("game.unlocked.energy",game.unlocked.energy,7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccpected,7);
 }
@@ -74,9 +80,15 @@ function loadcookie(){
   game.currency.existivity=Number(getCookie("game.currency.existivity"));
   game.currency.existance=Number(getCookie("game.currency.existance"));
   game.currency.etime=Number(getCookie("game.currency.etime"));
+  game.currency.etimebought=Number(getCookie("game.currency.etimebought"));
   game.currency.thought=Number(getCookie("game.currency.thought"));
   game.currency.word=Number(getCookie("game.currency.word"));
   game.currency.energy=Number(getCookie("game.currency.energy"));
+  game.unlocked.existivity=getCookie("game.unlocked.existivity")=="true";
+  game.unlocked.existance=getCookie("game.unlocked.existance")=="true";
+  game.unlocked.etime=getCookie("game.unlocked.etime")=="true";
+  game.unlocked.thought=getCookie("game.unlocked.thought")=="true";
+  game.unlocked.energy=getCookie("game.unlocked.energy")=="true";
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){acceptcookie();}
 }
