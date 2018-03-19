@@ -34,7 +34,8 @@ var cookieaccepted=false;
 function acceptcookie(){
   cookieaccepted=true;
   document.getElementById("button.confirmcookie").className="hidden";
-  document.getElementById("button.save").className="";
+  document.getElementById("button.save").className="";
+  document.getElementById("button.delete").className="";
 }
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
