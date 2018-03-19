@@ -2,20 +2,6 @@
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <img id="loadpic" src="./files/pictures/title.png" />
 <link rel="stylesheet" href="stylesheet.css" type="text/css">
-<script>
-  var loading=true;
-</script>
-<script src="./script.js"></script>
-<script>
-  function waituntilload(){
-    if (!loading){
-      clearInterval(waituntilloadinterval);
-      document.getElementById("loadpic").src="";
-      var passiveinterval=setInterval(passive,100);
-    }
-  }
-  var waituntilloadinterval=setInterval(waituntilload,100);
-</script>
 <div id="disp.existivity"></div>
 <div id="disp.existance"></div>
 <div id="disp.etime"></div>
@@ -30,3 +16,15 @@
 <button id="button.confirmcookie" type="button" class="footer" style="text-align:center;background-color:#ffff80;color:#303030;right:0;border:2px solid black;border-radius:6px;" onclick="acceptcookie()">Accept cookies to<br/>save progresses.</button><br>
 <button id="button.savecookie" type="button" class="hidden" style="text-align:center;background-color:#ffff80;color:#303030;border:1px solid black;border-radius:6px;" onclick="savecookie()">SAVE the Game</button><br>
 <button id="button.deletecookie" type="button" class="hidden" style="text-align:center;background-color:#ff4040;color:#303030;border:1px solid black;border-radius:6px;" onclick="deletecookie()">Delete the SAVE</button><br>
+<script>
+  function waituntilload(){
+    if (!loading){
+      clearInterval(waituntilloadinterval);
+      document.getElementById("loadpic").src="";
+      var passiveinterval=setInterval(passive,100);
+    }
+  }
+  var loading=true;
+  var waituntilloadinterval=setInterval(waituntilload,100);
+</script>
+<script src="./script.js"></script>
