@@ -34,8 +34,8 @@ var cookieaccepted=false;
 function acceptcookie(){
   cookieaccepted=true;
   document.getElementById("button.confirmcookie").className="hidden";
-  document.getElementById("button.save").className="";
-  document.getElementById("button.delete").className="";
+  document.getElementById("button.savecookie").className="";
+  document.getElementById("button.deletecookie").className="";
 }
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -58,7 +58,7 @@ function getCookie(cname) {
     }
     return "";
 } //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 12:36 EDT
-function save(){
+function savecookie(){
   if (!cookieaccepted){return;}
   setCookie("game.currency.existivity",game.currency.existivity,7);
   setCookie("game.currency.existance",game.currency.existance,7);
@@ -69,7 +69,7 @@ function save(){
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccpected,7);
 }
-function load(){
+function loadcookie(){
   if (!document.cookie){return;}
   game.currency.existivity=Number(getCookie("game.currency.existivity"));
   game.currency.existance=Number(getCookie("game.currency.existance"));
@@ -80,7 +80,7 @@ function load(){
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){acceptcookie();}
 }
-function delete(){
+function deletecookie(){
   if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
   document.cookie="expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   window.location.reload(true);
