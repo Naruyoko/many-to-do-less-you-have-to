@@ -70,7 +70,7 @@ function savecookie(){
   setCookie("game.unlocked.thought",game.unlocked.thought,7);
   setCookie("game.unlocked.energy",game.unlocked.energy,7);
   setCookie("lasttime",lasttime,7);
-  setCookie("cookieaccepted",cookieaccpted,7);
+  setCookie("cookieaccepted",cookieaccepted,7);
 }
 function loadcookie(){
   if (!document.cookie){return;}
@@ -90,7 +90,7 @@ function loadcookie(){
 }
 function deletecookie(){
   if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
-  document.cookie="expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie="a=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   window.location.reload(true);
 }
 function showhide(x,t){
