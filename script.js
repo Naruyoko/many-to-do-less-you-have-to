@@ -90,7 +90,7 @@ function loadcookie(){
 }
 function deletecookie(){
   if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
-  document.cookie="a=;expires=Thu, 01 Jan 1970 00:00:01 UTC; path=/;";
+  document.cookie="a=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   window.location.reload(true);
 }
 function showhide(x,t){
