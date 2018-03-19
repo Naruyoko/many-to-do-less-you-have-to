@@ -81,7 +81,7 @@ function load(){
   if (getCookie("cookieaccepted")){acceptcookie();}
 }
 function delete(){
-  if (!window.confirm("Do you REALLY want to reset? No going back!"){return;}
+  if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
   document.cookie="expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   window.location.reload(true);
 }
