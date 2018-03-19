@@ -228,5 +228,5 @@ function convthought(){
   game.unlocked.energy=true;
   updateprod();
 }
-load();
+loadcookie();
 loading=false;
