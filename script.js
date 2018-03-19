@@ -17,7 +17,6 @@ var game={
     energy:0
   },
   unlocked:{
-    existivity:true,
     existance:false,
     etime:false,
     thought:false,
@@ -66,11 +65,9 @@ function savecookie(){
   setCookie("game.currency.etimebought",game.currency.etimebought,7);
   setCookie("game.currency.thought",game.currency.thought,7);
   setCookie("game.currency.energy",game.currency.energy,7);
-  setCookie("game.unlocked.existivity",game.unlocked.existivity,7);
   setCookie("game.unlocked.existance",game.unlocked.existance,7);
   setCookie("game.unlocked.etime",game.unlocked.etime,7);
   setCookie("game.unlocked.thought",game.unlocked.thought,7);
-  setCookie("game.unlocked.word",game.unlocked.word,7);
   setCookie("game.unlocked.energy",game.unlocked.energy,7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccpted,7);
@@ -84,7 +81,6 @@ function loadcookie(){
   game.currency.thought=Number(getCookie("game.currency.thought"));
   game.currency.word=Number(getCookie("game.currency.word"));
   game.currency.energy=Number(getCookie("game.currency.energy"));
-  game.unlocked.existivity=getCookie("game.unlocked.existivity")=="true";
   game.unlocked.existance=getCookie("game.unlocked.existance")=="true";
   game.unlocked.etime=getCookie("game.unlocked.etime")=="true";
   game.unlocked.thought=getCookie("game.unlocked.thought")=="true";
@@ -131,7 +127,7 @@ function updatecurr(){
   game.currency.energy+=game.production.energy*timeelapsed;
 }
 function updatedisp(){
-  if (game.unlocked.existivity){document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span> change of existing.";}
+  document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span> change of existing.";
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+Math.floor(game.currency.existance)+"</span> existances. They produce <span class=\"large\">"+Math.round(game.production.existivity*100)/100+"</span> existivity each second.";}
   if (game.unlocked.etime){document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+Math.floor(game.currency.etime)+"</span> seconds. It boosts the production of existivity by <span class=\"large\">"+Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100)+"%</span>.";}
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="You have <span class=\"large\">"+game.currency.thought+"</span> thoughts and think "+game.currency.thought+" strings per second.";}
