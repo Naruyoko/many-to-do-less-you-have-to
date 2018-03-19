@@ -73,7 +73,7 @@ function savecookie(){
   setCookie("game.unlocked.word",game.unlocked.word,7);
   setCookie("game.unlocked.energy",game.unlocked.energy,7);
   setCookie("lasttime",lasttime,7);
-  setCookie("cookieaccepted",cookieaccpected,7);
+  setCookie("cookieaccepted",cookieaccpted,7);
 }
 function loadcookie(){
   if (!document.cookie){return;}
@@ -205,7 +205,7 @@ function convetime(){
 function genword(){
   var word="";
   var characterset="abcdefghijklmnopqrstuvwxyz";
-  var wordlength=Math.floor(Math.random()*5)+1
+  var wordlength=Math.floor(Math.random()*5)+1;
   for (var i=0;i<wordlength;i++){word+=characterset.charAt(Math.floor(Math.random()*characterset.length));}
   if (["more","to","do","less","you","have","to"].includes(word)){
     game.currency.word++;
