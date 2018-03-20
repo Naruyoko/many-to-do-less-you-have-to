@@ -22,13 +22,18 @@ function initializevars(){
       existance:false,
       etime:false,
       thought:false,
-      energy:false
+      energy:false,
+      autobuyshop:false
     },
     canbuy:{
       existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
       etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etimebought+4))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4);}),
       thought:(function (){return (Math.floor(game.currency.etime)>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));}),
       energy:(function (){return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.8))*5+15);})
+    },
+    autobuy:{
+      existivity:false,
+      existivityon:(function (){return Number(document.getElementById("input.autoconvexisti").value);})
     }
   };
 }
