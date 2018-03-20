@@ -1,104 +1,35 @@
-var game;
-function initializevars(){
-  game={
-    currency:{
-      existivity:0,
-      existability:(function (){return 2/(1+Math.exp(-game.currency.existivity))-1;}),
-      existance:0,
-      etime:0, //experienced time
-      etimebought:0,
-      thought:0,
-      word:0,
-      energy:0
-    },
-    production:{
-      existivity:0.01,
-      existance:0,
-      etime:0,
-      thought:0,
-      energy:0
-    },
-    unlocked:{
-      existance:false,
-      etime:false,
-      thought:false,
-      energy:false
-    },
-    canbuy:{
-      existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
-      etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etimebought+4))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4);}),
-      thought:(function (){return (Math.floor(game.currency.etime)>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));}),
-      energy:(function (){return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.8))*5+15);})
-    }
-  };
-}
-initializevars();
-var cookieaccepted=false;
-function acceptcookie(){
-  cookieaccepted=true;
-  document.getElementById("button.confirmcookie").className="hidden";
-  document.getElementById("button.savecookie").className="";
-  document.getElementById("button.deletecookie").className="";
-}
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-} //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 11:39 EDT
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-} //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 12:36 EDT
-function savecookie(){
-  if (!cookieaccepted){return;}
-  setCookie("game.currency.existivity",game.currency.existivity,7);
-  setCookie("game.currency.existance",game.currency.existance,7);
-  setCookie("game.currency.etime",game.currency.etime,7);
-  setCookie("game.currency.etimebought",game.currency.etimebought,7);
-  setCookie("game.currency.thought",game.currency.thought,7);
-  setCookie("game.currency.energy",game.currency.energy,7);
-  setCookie("game.unlocked.existance",game.unlocked.existance,7);
-  setCookie("game.unlocked.etime",game.unlocked.etime,7);
-  setCookie("game.unlocked.thought",game.unlocked.thought,7);
-  setCookie("game.unlocked.energy",game.unlocked.energy,7);
-  setCookie("lasttime",lasttime,7);
-  setCookie("cookieaccepted",cookieaccepted,7);
-}
-function loadcookie(){
-  if (!document.cookie){return;}
-  game.currency.existivity=Number(getCookie("game.currency.existivity"));
-  game.currency.existance=Number(getCookie("game.currency.existance"));
-  game.currency.etime=Number(getCookie("game.currency.etime"));
-  game.currency.etimebought=Number(getCookie("game.currency.etimebought"));
-  game.currency.thought=Number(getCookie("game.currency.thought"));
-  game.currency.word=Number(getCookie("game.currency.word"));
-  game.currency.energy=Number(getCookie("game.currency.energy"));
-  game.unlocked.existance=getCookie("game.unlocked.existance")=="true";
-  game.unlocked.etime=getCookie("game.unlocked.etime")=="true";
-  game.unlocked.thought=getCookie("game.unlocked.thought")=="true";
-  game.unlocked.energy=getCookie("game.unlocked.energy")=="true";
-  lasttime=Number(getCookie("lasttime"));
-  if (getCookie("cookieaccepted")){acceptcookie();}
-}
-function deletecookie(){
-  if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
-  initializevars();
-  savecookie();
-  setCookie("lasttime",0,7);
-  window.location.reload(true);
-}
+var game={
+  currency:{
+    existivity:0,
+    existability:(function (){return 2/(1+Math.exp(-game.currency.existivity))-1;}),
+    existance:0,
+    etime:0, //experienced time
+    etimebought:0,
+    thought:0,
+    word:0,
+    energy:0
+  },
+  production:{
+    existivity:0.01,
+    existance:0,
+    etime:0,
+    thought:0,
+    energy:0
+  },
+  unlocked:{
+    existivity:true,
+    existance:false,
+    etime:false,
+    thought:false,
+    energy:false
+  },
+  canbuy:{
+    existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
+    etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etimebought+4))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4);}),
+    thought:(function (){return (Math.floor(game.currency.etime)>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));}),
+    energy:(function (){return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.8))*5+15);})
+  }
+};
 function showhide(x,t){
   if (t){
       x.className="";
@@ -133,7 +64,7 @@ function updatecurr(){
   game.currency.energy+=game.production.energy*timeelapsed;
 }
 function updatedisp(){
-  document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span> change of existing.";
+  if (game.unlocked.existivity){document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span> change of existing.";}
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+Math.floor(game.currency.existance)+"</span> existances. They produce <span class=\"large\">"+Math.round(game.production.existivity*100)/100+"</span> existivity each second.";}
   if (game.unlocked.etime){document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+Math.floor(game.currency.etime)+"</span> seconds. It boosts the production of existivity by <span class=\"large\">"+Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100)+"%</span>.";}
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="You have <span class=\"large\">"+game.currency.thought+"</span> thoughts and think "+game.currency.thought+" strings per second.";}
@@ -207,14 +138,14 @@ function convetime(){
 function genword(){
   var word="";
   var characterset="abcdefghijklmnopqrstuvwxyz";
-  var wordlength=Math.floor(Math.random()*5)+1;
+  var wordlength=Math.floor(Math.random()*5)+1
   for (var i=0;i<wordlength;i++){word+=characterset.charAt(Math.floor(Math.random()*characterset.length));}
   if (["more","to","do","less","you","have","to"].includes(word)){
     game.currency.word++;
     word="<mark>"+word+"</mark>";
   }
   document.getElementById("disp.genword").innerHTML=word;
-  return word;
+  return word
 }
 var genwordinterval;
 function convthought(){
@@ -230,5 +161,4 @@ function convthought(){
   game.unlocked.energy=true;
   updateprod();
 }
-loadcookie();
 loading=false;
