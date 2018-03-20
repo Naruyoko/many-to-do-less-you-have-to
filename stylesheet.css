@@ -1,6 +1,12 @@
 * {color:#808080;font-family:Tahoma,Geneva,sans-serif;font-size:14px;}
 .large {color:#000000;font-size:20px;}
 .footer {color:#a6a6a6;font-size:12px;position:fixed;bottom:0px;}
+.hidden {display:none;}
+button.unavailable {
+  opacity:0.6;
+  cursor: not-allowed;
+  color:#ff0000;
+}
 button * {
   display:inline-block;
   background-color:#f7f7f7;
@@ -8,9 +14,13 @@ button * {
   border-radius:2px;
   color:#070707;
 }
-.hidden {display:none;}
-button.unavailable {
-  opacity:0.6;
-  cursor: not-allowed;
-  color:#ff0000;
+button.changescr{
+  float:left;
+  margin:auto;
+  border:2px solid green;
+  border-radius:6px;
+  background-color:#ffffff;
+  color=#0f0f0f;
+  font=bold;
+  font-size=16px;
 }
