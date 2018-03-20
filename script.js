@@ -1,40 +1,44 @@
-var game={
-  currency:{
-    existivity:0,
-    existability:(function (){return 2/(1+Math.exp(-game.currency.existivity))-1;}),
-    existance:0,
-    etime:0, //experienced time
-    etimebought:0,
-    thought:0,
-    word:0,
-    energy:0
-  },
-  production:{
-    existivity:0.01,
-    existance:0,
-    etime:0,
-    thought:0,
-    energy:0
-  },
-  unlocked:{
-    existance:false,
-    etime:false,
-    thought:false,
-    energy:false
-  },
-  canbuy:{
-    existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
-    etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etimebought+4))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4);}),
-    thought:(function (){return (Math.floor(game.currency.etime)>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));}),
-    energy:(function (){return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.8))*5+15);})
-  }
-};
+var game;
+function initializevars(){
+  game={
+    currency:{
+      existivity:0,
+      existability:(function (){return 2/(1+Math.exp(-game.currency.existivity))-1;}),
+      existance:0,
+      etime:0, //experienced time
+      etimebought:0,
+      thought:0,
+      word:0,
+      energy:0
+    },
+    production:{
+      existivity:0.01,
+      existance:0,
+      etime:0,
+      thought:0,
+      energy:0
+    },
+    unlocked:{
+      existance:false,
+      etime:false,
+      thought:false,
+      energy:false
+    },
+    canbuy:{
+      existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
+      etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etimebought+4))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4);}),
+      thought:(function (){return (Math.floor(game.currency.etime)>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));}),
+      energy:(function (){return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.8))*5+15);})
+    }
+  };
+}
+initializevars();
 var cookieaccepted=false;
 function acceptcookie(){
   cookieaccepted=true;
   document.getElementById("button.confirmcookie").className="hidden";
   document.getElementById("button.savecookie").className="";
-  document.getElementById("button.deletecookie").className="";
+  document.getElementById("button.deletecookie").className="";
 }
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -76,13 +80,13 @@ function loadcookie(){
   if (!document.cookie){return;}
   game.currency.existivity=Number(getCookie("game.currency.existivity"));
   game.currency.existance=Number(getCookie("game.currency.existance"));
-  game.currency.etime=Number(getCookie("game.currency.etime"));
-  game.currency.etimebought=Number(getCookie("game.currency.etimebought"));
+  game.currency.etime=Number(getCookie("game.currency.etime"));
+  game.currency.etimebought=Number(getCookie("game.currency.etimebought"));
   game.currency.thought=Number(getCookie("game.currency.thought"));
   game.currency.word=Number(getCookie("game.currency.word"));
   game.currency.energy=Number(getCookie("game.currency.energy"));
   game.unlocked.existance=getCookie("game.unlocked.existance")=="true";
-  game.unlocked.etime=getCookie("game.unlocked.etime")=="true";
+  game.unlocked.etime=getCookie("game.unlocked.etime")=="true";
   game.unlocked.thought=getCookie("game.unlocked.thought")=="true";
   game.unlocked.energy=getCookie("game.unlocked.energy")=="true";
   lasttime=Number(getCookie("lasttime"));
@@ -90,7 +94,9 @@ function loadcookie(){
 }
 function deletecookie(){
   if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
-  document.cookie="a=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  initializevars();
+  savecookie();
+  setCookie("lasttime",0,7);
   window.location.reload(true);
 }
 function showhide(x,t){
