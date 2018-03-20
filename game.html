@@ -2,20 +2,6 @@
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <img id="loadpic" src="./files/pictures/title.png" />
 <link rel="stylesheet" href="stylesheet.css" type="text/css">
-<script>
-  var loading=true;
-</script>
-<script src="./script.js"></script>
-<script>
-  function waituntilload(){
-    if (!loading){
-      clearInterval(waituntilloadinterval);
-      document.getElementById("loadpic").src="";
-      var passiveinterval=setInterval(passive,100);
-    }
-  }
-  var waituntilloadinterval=setInterval(waituntilload,100);
-</script>
 <div id="disp.existivity"></div>
 <div id="disp.existance"></div>
 <div id="disp.etime"></div>
@@ -26,4 +12,19 @@
 <button id="button.convexista" type="button" class="hidden" onclick="convexista()" title="Repeating makes efficient.&#10;Resets existance and existivity.">Experience.<br/>Cost: - existances</button><br>
 <button id="button.convetime" type="button" class="hidden" onclick="convetime()" title="You need to think.&#10;Resets experienced time, existance, and existivity.">Thought the word.<br/>Cost: - experienced time,<br/>  - existivity</button><br>
 <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words found"</button><br>
-<div class="footer">Refferences:    <br/>Inspired font style by <a href="https://ivark.github.io">Antimatter Dimensions</a><br/>Incremental game reddit: <a href="https://www.reddit.com/r/incremental_games/">/r/incremental_games</a></div>
+<div class="footer" style="z-index:-1;">Refferences:    <br/>Inspired font style by <a href="https://ivark.github.io">Antimatter Dimensions</a><br/>Incremental game reddit: <a href="https://www.reddit.com/r/incremental_games/">/r/incremental_games</a></div>
+<button id="button.confirmcookie" type="button" class="footer" style="text-align:center;background-color:#ffff80;color:#303030;right:0;border:2px solid black;border-radius:6px;" onclick="acceptcookie()">Accept cookies to<br/>save progresses.</button><br>
+<button id="button.savecookie" type="button" class="hidden" style="text-align:center;background-color:#ffff80;color:#303030;border:1px solid black;border-radius:6px;" onclick="savecookie()">SAVE the Game</button><br>
+<button id="button.deletecookie" type="button" class="hidden" style="text-align:center;background-color:#ff4040;color:#303030;border:1px solid black;border-radius:6px;" onclick="deletecookie()">Delete the SAVE</button><br>
+<script>
+  function waituntilload(){
+    if (!loading){
+      clearInterval(waituntilloadinterval);
+      document.getElementById("loadpic").src="";
+      var passiveinterval=setInterval(passive,100);
+    }
+  }
+  var loading=true;
+  var waituntilloadinterval=setInterval(waituntilload,100);
+</script>
+<script src="./script.js"></script>
