@@ -134,6 +134,7 @@ function passive(){
   updateprod();
   updatecurr();
   updatedisp();
+  updatebutton();
 }
 var timeelapsed=0;
 var lasttime=0;
@@ -168,6 +169,8 @@ function updatedisp(){
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="You have <span class=\"large\">"+game.currency.thought+"</span> thoughts and think "+game.currency.thought+" strings per second.";}
   if (game.unlocked.thought){document.getElementById("disp.word").innerHTML="You have thought of <span class=\"large\">"+game.currency.word+"</span> <span title=\"More to do, Less you have to.\">words in the title</span> and finds <span class=\"large\">"+Math.round(game.production.existance*100)/100+"</span> existances per second. Recently generated: ";}
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="There are <span class=\"large\">"+game.currency.energy+"</span> joules of energy in your system. Existances and existivity together experience <span class=\"large\">"+Math.round(game.production.etime*1000)/1000+"</span> seconds per second.";}
+}
+function updatebutton(){
   if (game.canbuy.existance()){
     document.getElementById("button.convexisti").className="";
   }else{
