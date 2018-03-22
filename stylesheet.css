@@ -14,13 +14,13 @@ button * {
   border-radius:2px;
   color:#070707;
 }
-button.changescr{
+button.changescr {
   float:left;
   margin:auto;
   border:2px solid green;
   border-radius:6px;
-  background-color:#ffffff;
-  color=#0f0f0f;
-  font=bold;
-  font-size=16px;
+  background-color:#dfdfff;
+  color:#0f0f0f;
+  font:bold;
+  font-size:16px;
 }
