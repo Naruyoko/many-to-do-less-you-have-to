@@ -110,6 +110,7 @@ function loadcookie(){
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){acceptcookie();}
+  setgenwordinterval();
 }
 function deletecookie(){
   if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
@@ -245,9 +246,12 @@ function convetime(){
   game.currency.existance=0;
   game.unlocked.thought=true;
   updateprod();
+  setgenwordinterval();
+  if (game.currency.thought>=3){game.unlocked.convthought=true;}
+}
+function setgenwordinterval(){
   clearInterval(genwordinterval);
   genwordinterval=setInterval(genword,1000/game.currency.thought);
-  if (game.currency.thought>=3){game.unlocked.convthought=true;}
 }
 function genword(){
   var word="";
