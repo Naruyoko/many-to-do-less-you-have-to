@@ -88,6 +88,7 @@ function savecookie(){
   setCookie("game.unlocked.convthought",game.unlocked.convthought,7);
   setCookie("game.unlocked.autobuyshop",game.unlocked.autobuyshop,7);
   setCookie("game.autobuy.existivity",game.autobuy.existivity,7);
+  setCookie("game.autobuy.existivityto",game.autobuy.existivityto,7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccepted,7);
 }
@@ -109,6 +110,7 @@ function loadcookie(){
   game.unlocked.convthought=getCookie("game.unlocked.convthought")=="true";
   game.unlocked.autobuyshop=getCookie("game.unlocked.autobuyshop")=="true";
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
+  document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivityto");
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){acceptcookie();}
   setgenwordinterval();
