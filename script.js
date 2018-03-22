@@ -209,12 +209,12 @@ function updatedisp(){
   document.getElementById("button.convthought").innerHTML="Be energetic!!<br/>Cost: "+Math.floor(game.currency.energy*(game.currency.energy+1)/2+3)+" thoughts,<br/>  "+(Math.floor(Math.pow(game.currency.energy,1.8))*5+15)+" words found";
 }
 function changescr_shop_general(){
-  document.getElementById("scr.shop.general")="";
-  document.getElementById("scr.shop.autoconv")="hidden";
+  document.getElementById("scr.shop.general").className="";
+  document.getElementById("scr.shop.autoconv").className="hidden";
 }
 function changescr_shop_autoconv(){
-  document.getElementById("scr.shop.general")="hidden";
-  document.getElementById("scr.shop.autoconv")="";
+  document.getElementById("scr.shop.general").className="hidden";
+  document.getElementById("scr.shop.autoconv").className="";
 }
 function convexisti(){
   if (!game.canbuy.existance()){return;}
