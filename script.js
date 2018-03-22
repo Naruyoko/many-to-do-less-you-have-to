@@ -77,6 +77,7 @@ function savecookie(){
   setCookie("game.currency.etime",game.currency.etime,7);
   setCookie("game.currency.etimebought",game.currency.etimebought,7);
   setCookie("game.currency.thought",game.currency.thought,7);
+  setCookie("game.currency.word",game.currency.word,7);
   setCookie("game.currency.energy",game.currency.energy,7);
   setCookie("game.unlocked.existance",game.unlocked.existance,7);
   setCookie("game.unlocked.etime",game.unlocked.etime,7);
