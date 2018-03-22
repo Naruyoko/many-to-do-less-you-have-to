@@ -82,7 +82,7 @@ function savecookie(){
   setCookie("game.unlocked.etime",game.unlocked.etime,7);
   setCookie("game.unlocked.thought",game.unlocked.thought,7);
   setCookie("game.unlocked.energy",game.unlocked.energy,7);
-  setCookie("game.unlocked.convexita",game.unlocked.convexista,7);
+  setCookie("game.unlocked.convexista",game.unlocked.convexista,7);
   setCookie("game.unlocked.convetime",game.unlocked.convetime,7);
   setCookie("game.unlocked.convthought",game.unlocked.convthought,7);
   setCookie("game.unlocked.autobuyshop",game.unlocked.autobuyshop,7);
