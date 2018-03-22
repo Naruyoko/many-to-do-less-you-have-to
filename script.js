@@ -85,6 +85,7 @@ function savecookie(){
   setCookie("game.unlocked.convexita",game.unlocked.convexista,7);
   setCookie("game.unlocked.convetime",game.unlocked.convetime,7);
   setCookie("game.unlocked.convthought",game.unlocked.convthought,7);
+  setCookie("game.unlocked.autobuyshop",game.unlocked.autobuyshop,7);
   setCookie("game.autobuy.existivity",game.autobuy.existivity,7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccepted,7);
@@ -105,6 +106,7 @@ function loadcookie(){
   game.unlocked.convexista=getCookie("game.unlocked.convexista")=="true";
   game.unlocked.convetime=getCookie("game.unlocked.convetime")=="true";
   game.unlocked.convthought=getCookie("game.unlocked.convthought")=="true";
+  game.unlocked.autobuyshop=getCookie("game.unlocked.autobuyshop")=="true";
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){acceptcookie();}
@@ -199,6 +201,7 @@ function updatedisp(){
   }else{
     document.getElementById("button.buyautoconvexisti").className="unavailable";
   }
+  if (game.unlocked.autobuyshop){document.getElementById("changescr").className="";}
   if (game.autobuy.existivity){document.getElementById("form.autoconvexisti").className="";}
   document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+Math.round(Math.pow(2,game.currency.etimebought+4))+" existances";
   document.getElementById("button.convetime").innerHTML="Thought for the words.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(50*Math.pow(game.currency.thought+2,2))+" existivity";
@@ -219,7 +222,7 @@ function convexisti(){
     game.unlocked.existance=true;
     updateprod();
     if (game.currency.existance>=16){game.unlocked.convexista=true;}
-    if (game.currency.existance>=200){game.unlocked.autobuy=true;}
+    if (game.currency.existance>=200){game.unlocked.autobuyshop=true;}
   }
   game.currency.existivity=0;
 }
