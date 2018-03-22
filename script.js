@@ -289,7 +289,7 @@ function convthought(){
 function buyautoconvexisti(){
   if (!game.canbuy.autoconvexisti()){return;}
   game.currency.existance-=200;
-  game.autobuy.existiviy=false;
+  game.autobuy.existiviy=true;
 }
 loadcookie();
 loading=false;
