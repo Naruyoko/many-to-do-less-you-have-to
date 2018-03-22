@@ -251,7 +251,7 @@ function convetime(){
 }
 function setgenwordinterval(){
   clearInterval(genwordinterval);
-  if (game.currency.thought=0){return;}
+  if (game.currency.thought==0){return;}
   genwordinterval=setInterval(genword,1000/game.currency.thought);
 }
 function genword(){
