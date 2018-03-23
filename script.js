@@ -140,7 +140,7 @@ var timeelapsed=0;
 var lasttime=0;
 var d=new Date();
 function updateauto(){
-  if (game.autobuy.existivity&&(game.currency.existivity>=game.autobuy.existivityon())){
+  if (game.autobuy.existivity&&(game.currency.existivity>=game.autobuy.existivityon())&&!isNaN(game.autobuy.existivityon())){
     convexisti();
   }
 }
