@@ -147,7 +147,7 @@ function updateauto(){
 function updateprod(){
   game.production.existivity=(Math.floor(game.currency.existance)+1)*0.01*Math.pow(1.2,Math.floor(game.currency.etime));
   game.production.existance=game.currency.word/100;
-  game.production.etime=game.production.energy*(Math.max(Math.pow(Math.floor(game.currency.existance),0.03)-1.2,0)+Math.max(Math.pow(game.currency.existivity,0.003)-1.016,0));
+  game.production.etime=game.currency.energy*(Math.max(Math.pow(Math.floor(game.currency.existance),0.03)-1.2,0)+Math.max(Math.pow(game.currency.existivity,0.003)-1.016,0));
 }
 function updatecurr(){
   if (lasttime!==0){
