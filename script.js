@@ -3,7 +3,8 @@ function initializevars(){
   game={
     currency:{
       existivity:0,
-      existability:(function (){return 2/(1+Math.exp(-game.currency.existivity))-1;}),
+      existability:(function (){return (2/(1+Math.exp(-game.currency.existivity)))*(1-game.currency.existabilityboost)-1+game.currency.existabilityboost;}),
+      existabilityboost:0,
       existance:0,
       etime:0, //experienced time
       etimebought:0,
@@ -173,7 +174,9 @@ function updateautosave(){
   if (d.getTime()-saved.getTime()>=60000){savecookie();}
 }
 function updatedisp(){
-  document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span> change of existing.";
+  var m="";
+  if (game.currency.existabilityboost){m="<span style=\"color:#66ff33\">(+"+Math.round(game.currency.existabilityboost*1000)/10+"%)</span>";}
+  document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span>"+m+" and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span> change of existing.";
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+Math.floor(game.currency.existance)+"</span> existances. They produce <span class=\"large\">"+Math.round(game.production.existivity*100)/100+"</span> existivity each second.";}
   if (game.unlocked.etime){document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+Math.floor(game.currency.etime)+"</span> seconds. It boosts the production of existivity by <span class=\"large\">"+Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100)+"%</span>.";}
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="You have <span class=\"large\">"+game.currency.thought+"</span> thoughts and think "+game.currency.thought+" strings per second.";}
@@ -227,10 +230,17 @@ function updatebutton(){
 }
 function changescr_shop_general(){
   document.getElementById("scr.shop.general").className="";
+  document.getElementById("scr.shop.upgrade").className="hidden";
+  document.getElementById("scr.shop.autoconv").className="hidden";
+}
+function changescr_shop_upgrade(){
+  document.getElementById("scr.shop.general").className="hidden";
+  document.getElementById("scr.shop.upgrade").className="";
   document.getElementById("scr.shop.autoconv").className="hidden";
 }
 function changescr_shop_autoconv(){
   document.getElementById("scr.shop.general").className="hidden";
+  document.getElementById("scr.shop.upgrade").className="hidden";
   document.getElementById("scr.shop.autoconv").className="";
 }
 function convexisti(){
@@ -241,14 +251,19 @@ function convexisti(){
     updateprod();
     if (game.currency.existance>=16){game.unlocked.convexista=true;}
     if (game.currency.existance>=200){game.unlocked.autobuyshop=true;}
+  }else{
+    game.currency.existabilityboost+=game.currency.existability/2.5;
   }
   game.currency.existivity=0;
+  game.currency.existabilityboost/=2;
+  if (game.currency.existabilityboost<0.01){game.currency.existabilityboost=0;}
 }
 function convexista(){
   if (!game.canbuy.etime()){return;}
   game.currency.etime++;
   game.currency.etimebought++;
-  game.currency.existivity=0;
+  game.currency.existivity=game.currency.etimebought;
+  game.currency.existabilityboost=0;
   game.currency.existance=0;
   game.unlocked.etime=true;
   updateprod();
@@ -260,6 +275,7 @@ function convetime(){
   game.currency.etime=0;
   game.currency.etimebought=0;
   game.currency.existivity=0;
+  game.currency.existabilityboost=0;
   game.currency.existance=0;
   game.unlocked.thought=true;
   updateprod();
@@ -293,6 +309,7 @@ function convthought(){
   game.currency.etime=0;
   game.currency.etimebought=0;
   game.currency.existivity=0;
+  game.currency.existabilityboost=0;
   game.currency.existance=0;
   game.unlocked.energy=true;
   updateprod();
