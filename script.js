@@ -27,6 +27,8 @@ function initializevars(){
       convexista:false,
       convetime:false,
       convthought:false,
+      changescr:(function (){return game.unlocked.upgrade||game.unlocked.autobuyshop;}),
+      upgrade:false,
       autobuyshop:false
     },
     canbuy:{
@@ -87,6 +89,7 @@ function savecookie(){
   setCookie("game.unlocked.convexista",game.unlocked.convexista,7);
   setCookie("game.unlocked.convetime",game.unlocked.convetime,7);
   setCookie("game.unlocked.convthought",game.unlocked.convthought,7);
+  setCookie("game.unlocked.upgrade",game.unlocked.upgrade,7);
   setCookie("game.unlocked.autobuyshop",game.unlocked.autobuyshop,7);
   setCookie("game.autobuy.existivity",game.autobuy.existivity,7);
   setCookie("game.autobuy.existivityon",game.autobuy.existivityon(),7);
@@ -110,6 +113,7 @@ function loadcookie(){
   game.unlocked.convexista=getCookie("game.unlocked.convexista")=="true";
   game.unlocked.convetime=getCookie("game.unlocked.convetime")=="true";
   game.unlocked.convthought=getCookie("game.unlocked.convthought")=="true";
+  game.unlocked.upgrade=getCookie("game.unlocked.upgrade")=="true";
   game.unlocked.autobuyshop=getCookie("game.unlocked.autobuyshop")=="true";
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
   document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivityon");
@@ -222,7 +226,7 @@ function updatebutton(){
   }else{
     document.getElementById("button.buyautoconvexisti").className="unavailable";
   }
-  if (game.unlocked.autobuyshop){document.getElementById("changescr").className="";}
+  if (game.unlocked.changescr()){document.getElementById("changescr").className="";}
   if (game.autobuy.existivity){document.getElementById("form.autoconvexisti").className="";}
   document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+Math.round(Math.pow(2,game.currency.etimebought+4))+" existances";
   document.getElementById("button.convetime").innerHTML="Thought for the words.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(50*Math.pow(game.currency.thought+2,2))+" existivity";
@@ -252,7 +256,7 @@ function convexisti(){
     if (game.currency.existance>=16){game.unlocked.convexista=true;}
     if (game.currency.existance>=200){game.unlocked.autobuyshop=true;}
   }else{
-    game.currency.existabilityboost+=game.currency.existability/2.5;
+    game.currency.existabilityboost+=game.currency.existability()/2.5;
   }
   game.currency.existivity=0;
   game.currency.existabilityboost/=2;
