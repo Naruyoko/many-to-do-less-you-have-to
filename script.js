@@ -48,6 +48,7 @@ function acceptcookie(){
   document.getElementById("button.confirmcookie").className="hidden";
   document.getElementById("button.savecookie").className="";
   document.getElementById("button.deletecookie").className="";
+  saved=new Date();
 }
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -91,6 +92,7 @@ function savecookie(){
   setCookie("game.autobuy.existivityon",game.autobuy.existivityon(),7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccepted,7);
+  saved=new Date();
 }
 function loadcookie(){
   if (!document.cookie){return;}
@@ -112,7 +114,10 @@ function loadcookie(){
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
   document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivityon");
   lasttime=Number(getCookie("lasttime"));
-  if (getCookie("cookieaccepted")){acceptcookie();}
+  if (getCookie("cookieaccepted")){
+    acceptcookie();
+    saved=new Date;
+  }
   setgenwordinterval();
 }
 function deletecookie(){
@@ -133,7 +138,8 @@ function passive(){
   updateauto();
   updateprod();
   updatecurr();
-  updatedisp();
+  updateautosave();
+  updatedisp();
   updatebutton();
 }
 var timeelapsed=0;
@@ -162,6 +168,11 @@ function updatecurr(){
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
 }
+var saved=false;
+function updateautosave(){
+  if (!saved){return;}
+  if (d.getTime()-saved.getTime()>=60000){savecookie();}
+}
 function updatedisp(){
   document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+Math.round(game.currency.existivity*100)/100+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span> change of existing.";
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+Math.floor(game.currency.existance)+"</span> existances. They produce <span class=\"large\">"+Math.round(game.production.existivity*100)/100+"</span> existivity each second.";}
@@ -169,6 +180,7 @@ function updatedisp(){
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="You have <span class=\"large\">"+game.currency.thought+"</span> thoughts and think "+game.currency.thought+" strings per second.";}
   if (game.unlocked.thought){document.getElementById("disp.word").innerHTML="You have thought of <span class=\"large\">"+game.currency.word+"</span> <span title=\"More to do, Less you have to.\">words in the title</span> and finds <span class=\"large\">"+Math.round(game.production.existance*100)/100+"</span> existances per second. Recently generated: ";}
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="There are <span class=\"large\">"+game.currency.energy+"</span> joules of energy in your system. Existances and existivity together experience <span class=\"large\">"+Math.round(game.production.etime*1000)/1000+"</span> seconds per second.";}
+  if (saved){document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved.getTime())/10)/100+" seconds ago";}
 }
 function updatebutton(){
   if (game.canbuy.existance()){
