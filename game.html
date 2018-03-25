@@ -10,6 +10,7 @@
 <div id="disp.energy"></div>
 <p id="changescr" class="hidden">
   <button type="button" onclick="changescr_shop_general()" class="changescr">Unit Conversion</button>
+  <button type="button" onclick="changescr_shop_upgrade()" class="changescr">Upgrades</button>
   <button type="button" onclick="changescr_shop_autoconv()" class="changescr">Autobuyer</button>
   <br>
   <br>
@@ -17,9 +18,12 @@
 <hr>
 <div id="scr.shop.general">
   <button id="button.convexisti" type="button" onclick="convexisti()" title="See if it exists.&#10;Resets existivity.">Make it exist!</button><br>
-  <button id="button.convexista" type="button" class="hidden" onclick="convexista()" title="Repeating makes efficient.&#10;Resets existance and existivity.">Experience.<br/>Cost: - existances</button><br>
+  <button id="button.convexista" type="button" class="hidden" onclick="convexista()" title="Repeating makes efficient.&#10;Resets existivity and reduces most of existances.">Experience.<br/>Cost: - existances</button><br>
   <button id="button.convetime" type="button" class="hidden" onclick="convetime()" title="You need to think.&#10;Resets experienced time, existance, and existivity.">Thought the word.<br/>Cost: - experienced time,<br/>  - existivity</button><br>
   <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words found"</button><br>
+</div>
+<div id="scr.shop.upgrade">
+  Coming Soon...
 </div>
 <div id="scr.shop.autoconv" class="hidden">
   <button id="button.buyautoconvexisti" type="button" onclick="buyautoconvexisti()" title="Your existances will work to find other existances for you.">Auto find existance<br/>Cost: 200 existance</button>
@@ -29,7 +33,7 @@
 <button id="button.confirmcookie" type="button" class="footer" style="text-align:center;background-color:#ffff80;color:#303030;right:0;border:2px solid black;border-radius:6px;" onclick="acceptcookie()">Accept cookies to<br/>save progresses.</button><br>
 <div id="div.cookie" class="hidden">
   <button id="button.savecookie" type="button" style="text-align:center;background-color:#ffff80;color:#303030;border:1px solid black;border-radius:6px;" onclick="savecookie()">SAVE the Game</button>
-  <div id="disp.saved">Saved NaN seconds ago.</div><br>
+  <div id="disp.saved" title="Automatically saves every 60 seconds.">Saved NaN seconds ago.</div><br>
   <button id="button.deletecookie" type="button" style="text-align:center;background-color:#ff4040;color:#303030;border:1px solid black;border-radius:6px;" onclick="deletecookie()">Delete the SAVE</button><br>
 </div>
 <script>
