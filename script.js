@@ -311,9 +311,9 @@ function convexista(){
   if (!game.canbuy.etime()){return;}
   game.currency.etime++;
   game.currency.etimebought++;
-  game.currency.existivity=game.currency.etimebought;
+  game.currency.existivity=0;
   game.currency.existabilityboost=0;
-  game.currency.existance=0;
+  game.currency.existance=game.currency.etimebought;
   game.unlocked.etime=true;
   updateprod();
   if (game.currency.etime>=4){game.unlocked.convetime=true;}
