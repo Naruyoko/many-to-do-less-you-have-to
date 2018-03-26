@@ -184,7 +184,7 @@ function updatecurr(){
     timeelapsed=(d.getTime()-lasttime)/1000;}
   lasttime=d.getTime();
   game.currency.existivity+=game.production.existivity*timeelapsed;
-  if (game.currency.existivity>=25000){game.unlocked.upgrade=true;}
+  if (game.currency.existivity>=1500){game.unlocked.upgrade=true;}
   game.currency.existance+=game.production.existance*timeelapsed;
   if (game.currency.existance>Math.pow(2,game.currency.etimebought+4)){game.currency.existance=Math.pow(2,game.currency.etimebought+4);}
   game.currency.etime+=game.production.etime*timeelapsed;
@@ -285,7 +285,7 @@ function convexisti(){
       game.currency.existance+=game.currency.newconvexistiearn();
       updateprod();
       if (game.currency.existance>=16){game.unlocked.convexista=true;}
-      if (game.currency.existance>=200){game.unlocked.autobuyshop=true;}
+      if (game.currency.existance>=30){game.unlocked.autobuyshop=true;}
     }
     game.currency.existivity=0;
   }else{
@@ -294,7 +294,7 @@ function convexisti(){
       game.unlocked.existance=true;
       updateprod();
       if (game.currency.existance>=16){game.unlocked.convexista=true;}
-      if (game.currency.existance>=200){game.unlocked.autobuyshop=true;}
+      if (game.currency.existance>=30){game.unlocked.autobuyshop=true;}
     }else{
       game.currency.existabilityboost+=game.currency.existability()/2.5;
     }
