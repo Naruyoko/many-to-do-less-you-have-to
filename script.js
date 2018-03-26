@@ -10,7 +10,7 @@ function initializevars(){
           return Math.pow(Math.log(Math.sqrt(game.currency.existivity)),1.35)/(10+Math.exp(game.currency.newconvexistiearn()/50));
         }
       }),
-      newconvexistiearn:(function (){return Math.floor(Math.pow(game.currency.existivity,1/3)/1.5+.8);}),
+      newconvexistiearn:(function (){return Math.floor(Math.pow(game.currency.existivity,1/3)/1.5+0.8);}),
       existabilityboost:0,
       existance:0,
       etime:0, //experienced time
@@ -333,7 +333,7 @@ function convetime(){
 }
 function setgenwordinterval(){
   clearInterval(genwordinterval);
-  if (game.currency.thought==0){return;}
+  if (game.currency.thought===0){return;}
   genwordinterval=setInterval(genword,1000/game.currency.thought);
 }
 function genword(){
@@ -374,4 +374,4 @@ function buyautoconvexisti(){
   game.autobuy.existivity=true;
 }
 loadcookie();
-loading=false;
+var loading=false;
