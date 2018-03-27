@@ -64,11 +64,11 @@ function notation(i){
   if (i<1000){return String(i);}
   if ((i>=1000)&&(1<1e+6)){return Math.floor(i/1000)+","+Math.round(i%1000);}
   if (i>=1e+15){
-    var e=3*Math.floor(Math.log10(i)/3));
+    var e=3*Math.floor(Math.log10(i)/3);
     return Math.floor(i/Math.pow(10,e)*1000)/1000+"E+"+e;
   }
   var numbernames=["million","billion","trillion"]
-  var e=3*Math.floor(Math.log10(i)/3));
+  var e=3*Math.floor(Math.log10(i)/3);
   return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+numbernames[Math.round(e/3)-2];
 }
 var cookieaccepted=false;
