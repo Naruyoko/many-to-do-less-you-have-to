@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; //Original by Naruyoko(You can delete this if you want)
 var exp=exp||{}
 exp=(function (){
   return{
