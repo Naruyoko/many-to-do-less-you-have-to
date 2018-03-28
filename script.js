@@ -198,7 +198,7 @@ function updatecurr(){
   if (game.currency.existivity>=1500){game.unlocked.upgrade=true;}
   game.currency.existance+=game.production.existance*timeelapsed;
   if (game.currency.existance>Math.pow(2,game.currency.etimebought+4)){game.currency.existance=Math.pow(2,game.currency.etimebought+4);}
-  game.currency.etime+=game.production.etime*timeelapsed;^
+  game.currency.etime+=game.production.etime*timeelapsed;
   if (game.currency.etime>Math.round(game.currency.thought*2+4)){game.currency.etime=Math.round(game.currency.thought*2+4);}
   if ((timeelapsed>1/game.currency.thought)&&(game.currency.thought!=0)){
     var x=timeelapsed*game.currency.thought-1;
