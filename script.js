@@ -158,8 +158,8 @@ function loadcookie(){
   document.getElementById("upgrade.convexisti_1.enable").checked=getCookie("game.upgrade.convexisti_1.enable")=="true";
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
   document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivityon");
-  game.autobuy.existivity=getCookie("game.autobuy.existance.bought")=="true";
-  document.getElementById("autobuy.existance.enable").checked=getCookie("game.autobuy.existance.enable");
+  game.autobuy.existance.bought=getCookie("game.autobuy.existance.bought")=="true";
+  document.getElementById("game.autobuy.existance.enable").checked=getCookie("game.autobuy.existance.enable");
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){
     acceptcookie();
