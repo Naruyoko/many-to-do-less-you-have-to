@@ -61,7 +61,7 @@ function initializevars(){
       existance:{
         bought:false,
         enable:(function (){return document.getElementById("autobuy.existance.enable").checked;}),
-        ison:(function (){return game.autobuy.existance.bought&&game.autobuy.existance.enable().checked;})
+        ison:(function (){return game.autobuy.existance.bought&&game.autobuy.existance.enable();})
       }
     }
   };
