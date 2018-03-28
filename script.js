@@ -44,10 +44,11 @@ function initializevars(){
       thought:(function (){return (Math.floor(game.currency.etime)>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));}),
       energy:(function (){return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.8))*5+15);}),
       upgrade_convexisti_1:(function (){return (game.currency.existivity>=25000)&&!game.upgrade.convexisti_1.bought;}),
-      autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity;})
+      autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity;}),
+      autoconvexista:(function (){return (game.currency.thought>=2)&&(game.currency.etime>=7)&&!game.autobuy.existance.bought;})
     },
-    upgrade:{
-      convexisti_1:{
+    upgrade:{
+      convexisti_1:{
         bought:false,
         enable:(function (){return document.getElementById("upgrade.convexisti_1.enable").checked;}),
         ison:(function (){return game.upgrade.convexisti_1.bought&&game.upgrade.convexisti_1.enable();})
@@ -55,7 +56,12 @@ function initializevars(){
     },
     autobuy:{
       existivity:false,
-      existivityon:(function (){return Number(document.getElementById("input.autoconvexisti").value);})
+      existivityon:(function (){return Number(document.getElementById("input.autoconvexisti").value);}),
+      existance:{
+        bought:false,
+        enable:(function (){return document.getElementById("autobuy.existance.enable").checked;}),
+        ison:(function (){return game.autobuy.existance.bought&&game.autobuy.existance.enable();})
+      }
     }
   };
 }
@@ -121,6 +127,8 @@ function savecookie(){
   setCookie("game.upgrade.convexisti_1.enable",game.upgrade.convexisti_1.enable(),7);
   setCookie("game.autobuy.existivity",game.autobuy.existivity,7);
   setCookie("game.autobuy.existivityon",game.autobuy.existivityon(),7);
+  setCookie("game.autobuy.existance.bought",game.autobuy.existance.bought,7);
+  setCookie("game.autobuy.existance.enable",game.autobuy.existance.enable(),7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccepted,7);
   saved=new Date();
@@ -147,6 +155,8 @@ function loadcookie(){
   document.getElementById("upgrade.convexisti_1.enable").checked=getCookie("game.upgrade.convexisti_1.enable")=="true";
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
   document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivityon");
+  game.autobuy.existivity=getCookie("game.autobuy.existance.bought")=="true";
+  document.getElementById("autobuy.existance.enable").checked=getCookie("game.autobuy.existance.enable");
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){
     acceptcookie();
