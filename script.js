@@ -69,7 +69,13 @@ function initializevars(){
 initializevars();
 function notation(i){
   if (i<1000){return String(i);}
-  if ((i>=1000)&&(i<1e+6)){return Math.floor(i/1000)+","+Math.round(i%1000);}
+  if ((i>=1000)&&(i<1e+6)){
+    var l;
+    var r=Math.floor(i%1000);
+    l=String(r);
+    if (r<10){l="00"+l;}
+    if ((r>=10)&&(r<100)){l="0"+l;}
+    return Math.floor(i/1000)+","+l;}
   if (i>=1e+15){
     var e=3*Math.floor(Math.log10(i)/3);
     return Math.floor(i/Math.pow(10,e)*1000)/1000+"E+"+e;
