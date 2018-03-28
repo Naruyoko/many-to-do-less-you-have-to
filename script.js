@@ -297,6 +297,7 @@ function updatebutton(){
       document.getElementById("button.buyautoconvexista").className="unavailable";
     }
   }
+  if ((document.getElementById("autobuy.existance.enable").className=="hidden")&&(game.autobuy.existance.bought)){document.getElementById("autobuy.existance.enable").className=="";}
   if (game.canbuy.upgrade_convexisti_1()){
     document.getElementById("button.upgrade.convexisti_1").className="";
   }else{
