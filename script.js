@@ -124,6 +124,7 @@ function savecookie(){
   setCookie("game.unlocked.convthought",game.unlocked.convthought,7);
   setCookie("game.unlocked.upgrade",game.unlocked.upgrade,7);
   setCookie("game.unlocked.autobuyshop",game.unlocked.autobuyshop,7);
+  setCookie("game.unlocked.buyautoconvexista",game.unlocked.buyautoconvexista,7);
   setCookie("game.upgrade.convexisti_1.bought",game.upgrade.convexisti_1.bought,7);
   setCookie("game.upgrade.convexisti_1.enable",game.upgrade.convexisti_1.enable(),7);
   setCookie("game.autobuy.existivity",game.autobuy.existivity,7);
@@ -152,6 +153,7 @@ function loadcookie(){
   game.unlocked.convthought=getCookie("game.unlocked.convthought")=="true";
   game.unlocked.upgrade=getCookie("game.unlocked.upgrade")=="true";
   game.unlocked.autobuyshop=getCookie("game.unlocked.autobuyshop")=="true";
+  game.unlocked.buyautoconvexista=getCookie("game.unlocked.buyautoconvexista")=="true";
   game.upgrade.convexisti_1.bought=getCookie("game.upgrade.convexisti_1.bought")=="true";
   document.getElementById("upgrade.convexisti_1.enable").checked=getCookie("game.upgrade.convexisti_1.enable")=="true";
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
