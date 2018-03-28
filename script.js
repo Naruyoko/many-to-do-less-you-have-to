@@ -196,6 +196,9 @@ function updateauto(){
   if (game.autobuy.existivity&&(game.currency.existivity>=game.autobuy.existivityon())&&!isNaN(game.autobuy.existivityon())){
     convexisti();
   }
+  if (game.autobuy.existance.ison()){
+    convexista();
+  }
 }
 function updateprod(){
   game.production.existivity=(Math.floor(game.currency.existance)+1)*0.01*Math.pow(1.2,Math.floor(game.currency.etime));
