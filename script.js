@@ -198,8 +198,19 @@ function updatecurr(){
   if (game.currency.existivity>=1500){game.unlocked.upgrade=true;}
   game.currency.existance+=game.production.existance*timeelapsed;
   if (game.currency.existance>Math.pow(2,game.currency.etimebought+4)){game.currency.existance=Math.pow(2,game.currency.etimebought+4);}
-  game.currency.etime+=game.production.etime*timeelapsed;
+  game.currency.etime+=game.production.etime*timeelapsed;^
   if (game.currency.etime>Math.round(game.currency.thought*2+4)){game.currency.etime=Math.round(game.currency.thought*2+4);}
+  if ((timeelapsed>1/game.currency.thought)&&(game.currency.thought!=0)){
+    var x=timeelapsed*game.currency.thought-1;
+    var r=Math.random();
+    var p_0=(2/Math.pow(26,2)+1/Math.pow(26,3)+3/Math.pow(26,4))/5;
+    var p=exp.pow(exp.conv(1-p_0),exp.conv(x));
+    var i=0;
+    for (i=1;(i<=Math.ceil(timeelapsed*game.currency.thought-1))&&(r>Math.pow(10,p[0]));i++){
+      p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(x-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(exp.conv(x)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(x-i))))));
+    }
+    game.currency.word+=i;
+  }
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
 }
@@ -345,7 +356,7 @@ function convetime(){
 function setgenwordinterval(){
   clearInterval(genwordinterval);
   if (game.currency.thought===0){return;}
-  genwordinterval=setInterval(genword,1000/game.currency.thought);
+  genwordinterval=setInterval(genword,Math.max(1000/game.currency.thought,100));
 }
 function genword(){
   var word="";
