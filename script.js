@@ -61,7 +61,7 @@ function initializevars(){
       existance:{
         bought:false,
         enable:(function (){return document.getElementById("autobuy.existance.enable").checked;}),
-        ison:(function (){return game.autobuy.existance.bought&&game.autobuy.existance.enable();})
+        ison:(function (){return game.autobuy.existance.bought&&game.autobuy.existance.enable().checked;})
       }
     }
   };
@@ -297,7 +297,7 @@ function updatebutton(){
       document.getElementById("button.buyautoconvexista").className="unavailable";
     }
   }
-  if ((document.getElementById("autobuy.existance.enable").className=="hidden")&&(game.autobuy.existance.bought)){document.getElementById("autobuy.existance.enable").className=="";}
+  if ((document.getElementById("div.autobuy.existance.enable").className=="hidden")&&game.autobuy.existance.bought){document.getElementById("div.autobuy.existance.enable").className="";}
   if (game.canbuy.upgrade_convexisti_1()){
     document.getElementById("button.upgrade.convexisti_1").className="";
   }else{
