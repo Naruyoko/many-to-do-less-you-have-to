@@ -423,7 +423,7 @@ function buyautoconvexisti(){
   game.autobuy.existivity=true;
 }
 function buyautoconvexista(){
-  if (!game.canbuy.autoconvexisti()){return;}
+  if (!game.canbuy.autoconvexista()){return;}
   game.currency.thought-=6;
   game.currency.word-=60;
   game.currency.etime-=10;
