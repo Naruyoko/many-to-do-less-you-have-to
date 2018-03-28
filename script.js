@@ -237,7 +237,7 @@ function updatedisp(){
     document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+notation(Math.round(game.currency.existivity*100)/100)+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span> chance of <span class=\"large\">"+notation(game.currency.newconvexistiearn())+"</span> existances existing.";
   }else{
     var m="";
-    if (game.currency.existabilityboost){m="<span style=\"color:#66ff33\">(+"+Math.round(game.currency.existabilityboost*1000)/10+"%)</span>";}
+    if (game.currency.existabilityboost){m="<span style=\"color:#009933\">(+"+Math.round(game.currency.existabilityboost*1000)/10+"%)</span>";}
     document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+notation(Math.round(game.currency.existivity*100)/100)+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span>"+m+" chance of existing.";
   }
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+notation(Math.floor(game.currency.existance))+"</span> existances. They produce <span class=\"large\">"+notation(Math.round(game.production.existivity*100)/100)+"</span> existivity each second.";}
@@ -305,7 +305,7 @@ function updatebutton(){
   if (game.autobuy.existivity){document.getElementById("form.autoconvexisti").className="";}
   document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+Math.round(Math.pow(2,game.currency.etimebought+4))+" existances";
   document.getElementById("button.convetime").innerHTML="Thought for the words.<br/>Cost: "+Math.round(game.currency.thought*2+4)+" experienced time,<br/>  "+Math.round(50*Math.pow(game.currency.thought+2,2))+" existivity";
-  document.getElementById("button.convthought").innerHTML="Be energetic!!<br/>Cost: "+Math.floor(game.currency.energy*(game.currency.energy+1)/2+3)+" thoughts,<br/>  "+(Math.floor(Math.pow(game.currency.energy,1.8))*5+15)+" words found";
+  document.getElementById("button.convthought").innerHTML="Be energetic!!<br/>Cost: "+Math.floor(game.currency.energy*(game.currency.energy+1)/2+3)+" thoughts,<br/>  "+(Math.floor(Math.pow(game.currency.energy,1.8))*5+15)+" words thought";
 }
 function changescr_shop_general(){
   document.getElementById("scr.shop.general").className="";
