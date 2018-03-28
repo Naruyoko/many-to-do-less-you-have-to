@@ -36,7 +36,8 @@ function initializevars(){
       convthought:false,
       changescr:(function (){return game.unlocked.upgrade||game.unlocked.autobuyshop;}),
       upgrade:false,
-      autobuyshop:false
+      autobuyshop:false,
+      buyautoconvexista:false
     },
     canbuy:{
       existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
@@ -282,6 +283,15 @@ function updatebutton(){
   }else{
     document.getElementById("button.buyautoconvexisti").className="unavailable";
   }
+  if (document.getElementById("button.convthought").className=="hidden"){
+    if (game.unlocked.buyautoconvexista){document.getElementById("button.buyautoconvexista").className="";}
+  }else{
+    if (game.canbuy.autoconvexista()){
+      document.getElementById("button.buyautoconvexista").className="";
+    }else{
+      document.getElementById("button.buyautoconvexista").className="unavailable";
+    }
+  }
   if (game.canbuy.upgrade_convexisti_1()){
     document.getElementById("button.upgrade.convexisti_1").className="";
   }else{
@@ -362,6 +372,7 @@ function convetime(){
   updateprod();
   setgenwordinterval();
   if (game.currency.thought>=3){game.unlocked.convthought=true;}
+  if (game.currency.thought>=4){game.unlocked.buyautoconvexista=true;}
 }
 function setgenwordinterval(){
   clearInterval(genwordinterval);
@@ -411,6 +422,7 @@ function buyautoconvexista(){
   game.currency.word-=60;
   game.currency.etime-=10;
   game.currency.etimebought=Math.floor(Math.min(game.currency.etimebought,game.currency.etime));
+  setgenwordinterval();
   game.autobuy.existance.bought=true;
 }
 loadcookie();
