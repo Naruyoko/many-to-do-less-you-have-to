@@ -253,9 +253,9 @@ function updatedisp(){
   if (game.unlocked.etime){
     var m;
     if (Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100<1000){
-      m="+<span class=\"large\">"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%</span>";
+      m="<span class=\"large\">+"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%</span>";
     }else{
-      m="×<span class=\"large\">"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100)/100)+"</span>";
+      m="<span class=\"large\">×"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100)/100)+"</span>";
     }
     document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+notation(Math.floor(game.currency.etime))+"</span> seconds. It boosts the production of existivity by "+m+".";
   }
