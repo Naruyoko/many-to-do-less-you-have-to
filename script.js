@@ -231,7 +231,7 @@ function updatecurr(){
     for (i=0;(i<=Math.ceil(x))&&(r>Math.pow(10,p[0]));i++){
       p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(x-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(exp.conv(x)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(x-i))))));
     }
-    game.currency.word+=i;
+    game.currency.word+=i-1;
   }
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
