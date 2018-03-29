@@ -209,7 +209,7 @@ function updateauto(){
 function updateprod(){
   game.production.existivity=(Math.floor(game.currency.existance)+1)*0.01*Math.pow(1.2,Math.floor(game.currency.etime));
   game.production.existance=game.currency.word/100;
-  game.production.etime=game.currency.energy*(Math.max(Math.pow(Math.floor(game.currency.existance),0.03)-1.2,0)+Math.max(Math.pow(game.currency.existivity,0.003)-1.016,0));
+  game.production.etime=(game.currency.energy*(Math.max(Math.pow(Math.floor(game.currency.existance),0.03)-1.2,0)+Math.max(Math.pow(game.currency.existivity,0.003)-1.016,0)))/40;
 }
 function updatecurr(){
   if (lasttime!==0){
@@ -250,7 +250,15 @@ function updatedisp(){
     document.getElementById("disp.existivity").innerHTML="Your existivity is <span class=\"large\">"+notation(Math.round(game.currency.existivity*100)/100)+"</span> and has <span class=\"large\">"+Math.round(1000*game.currency.existability())/10+"%</span>"+m+" chance of existing.";
   }
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+notation(Math.floor(game.currency.existance))+"</span> existances. They produce <span class=\"large\">"+notation(Math.round(game.production.existivity*100)/100)+"</span> existivity each second.";}
-  if (game.unlocked.etime){document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+notation(Math.floor(game.currency.etime))+"</span> seconds. It boosts the production of existivity by <span class=\"large\">"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%</span>.";}
+  if (game.unlocked.etime){
+    var m;
+    if (Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100<1000){
+      m="+<span class=\"large\">"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%</span>";
+    }else{
+      m="×<span class=\"large\">"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100)/100)+"</span>";
+    }
+    document.getElementById("disp.etime").innerHTML="Existances experienced as much as <span class=\"large\">"+notation(Math.floor(game.currency.etime))+"</span> seconds. It boosts the production of existivity by "+m+".";
+  }
   if (game.unlocked.thought){document.getElementById("disp.thought").innerHTML="You have <span class=\"large\">"+notation(game.currency.thought)+"</span> thoughts and think "+notation(game.currency.thought)+" strings per second.";}
   if (game.unlocked.thought){document.getElementById("disp.word").innerHTML="You have thought of <span class=\"large\">"+notation(game.currency.word)+"</span> <span title=\"More to do, Less you have to.\">words in the title</span> and finds <span class=\"large\">"+notation(Math.round(game.production.existance*100)/100)+"</span> existances per second. Recently generated: ";}
   if (game.unlocked.energy){document.getElementById("disp.energy").innerHTML="There are <span class=\"large\">"+notation(game.currency.energy)+"</span> joules of energy in your system. Existances and existivity together experience <span class=\"large\">"+notation(Math.round(game.production.etime*1000)/1000)+"</span> seconds per second.";}
