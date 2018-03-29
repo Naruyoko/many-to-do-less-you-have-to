@@ -228,7 +228,7 @@ function updatecurr(){
     var p_0=(2/Math.pow(26,2)+1/Math.pow(26,3)+3/Math.pow(26,4))/5;
     var p=exp.pow(exp.conv(1-p_0),exp.conv(x));
     var i=0;
-    for (i=1;(i<=Math.ceil(timeelapsed*game.currency.thought-1))&&(r>Math.pow(10,p[0]));i++){
+    for (i=1;(i<=Math.ceil(x))&&(r>Math.pow(10,p[0]));i++){
       p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(x-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(exp.conv(x)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(x-i))))));
     }
     game.currency.word+=i;
