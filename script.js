@@ -252,7 +252,7 @@ function updatedisp(){
   if (game.unlocked.existance){document.getElementById("disp.existance").innerHTML="You know <span class=\"large\">"+notation(Math.floor(game.currency.existance))+"</span> existances. They produce <span class=\"large\">"+notation(Math.round(game.production.existivity*100)/100)+"</span> existivity each second.";}
   if (game.unlocked.etime){
     var m;
-    if (Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100<1000){
+    if (Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100<1000)){
       m="<span class=\"large\">+"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%</span>";
     }else{
       m="<span class=\"large\">×"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100)/100)+"</span>";
