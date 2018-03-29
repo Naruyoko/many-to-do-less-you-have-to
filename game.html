@@ -45,7 +45,7 @@
   Refferences:    <br>
   Inspired font style by <a href="https://ivark.github.io">Antimatter Dimensions</a><br>
   Incremental game reddit: <a href="https://www.reddit.com/r/incremental_games/">/r/incremental_games</a><br/><br>
-  <a href="./changelog.html">Changelog</a>
+  <u onclick="changelogtoggle(true)">Changelog</u>
   Have an issue? Report it <a href="https://github.com/Naruyoko/many-to-do-less-you-have-to/issues/new">here</a>!
 </div>
 <button id="button.confirmcookie" type="button" class="footer" style="text-align:center;background-color:#ffff80;color:#303030;right:0;border:2px solid black;border-radius:6px;" onclick="acceptcookie()">Accept cookies to<br/>save progresses.</button><br>
@@ -53,6 +53,10 @@
   <button id="button.savecookie" type="button" style="text-align:center;background-color:#ffff80;color:#303030;border:1px solid black;border-radius:6px;" onclick="savecookie()">SAVE the Game</button>
   <div id="disp.saved" title="Automatically saves every 60 seconds.">Saved NaN seconds ago.</div><br>
   <button id="button.deletecookie" type="button" style="text-align:center;background-color:#ff4040;color:#303030;border:1px solid black;border-radius:6px;" onclick="deletecookie()">Delete the SAVE</button><br>
+</div>
+<div id="changelog" class="hidden" style="align:center;width:80%;width-min:200px;position:absolute;top:30px;border:2px;">
+  <button type="button" onclick="changelogtoggle(false)" style="position:absolute;right:15px;top:10px;">X</button>
+  <object type="text/html" data="./changelog.html" style="align:center;width:72%;position:absolute;top:30px;"></object>
 </div>
 <script>
   function waituntilload(){
