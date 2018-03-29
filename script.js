@@ -437,5 +437,8 @@ function buyautoconvexista(){
   setgenwordinterval();
   game.autobuy.existance.bought=true;
 }
+function changelogtoggle(t){
+  showhide(document.getElementById("changelog"),t);
+}
 loadcookie();
 var loading=false;
