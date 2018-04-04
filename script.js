@@ -18,11 +18,8 @@ function initializevars(){
         }
       }),
       convexistiearnmult:(function (){
-        if (game.upgrade.convexisti_2.ison()){
-          return Math.log(game.currency.existivity)+1;
-        }else{
-          return 1;
-        }
+        var x=1;
+        if (game.upgrade.convexisti_2.ison()){x*=Math.log(game.currency.existivity)+1;}
       }),
       existabilityboost:0,
       existance:0,
