@@ -23,7 +23,7 @@
   <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words thought"</button><br>
 </div>
 <div id="scr.shop.upgrade" class="hidden">
-  <div id="upgrade.convexisti_1" class="box" style="text-align:center">
+  <div id="upgrade.convexisti_1" class="box" style="text-align:center;float:center;">
     Enhance existivity.<br>
     Increases the amount of existances to be found,<br>
     but dramatically decreases and creates a peak<br>
@@ -31,8 +31,16 @@
     Disables boost on fail.<br>
     Always resets existivity completely<br>
     when finding existance.<br>
-    <button id="button.upgrade.convexisti_1" type="button" onclick="buy_upgrade_convexisti_1()">Cost: 200,000 existivity</button><br>
-    Enabled: <input type="checkbox" id="upgrade.convexisti_1.enable"></input>
+    <button id="button.upgrade.convexisti_1" type="button" onclick="buy_upgrade_convexisti_1()" class="hidden">Cost: 200,000 existivity</button><br>
+    <span id="div.upgrade.convexisti_1.bottom">Enabled: <input type="checkbox" id="upgrade.convexisti_1.enable"></input></span>
+  </div>
+  <div id="upgrade.convexisti_2" class="box" style="text-align:center;float:center;">
+    Productive existances<br>
+    The more existances you have,<br>
+    the more existances you get from making it exist.<br>
+    <button id="button.upgrade.convexisti_2" type="button" onclick="buy_upgrade_convexisti_2()">Cost: 150 existances</button><br>
+    <span id="div.upgrade.convexisti_2.bottom" class="hidden">Enabled: <input type="checkbox" id="upgrade.convexisti_2.enable"></input>  Boost: ×
+    <span id="disp.upgrade.convexisti_2">1.00</span></span>
   </div>
 </div>
 <div id="scr.shop.autoconv" class="hidden">
