@@ -2,12 +2,11 @@
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <img id="loadpic" src="./files/pictures/title.png" />
 <link rel="stylesheet" href="stylesheet.css" type="text/css">
-<div id="disp.existivity"></div>
-<div id="disp.existance"></div>
-<div id="disp.etime"></div>
-<div id="disp.thought"></div>
-<span id="disp.word"></span><span id="disp.genword"></span>
-<div id="disp.energy"></div>
+<div id="div.disp.existivity">Your existivity is <span class="large" id="disp.existivity"></span> and has <span class="large" id="disp.existability"></span> chance<span id="div.disp.existivity2" class="hidden">of <span class="large" id="disp.existivity2"></span> existances existing</span></span> existivity each second.</div>
+<div id="div.disp.existance" class="hidden">You know <span class="large" id="disp.existance"></span> existances. They produce <span class="large" id="disp.existance2"></span> existivity each second.</div>
+<div id="div.disp.etime" class="hidden">Existances experienced as much as <span class="large" id="disp.etime"></span> seconds. It boosts the production of existivity by <span class="large" id="disp.etime2"></span>.</div>
+<div id="div.disp.thought" class="hidden">You have <span class="large" id="disp.thought"></span> thoughts and think <span id="disp.thought2"></span> strings per second.<br/>You have thought of <span class="large" id="disp.word"></span> <span title=\"Many to do, Less you have to.\">words in the title</span> and finds <span class="large" id="disp.thought3"></span> existances per second.  Recently generated: <span id="disp.genword"></span></div>
+<div id="div.disp.energy" class="hidden">There are <span class="large" id="disp.energy"></span> joules of energy in your system. Existances and existivity together experience <span class="large" id="disp.energy2"></span> seconds per second.</div>
 <p id="changescr" class="hidden">
   <button type="button" id="button.changescr_shop_general" onclick="changescr_shop_general()" class="changescr">Unit Conversion</button>
   <button type="button" id="button.changescr_shop_upgrade" onclick="changescr_shop_upgrade()" class="hidden">Upgrades</button>
@@ -23,7 +22,15 @@
   <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words thought"</button><br>
 </div>
 <div id="scr.shop.upgrade" class="hidden">
-  <div id="upgrade.convexisti_1" class="box" style="text-align:center;float:center;">
+  <span id="upgrade.convexisti_2" class="box" style="text-align:center;float:center;">
+    Productive existances<br>
+    The more existances you have,<br>
+    the more existances you get from making it exist.<br>
+    <button id="button.upgrade.convexisti_2" type="button" onclick="buy_upgrade_convexisti_2()">Cost: 150 existances</button><br>
+    <span id="div.upgrade.convexisti_2.bottom" class="hidden">Enabled: <input type="checkbox" id="upgrade.convexisti_2.enable"></input>  Boost: ×
+    <span id="disp.upgrade.convexisti_2">1.00</span></span>
+  </span>
+  <span id="upgrade.convexisti_1" class="box" style="text-align:center;float:center;">
     Enhance existivity.<br>
     Increases the amount of existances to be found,<br>
     but dramatically decreases and creates a peak<br>
@@ -33,15 +40,7 @@
     when finding existance.<br>
     <button id="button.upgrade.convexisti_1" type="button" onclick="buy_upgrade_convexisti_1()" class="hidden">Cost: 200,000 existivity</button><br>
     <span id="div.upgrade.convexisti_1.bottom">Enabled: <input type="checkbox" id="upgrade.convexisti_1.enable"></input></span>
-  </div>
-  <div id="upgrade.convexisti_2" class="box" style="text-align:center;float:center;">
-    Productive existances<br>
-    The more existances you have,<br>
-    the more existances you get from making it exist.<br>
-    <button id="button.upgrade.convexisti_2" type="button" onclick="buy_upgrade_convexisti_2()">Cost: 150 existances</button><br>
-    <span id="div.upgrade.convexisti_2.bottom" class="hidden">Enabled: <input type="checkbox" id="upgrade.convexisti_2.enable"></input>  Boost: ×
-    <span id="disp.upgrade.convexisti_2">1.00</span></span>
-  </div>
+  </span>
 </div>
 <div id="scr.shop.autoconv" class="hidden">
   <button id="button.buyautoconvexisti" type="button" onclick="buyautoconvexisti()" title="Your existances will work to find other existances for you.">Auto find existance<br/>Cost: 200 existance</button>
