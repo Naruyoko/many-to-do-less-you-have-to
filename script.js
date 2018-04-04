@@ -17,7 +17,7 @@ function initializevars(){
           x*=game.currency.convexistiearn.upgrade_convexisti_2();
         }),
         upgrade_convexisti_1:(function (){if (game.upgrade.convexisti_1.ison()){return Math.floor(Math.pow(game.currency.existivity,1/3)/1.5+0.8);}else{return 1;}}),
-        upgrade_convexisti_2:(function (){if (game.upgrade.convexisti_2.ison()){return Math.log(game.currency.existivity)+1);}else{return 1;}})
+        upgrade_convexisti_2:(function (){if (game.upgrade.convexisti_2.ison()){return Math.log(game.currency.existivity)+1;}else{return 1;}})
       },
       existabilityboost:0,
       existance:0,
