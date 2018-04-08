@@ -13,11 +13,12 @@ function initializevars(){
       convexistiearn:{
         total:(function (){
           var x=1;
-          x*=game.currency.convexistiearn.upgrade_convexisti_1();
-          x*=game.currency.convexistiearn.upgrade_convexisti_2();
+          if (game.upgrade.convexisti_1.ison()){x*=game.currency.convexistiearn.upgrade_convexisti_1();}
+          if (game.upgrade.convexisti_2.ison()){x*=game.currency.convexistiearn.upgrade_convexisti_2();}
+          return Math.floor(x);
         }),
-        upgrade_convexisti_1:(function (){if (game.upgrade.convexisti_1.ison()){return Math.floor(Math.pow(game.currency.existivity,1/3)/1.5+0.8);}else{return 1;}}),
-        upgrade_convexisti_2:(function (){if (game.upgrade.convexisti_2.ison()){return Math.log(game.currency.existivity)+1;}else{return 1;}})
+        upgrade_convexisti_1:(function (){return Math.floor(Math.pow(game.currency.existivity,1/3)/1.5+0.8);}),
+        upgrade_convexisti_2:(function (){return Math.log(game.currency.existance)+1;})
       },
       existabilityboost:0,
       existance:0,
@@ -147,6 +148,8 @@ function savecookie(){
   setCookie("game.unlocked.buyautoconvexista",game.unlocked.buyautoconvexista,7);
   setCookie("game.upgrade.convexisti_1.bought",game.upgrade.convexisti_1.bought,7);
   setCookie("game.upgrade.convexisti_1.enable",game.upgrade.convexisti_1.enable(),7);
+  setCookie("game.upgrade.convexisti_2.bought",game.upgrade.convexisti_2.bought,7);
+  setCookie("game.upgrade.convexisti_2.enable",game.upgrade.convexisti_2.enable(),7);
   setCookie("game.autobuy.existivity",game.autobuy.existivity,7);
   setCookie("game.autobuy.existivityon",game.autobuy.existivityon(),7);
   setCookie("game.autobuy.existance.bought",game.autobuy.existance.bought,7);
@@ -176,6 +179,8 @@ function loadcookie(){
   game.unlocked.buyautoconvexista=getCookie("game.unlocked.buyautoconvexista")=="true";
   game.upgrade.convexisti_1.bought=getCookie("game.upgrade.convexisti_1.bought")=="true";
   document.getElementById("upgrade.convexisti_1.enable").checked=getCookie("game.upgrade.convexisti_1.enable")=="true";
+  game.upgrade.convexisti_2.bought=getCookie("game.upgrade.convexisti_2.bought")=="true";
+  document.getElementById("upgrade.convexisti_2.enable").checked=getCookie("game.upgrade.convexisti_2.enable")=="true";
   game.autobuy.existivity=getCookie("game.autobuy.existivity")=="true";
   document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivityon");
   game.autobuy.existance.bought=getCookie("game.autobuy.existance.bought")=="true";
@@ -262,42 +267,45 @@ function updatedisp(){
   }else{
     showhide(document.getElementById("div.disp.existivity2"),false);
   }
-  if ((game.currency.existabilityboost)&&(game.currency.convexistiearn.total()=1)){
-    var m="";
+  var m="";
+  if ((game.currency.existabilityboost)&&(game.currency.convexistiearn.total()==1)){
     m="<span style=\"color:#009933\">(+"+Math.round(game.currency.existabilityboost*1000)/10+"%)</span>";
   }
   document.getElementById("disp.existivity").innerHTML=notation(Math.round(game.currency.existivity*100)/100);
-  document.getElementById("disp.existability").innerHTML=Math.round(1000*game.currency.existability())/10+"%</span>"+m;
+  document.getElementById("disp.existability").innerHTML=Math.round(1000*game.currency.existability())/10+m+"%";
   if (game.unlocked.existance){
-    showhide(document.getElementById("div.disp.existance",true);
+    showhide(document.getElementById("div.disp.existance"),true);
     document.getElementById("disp.existance").innerHTML=notation(Math.floor(game.currency.existance))
     document.getElementById("disp.existance2").innerHTML=notation(Math.round(game.production.existivity*100)/100);
   }
   if (game.unlocked.etime){
-    showhide(document.getElementById("div.disp.etime",true);
+    showhide(document.getElementById("div.disp.etime"),true);
     document.getElementById("disp.etime").innerHTML=notation(Math.floor(game.currency.etime));
     if (Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100<1000)){
-      document.getElementById("disp.etime2")="+"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%";
+      document.getElementById("disp.etime2").innerHTML="+"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%";
     }else{
-      document.getElementById("disp.etime2")="×"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100)/100);
+      document.getElementById("disp.etime2").innerHTML="×"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100)/100);
     }
   }
   if (game.unlocked.thought){
-    showhide(document.getElementById("div.disp.thought",true);
+    showhide(document.getElementById("div.disp.thought"),true);
     document.getElementById("disp.thought").innerHTML=notation(game.currency.thought);
     document.getElementById("disp.thought2").innerHTML=notation(game.currency.thought);
     document.getElementById("disp.word").innerHTML=notation(game.currency.word);
     document.getElementById("disp.thought3").innerHTML=notation(Math.round(game.production.existance*100)/100);
   }
   if (game.unlocked.energy){
-    showhide(document.getElementById("div.disp.energy",true);
+    showhide(document.getElementById("div.disp.energy"),true);
     document.getElementById("disp.energy").innerHTML=notation(game.currency.energy);
     document.getElementById("disp.energy2").innerHTML=notation(Math.round(game.production.etime*1000)/1000);
   }
-  if (game.upgrade.convexisti_1.bought){showhide(document.getElementById("div.upgrade.convexisti_1.bottom"),true);}
+  if (game.upgrade.convexisti_1.bought){
+    showhide(document.getElementById("div.upgrade.convexisti_1.bottom"),true);
+    document.getElementById("disp.upgrade.convexisti_2").innerHTML=notation(Math.round(game.currency.convexistiearn.upgrade_convexisti_2()*1000)/1000);
+  }
   if (game.upgrade.convexisti_2.bought){
     showhide(document.getElementById("div.upgrade.convexisti_2.bottom"),true);
-    document.getElementById("disp.upgrade.convexisti_2")=notation(Math.round(game.currency.convexistiearn.upgrade_convexisti_2()*100)/100);
+    document.getElementById("disp.upgrade.convexisti_2").innerHTML=notation(Math.round(game.currency.convexistiearn.upgrade_convexisti_2()*1000)/1000);
   }
   if (saved){document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved.getTime())/10)/100+" seconds ago";}
 }
@@ -354,6 +362,11 @@ function updatebutton(){
   }else{
     document.getElementById("button.upgrade.convexisti_1").className="unavailable";
   }
+  if (game.canbuy.upgrade_convexisti_2()){
+    document.getElementById("button.upgrade.convexisti_2").className="";
+  }else{
+    document.getElementById("button.upgrade.convexisti_2").className="unavailable";
+  }
   if (game.unlocked.changescr()){document.getElementById("changescr").className="";}
   if (game.unlocked.upgrade){document.getElementById("button.changescr_shop_upgrade").className="changescr";}
   if (game.unlocked.autobuyshop){document.getElementById("button.changescr_shop_autoconv").className="changescr";}
@@ -390,11 +403,12 @@ function convexisti(){
     game.currency.existivity=0;
   }else{
     if (Math.random()<game.currency.existability()){
-      game.currency.existance++;
+      game.currency.existance+=game.currency.convexistiearn.total();
       game.unlocked.existance=true;
       updateprod();
       if (game.currency.existance>=16){game.unlocked.convexista=true;}
       if (game.currency.existance>=30){game.unlocked.autobuyshop=true;}
+      if (game.currency.existance>=80){game.unlocked.upgrade=true;}
     }else{
       game.currency.existabilityboost+=game.currency.existability()/2.5;
     }
