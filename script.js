@@ -206,7 +206,26 @@ function showhide(x,t){
       x.className="hidden";
   }
 }
+var timeelapsedleft=0;
+var timeelapsed;
+var lasttime=0;
+var d=new Date();
 function passive(){
+  if (lasttime!==0){
+    d=new Date();
+    timeelapsedleft=(d.getTime()-lasttime)/1000;
+  }
+  lasttime=d.getTime();
+  if (timeelapsedleft<=0){return;}
+  for (;timeelapsedleft>=0.2;){
+    timeelapsed=timeelapsedleft/5;
+    tick();
+    timeelapsedleft=timeelapsedleft/1.25;
+  }
+  timeelapsed=timeelapsedleft;
+  tick();
+}
+function tick(){
   updateauto();
   updateprod();
   updatecurr();
@@ -214,9 +233,6 @@ function passive(){
   updatedisp();
   updatebutton();
 }
-var timeelapsed=0;
-var lasttime=0;
-var d=new Date();
 function updateauto(){
   if (game.autobuy.existivity&&(game.currency.existivity>=game.autobuy.existivityon())&&!isNaN(game.autobuy.existivityon())){
     convexisti();
@@ -231,10 +247,6 @@ function updateprod(){
   game.production.etime=(game.currency.energy*(Math.max(Math.pow(Math.floor(game.currency.existance),0.03)-1.2,0)+Math.max(Math.pow(game.currency.existivity,0.003)-1.016,0)))/40;
 }
 function updatecurr(){
-  if (lasttime!==0){
-    d=new Date();
-    timeelapsed=(d.getTime()-lasttime)/1000;}
-  lasttime=d.getTime();
   game.currency.existivity+=game.production.existivity*timeelapsed;
   if (game.currency.existivity>=15000){game.unlocked.upgrade=true;}
   game.currency.existance+=game.production.existance*timeelapsed;
