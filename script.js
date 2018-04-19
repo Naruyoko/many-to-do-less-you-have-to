@@ -261,7 +261,7 @@ function loadcookie(){//changename
   document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivityon");
   game.autobuy.existance.bought=getCookie("game.autobuy.existance.bought")=="true";
   document.getElementById("autobuy.existance.enable").checked=getCookie("game.autobuy.existance.enable");
-  game.achievement.done=JSON.parse(getCookie("game.achievement.done"));
+  if (game.achievement.done.length!==0){game.achievement.done=JSON.parse(getCookie("game.achievement.done"));}
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){
     acceptcookie();
