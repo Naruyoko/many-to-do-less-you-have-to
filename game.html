@@ -1,4 +1,15 @@
-<title>Many to do, Less You have to.</title>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117589993-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-117589993-1');
+  </script>
+  <title>Many to do, Less You have to.</title>
+</head>
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <img id="loadpic" src="./files/pictures/title.png" />
 <link rel="stylesheet" href="stylesheet.css" type="text/css">
@@ -10,10 +21,11 @@
   <div id="div.disp.energy" class="hidden">There are <span class="large" id="disp.energy"></span> joules of energy in your system. Existances and existivity together experience <span class="large" id="disp.energy2"></span> seconds per second.</div>
 </div>
 <p id="changescr" class="hidden">
-  <button type="button" id="button.changescr_shop_general" onclick="changescr_shop_general()" class="changescr">Unit Conversion</button>
-  <button type="button" id="button.changescr_shop_upgrade" onclick="changescr_shop_upgrade()" class="hidden">Upgrades</button>
-  <button type="button" id="button.changescr_shop_autoconv" onclick="changescr_shop_autoconv()" class="hidden">Autobuyer</button>
-  <button type="button" id="button.changescr_achievement" onclick="changescr_achievement()" class="hidden">Achievements</button>
+  <button type="button" id="button.changescr_shop_general" onclick="changescr_shop_general()" class="changescr hidden">Unit Conversion</button>
+  <button type="button" id="button.changescr_shop_upgrade" onclick="changescr_shop_upgrade()" class="changescr hidden">Upgrades</button>
+  <button type="button" id="button.changescr_shop_autoconv" onclick="changescr_shop_autoconv()" class="changescr hidden">Autobuyer</button>
+  <button type="button" id="button.changescr_status" onclick="changescr_status()" class="changescr hidden">Status</button>
+  <button type="button" id="button.changescr_achievement" onclick="changescr_achievement()" class="changescr hidden">Achievements</button>
   <br>
   <br>
 </p>
@@ -59,6 +71,17 @@
   <span id="form.autoconvexisti">Find existance when you have <input id="input.autoconvexisti" type="text"></input> existivity.</span><br>
   <button id="button.buyautoconvexista" type="button" class="hidden" onclick="buyautoconvexista()" title="The experienced thoughts experiences more.">Auto find existance<br/>Cost: 6 thoughts,<br/>  60 words thought,<br/>  10 experienced time</button>
   <span id="div.autobuy.existance.enable" class="hidden">Enable: <input id="autobuy.existance.enable" type="checkbox"></input></span><br>
+</div>
+<div id="scr.status" class="hidden">
+  <p>
+    <div id="div.status.existivity">There was total of <span id="disp.status.existivity" class="middle"></span> existivity.</div>
+    <div id="div.status.existance" class="hidden">You have found <span id="disp.status.existance" class="middle"></span> existances.</div>
+    <div id="div.status.etime" class="hidden">Total of <span id="disp.status.etime" class="middle"></span> seconds experienced.</div>
+    <div id="div.status.thought" class="hidden">You got <span id="disp.status.thought" class="middle"></span> thoughts.<br>
+    Thoughts thought about <span id="disp.status.word" class="middle"></span> words.</div>
+    <div id="div.status.energy" class="hidden">Total of <span id="disp.status.energy" class="middle"></span> joules of work.</div>
+  </p>
+  You were playing for <span id="disp.status.timeplayed" class="middle"></span>.
 </div>
 <table id="table.achievement" style="margin:auto;width:95%;" class="hidden">
   <tr>
@@ -110,6 +133,9 @@
     <td></td>
   </tr>
 </table>
+<div id="achievementearned" class="hidden" style="position:absolute;top:0px;right:0px;background-color:#87cefa;color:#202020;font-size:14px;padding:4px;border-radius:2px;border:2px darkgray solid;">
+  Insert text
+</div>
 <div class="footer" style="z-index:-1;">
   Refferences:    <br>
   Inspired by <a href="https://ivark.github.io" target="_blank">Antimatter Dimensions</a><br>
@@ -133,7 +159,7 @@
   function waituntilload(){
     if (!loading){
       clearInterval(waituntilloadinterval);
-      document.getElementById("loadpic").src="";
+      document.getElementById("loadpic").className="hidden";
       var passiveinterval=setInterval(passive,100);
     }
   }
