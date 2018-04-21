@@ -95,9 +95,9 @@ function initializevars(){
       }
     },
     achievement:{
-      arrangement:[[0,1,3,10,11,28,8,25],[2,4,5,12,13,16,17,19],[23,27,6,7,9,14,26,20],[24,22,18,21,-1,15]],
-      condition:["true","game.currency.existance>=1","undefined","game.currency.etime>=8","game.currency.etime>=1","Math.pow(1.2,game.currency.etime)>=3","game.currency.thought>=1","game.currency.word>=1","game.currency.existability()>0.9999999","(game.currency.thought>=4)&&(game.currency.word>=120)","undefined","undefined","undefined","undefined","game.currency.energy>=1","game.currency.energy>=4","game.currency.existance>=1000","game.currency.existance>=100000","Math.pow(1.2,game.currency.etime)>=100","game.currency.existance>=1e+7","game.currency.existivity>=1000","game.currency.existivity>=1e+7","game.currency.thought>=6","undefined","undefined","game.currency.convexistiearn.total()>=100","game.autobuy.existivity","undefined","game.status.timeplayed>=20*60"],
-      name:["Big Bang?,Open game.","There IS Something Rather Than Nothing,Find an existance.","Bad Roll,Fail to find an existance.","Crowding,Find 8 existances.","Time\u2122,Let them experience.","Good experience,Have +200% boost by experiences.","Non-mechanic Integration,Have a thought.\nReward: Unlock Achievemnts","0.6\u2030,Get a word.","Almost Gurantee,Have probability exceed 99.9999%.","Yes Brainer,Have 4 thoughts and 120 words.","Quantum Fluctuation I,Successfully find existance with less than 5% chance.","Quantum Fluctuation II,Successfully find existance with less than 0.5% chance.","Quantum Fluctuation -I,Fail to find existance with more than 98% chance.","Quantum Fluctuation -II,Fail to find existance with more than 99.5% chance.","W=F·d·cos\u03b8,Have some energy in your system.","Work!,Have 4 joules of energy.","Swarn,A group of 1,000 existances.","Stream,A group of 100,000 existances.","Overpowered,Get ×100 boost by experienced time.","Okay$ You had Enough.,Have 10 million existances.","You don't need this much.,Reach 1,000 existivity.","Why Would You Need That?!,Reach 10 million existivity.","Confused,Have 6 thoughts.","Quantum Fluctuation III,Successfully find existance with less than 0.01% chance.","Quantum Fluctuation -III,Fail to find existance with more than 99.999% chance.","Gimme More!,Let 100 experiences available in a click.","You have a Coop,Have an autobuyer.","Don't you dare sleep,Be offline for over 6 hours in a row.","You Are In This,Play for 20 minutes"],
+      arrangement:[[0,1,3,10,11,28,8,25,29],[2,4,5,12,13,16,17,19],[23,27,6,7,9,14,26,20,30],[24,22,18,21,-1,15]],
+      condition:["true","game.currency.existance>=1","undefined","game.currency.etime>=8","game.currency.etime>=1","Math.pow(1.2,game.currency.etime)>=3","game.currency.thought>=1","game.currency.word>=1","game.currency.existability()>0.9999999","(game.currency.thought>=4)&&(game.currency.word>=120)","undefined","undefined","undefined","undefined","game.currency.energy>=1","game.currency.energy>=4","game.currency.existance>=1000","game.currency.existance>=100000","Math.pow(1.2,game.currency.etime)>=100","game.currency.existance>=1e+7","game.currency.existivity>=1000","game.currency.existivity>=1e+7","game.currency.thought>=6","undefined","undefined","game.currency.convexistiearn.total()>=100","game.autobuy.existivity","undefined","game.status.timeplayed>=20*60","undefined","game.currency.existabilityboost>=0.25"],
+      name:["Big Bang?,Open game.","There IS Something Rather Than Nothing,Find an existance.","Bad Roll,Fail to find an existance.","Crowding,Find 8 existances.","Time\u2122,Let them experience.","Good experience,Have +200% boost by experiences.","Non-mechanic Integration,Have a thought.\nReward: Unlock Achievemnts","0.6\u2030,Get a word.","Almost Gurantee,Have probability exceed 99.9999%.","Yes Brainer,Have 4 thoughts and 120 words.","Quantum Fluctuation I,Successfully find existance with less than 5% chance.","Quantum Fluctuation II,Successfully find existance with less than 0.5% chance.","Quantum Fluctuation -I,Fail to find existance with more than 98% chance.","Quantum Fluctuation -II,Fail to find existance with more than 99.5% chance.","W=F·d·cos\u03b8,Have some energy in your system.","Work!,Have 4 joules of energy.","Swarn,A group of 1,000 existances.","Stream,A group of 100,000 existances.","Overpowered,Get ×100 boost by experienced time.","Okay$ You had Enough.,Have 10 million existances.","You don't need this much.,Reach 1,000 existivity.","Why Would You Need That?!,Reach 10 million existivity.","Confused,Have 6 thoughts.","Quantum Fluctuation III,Successfully find existance with less than 0.01% chance.","Quantum Fluctuation -III,Fail to find existance with more than 99.999% chance.","Gimme More!,Let 100 experiences available in a click.","You have a Coop,Have an autobuyer.","Don't you dare sleep,Be offline for over 6 hours in a row.","You Are In This,Play for 20 minutes","Comeback,Leave game for a week.","Was this your intention?,Have boost to probability of existances existing exceed 25%."],
       done:[]
     },
     status:{
@@ -108,12 +108,14 @@ function initializevars(){
       thought:0,
       word:0,
       energy:0
+    },
+    datainfo:{
+      version:"α 0.0.4",
+      release:201804211 //YYYYMMDDX
     }
   };
 }
 initializevars();
-var version="α 0.0.4";
-var release=201804201; //YYYYMMDDX
 function notation(i){
   if (isNaN(i)){return "NaN";}
   if (!isFinite(i)){return "Infinity";}
@@ -230,6 +232,8 @@ function savecookie(){//change name
   setCookie("game.status.etime",game.status.etime,7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccepted,7);
+  setCookie("game.datainfo.version",game.datainfo.version,7);
+  setCookie("game.datainfo.release",game.datainfo.release,7);
   //save={
   //  game:game,
   //  version:version,
@@ -284,6 +288,8 @@ function loadcookie(){//changename
     acceptcookie();
     saved=new Date();
   }
+  game.datainfo.version=getCookie("game.datainfo.version");
+  game.datainfo.release=Number(getCookie("game.datainfo.release"));
   setgenwordinterval();
 }
 var wasoffline=true;
@@ -326,6 +332,7 @@ function passive(){
     console.log("The game is lagging, was offline or inactive! Time elapsed: "+Math.round(timeelapsedleft*1000)+" ms, simulated with "+Math.floor(Math.log(timeelapsedleft)/Math.log(1.25)+9.2)+" ticks.");
   }
   if (timeelapsedleft>=21600){game.achievement.done[27]=true;}
+  if (timeelapsedleft>=604800){game.achievement.done[29]=true;}
   for (;timeelapsedleft>0.2;){
     timeelapsed=timeelapsedleft/5;
     tick();
@@ -357,18 +364,18 @@ function updateprod(){
   game.production.etime=(game.currency.energy*(Math.max(Math.pow(Math.floor(game.currency.existance),0.03)-1.2,0)+Math.max(Math.pow(game.currency.existivity,0.003)-1.016,0)))/40;
 }
 function updatecurr(){
-  var f=Math.floor(game.currency.existivity);
+  var f=game.currency.existivity;
   game.currency.existivity+=game.production.existivity*timeelapsed;
   if (game.currency.existivity>=15000){game.unlocked.upgrade.convexisti_1=true;}
-  game.status.existivity+=Math.floor(game.currency.existivity)-f;
+  game.status.existivity+=Math.max(game.currency.existivity-f,0);
   f=Math.floor(game.currency.existance);
   game.currency.existance+=game.production.existance*timeelapsed;
   if (game.currency.existance>Math.pow(2,game.currency.etimebought+4)){game.currency.existance=Math.pow(2,game.currency.etimebought+4);}
-  game.status.existance+=Math.floor(game.currency.existance)-f;
+  game.status.existance+=Math.max(Math.floor(game.currency.existance)-f,0);
   f=Math.floor(game.currency.etime);
   game.currency.etime+=game.production.etime*timeelapsed;
   if (game.currency.etime>Math.round(game.currency.thought*2+4)){game.currency.etime=Math.round(game.currency.thought*2+4);}
-  game.status.etime+=Math.floor(game.currency.etime)-f;
+  game.status.etime+=Math.max(Math.floor(game.currency.etime)-f,0);
   if ((timeelapsed>1/game.currency.thought)&&(game.currency.thought!=0)){
     var x=timeelapsed*game.currency.thought-1;
     var r=Math.random();
@@ -441,10 +448,10 @@ function updatedisp(){
   }
   var m="";
   var t=game.status.timeplayed
-  if (t>=86400){m+=Math.floor(t/86400)+"days ";}
-  if (t>=3600){m+=Math.floor(t/3600%24)+"hours ";}
-  if (t>=60){m+=Math.floor(t/60%60)+"minutes ";}
-  m+=Math.floor(t%60)+"seconds";
+  if (t>=86400){m+=Math.floor(t/86400)+" days ";}
+  if (t>=3600){m+=Math.floor(t/3600%24)+" hours ";}
+  if (t>=60){m+=Math.floor(t/60%60)+" minutes ";}
+  m+=Math.floor(t%60)+" seconds";
   document.getElementById("disp.status.timeplayed").innerHTML=m;
   if (game.upgrade.convexisti_1.bought){
     showhide("div.upgrade.convexisti_1.bottom",true);
@@ -741,6 +748,7 @@ function updateachiev(){
           var s=m.search(",");
           m=m.replace("$",",");
           document.getElementById("achievementearned").innerHTML=m.substr(0,s);
+          document.getElementById("achievementearned").title=m.substr(s+1,m.length-s-1);
           showhide("achievementearned",true);
           setTimeout(function (){showhide("achievementearned",false);},7500);
         }
