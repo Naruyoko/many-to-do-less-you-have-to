@@ -548,7 +548,7 @@ function updatebutton(){
   if (game.unlocked.upgrade.existance_1){showhide("upgrade.existance_1",true);}
   if (game.unlocked.autobuyshop){showhide("button.changescr_shop_autoconv",true);}
   if (game.achievement.done[4]){showhide("button.changescr_status",true);}
-  if (game.achievement.done[5]){showhide("button.changescr_achievement",true);}
+  if (game.achievement.done[6]){showhide("button.changescr_achievement",true);}
   if (game.autobuy.existivity){document.getElementById("form.autoconvexisti").className="";}
   document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+notation(Math.round(Math.pow(2,game.currency.etimebought+4)))+" existances";
   document.getElementById("button.convetime").innerHTML="Thought for the words.<br/>Cost: "+notation(Math.round(game.currency.thought*2+4))+" experienced time,<br/>  "+notation(Math.round(50*Math.pow(game.currency.thought+2,2)))+" existivity";
@@ -755,7 +755,7 @@ function updateachiev(){
     }
   }
   if (n!=""){
-    document.getElementById("achievementearned").innerHTML=n;
+    document.getElementById("achievementearned").innerHTML="<span style=\"color:#404040;\">"+n+"</span>";
     showhide("achievementearned",true);
     setTimeout(function (){showhide("achievementearned",false);},7500);
   }
