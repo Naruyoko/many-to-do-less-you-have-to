@@ -749,7 +749,7 @@ function updateachiev(){
           var s=m.search(",");
           m=m.replace("$",",");
           if (n!=""){n+="<br/>";}
-          n+="<span style=\"color:#404040;\" title=\""+m.substr(s+1,m.length-s-1)+"\">"+m.substr(0,s)+"</span>";
+          n+="<span style=\"color:#202020;\" title=\""+m.substr(s+1,m.length-s-1)+"\">"+m.substr(0,s)+"</span>";
         }
       }
     }
