@@ -749,13 +749,13 @@ function updateachiev(){
           var s=m.search(",");
           m=m.replace("$",",");
           if (n!=""){n+="<br/>";}
-          n+="<span title=\""+m.substr(s+1,m.length-s-1)+"\">"+m.substr(0,s)+"</span>";
+          n+="<span style=\"color:#404040;\" title=\""+m.substr(s+1,m.length-s-1)+"\">"+m.substr(0,s)+"</span>";
         }
       }
     }
   }
   if (n!=""){
-    document.getElementById("achievementearned").innerHTML="<span style=\"color:#404040;\">"+n+"</span>";
+    document.getElementById("achievementearned").innerHTML=n;
     showhide("achievementearned",true);
     setTimeout(function (){showhide("achievementearned",false);},7500);
   }
