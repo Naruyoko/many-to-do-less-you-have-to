@@ -17,7 +17,7 @@
   <div id="div.disp.existivity">Your existivity is <span class="large" id="disp.existivity"></span> and has <span class="large" id="disp.existability"></span> chance of <span id="div.disp.existivity2" class="hidden"><span class="large" id="disp.existivity2"></span> existances </span></span>existing.</div>
   <div id="div.disp.existance" class="hidden">You know <span class="large" id="disp.existance"></span> existances. They produce <span class="large" id="disp.existance2"></span> existivity each second.</div>
   <div id="div.disp.etime" class="hidden">Existances experienced as much as <span class="large" id="disp.etime"></span> seconds. It boosts the production of existivity by <span class="large" id="disp.etime2"></span>.</div>
-  <div id="div.disp.thought" class="hidden">You have <span class="large" id="disp.thought"></span> thoughts and think <span id="disp.thought2"></span> strings per second.<br/>You have thought of <span class="large" id="disp.word"></span> <span title="Many to do, Less you have to.">words in the title</span> and finds <span class="large" id="disp.thought3"></span> existances per second.  Recently generated: <span id="disp.genword"></span></div>
+  <div id="div.disp.thought" class="hidden">You have <span class="large" id="disp.thought"></span> thoughts and think <span id="disp.thought2"></span> strings per second.  Recently generated: <span id="disp.genword"></span><br/>You have thought of <span class="large" id="disp.word"></span> <span title="Many to do, Less you have to.">words in the title</span> and finds <span class="large" id="disp.thought3"></span> existances per second.</div>
   <div id="div.disp.energy" class="hidden">There are <span class="large" id="disp.energy"></span> joules of energy in your system. Existances and existivity together experience <span class="large" id="disp.energy2"></span> seconds per second.</div>
 </div>
 <p id="changescr" class="hidden">
@@ -30,11 +30,16 @@
   <br>
 </p>
 <hr>
-<div id="scr.shop.general">
+<div id="scr.shop.general" style="position:relative;">
   <button id="button.convexisti" type="button" onclick="convexisti()" title="See if it exists.&#10;Reduces existivity or resets it if it is low.">Make it exist!</button><br>
   <button id="button.convexista" type="button" class="hidden" onclick="convexista()" title="Repeating makes efficient.&#10;Resets existivity and reduces most of existances.">Experience.<br/>Cost: - existances</button><br>
   <button id="button.convetime" type="button" class="hidden" onclick="convetime()" title="You need to think.&#10;Resets experienced time, existance, and existivity.">Thought the word.<br/>Cost: - experienced time,<br/>  - existivity</button><br>
-  <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10;　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words thought"</button><br>
+  <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10;　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words thought</button><br>
+  <button id="button.convenergy" type="button" class="hidden" onclick="convenergy()" title="BOOM&#10;Resets energy, thoughts, words,&#10;　 experienced time, existance, and existivity.">Let your energy burst!<br/>Cost: 5 joules of energy,<br/>  1 billion existivity</button><br>
+  <div style="border:black 1px solid;background-color:white;position:absolute;top:0px;right:0px;width:300px;padding:5px;text-align:center;" id="div.explosion" class="hidden">
+    <p style="color:darkgreen">You have <span id="disp.explosion" class="middle"></span> explosion points.</p>
+    <button id="button.upgrade.etime_1" onclick="buy_upgrade_etime_1()">Double the effect of experience,<br/>and experiencing five more existances.<br/>Cost: 1 Explosion point</button>
+  </div>
 </div>
 <div id="scr.shop.upgrade" class="hidden" style="width:95%;margin:auto;">
   <div id="upgrade.convexisti_2" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left;">
@@ -80,10 +85,23 @@
     <div id="div.status.thought" class="hidden">You got <span id="disp.status.thought" class="middle"></span> thoughts.<br>
     Thoughts thought about <span id="disp.status.word" class="middle"></span> words.</div>
     <div id="div.status.energy" class="hidden">Total of <span id="disp.status.energy" class="middle"></span> joules of work.</div>
+    <div id="div.status.explosion" class="hidden">Boom! Exploded <span id="disp.status.explosion" class="middle"></span> times.</div>
   </p>
   You were playing for <span id="disp.status.timeplayed" class="middle"></span>.
 </div>
 <table id="table.achievement" style="margin:auto;width:95%;" class="hidden">
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
   <tr>
     <td></td>
     <td></td>
