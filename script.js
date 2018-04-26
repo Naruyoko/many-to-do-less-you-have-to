@@ -51,8 +51,8 @@ function initializevars(){
             return Math.pow(1.2,Math.floor(game.production.etime));
           }
         }),
-        upgrade_existance_1:(function (){return game.production.existivity*=5;}),
-        achievement_31:(function (){return game.production.existivity*=Math.pow(1.000001,Math.floor(game.currency.existance))/(Math.log(Math.pow(Math.floor(game.currency.existance)+1,1/1000)+1)+0.3);})
+        upgrade_existance_1:(function (){return 5;}),
+        achievement_31:(function (){return Math.max(Math.pow(1.000001,Math.floor(game.currency.existance))/(Math.log(Math.pow(Math.floor(game.currency.existance)+1,1/1000)+1)+0.3),1);})
       },
       etime:0,
       thought:0,
