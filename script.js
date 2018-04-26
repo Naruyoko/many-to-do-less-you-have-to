@@ -70,7 +70,7 @@ function initializevars(){
       convenergy:false,
       changescr:(function (){return game.unlocked.upgrade.shop()||game.unlocked.autobuyshop||game.achievement.done[4];}),
       upgrade:{
-        shop:(function (){return game.unlocked.upgrade.convexisti_1||game.unlocked.upgrade.convexisti_2||game.unlocked.upgrade.existability_1||game.unlocked.upgrade.existance_1}),
+        shop:(function (){return game.unlocked.upgrade.convexisti_1||game.unlocked.upgrade.convexisti_2||game.unlocked.upgrade.existability_1||game.unlocked.upgrade.existance_1;}),
         convexisti_1:false,
         convexisti_2:false,
         existability_1:false,
@@ -445,8 +445,8 @@ function updatedisp(){
   if (game.unlocked.existance){
     showhide("div.disp.existance",true);
     showhide("div.status.existance",true);
-    document.getElementById("disp.existance").innerHTML=notation(Math.floor(game.currency.existance))
-    document.getElementById("disp.status.existance").innerHTML=notation(Math.floor(game.status.existance))
+    document.getElementById("disp.existance").innerHTML=notation(Math.floor(game.currency.existance));
+    document.getElementById("disp.status.existance").innerHTML=notation(Math.floor(game.status.existance));
     document.getElementById("disp.existance2").innerHTML=notation(Math.round(game.production.existivity*100)/100);
   }
   if (game.unlocked.etime){
@@ -829,6 +829,7 @@ function buyautoconvexista(){
   game.autobuy.existance.bought=true;
 }
 function updateachiev(){
+  var n="";
   for (var y=0;y<game.achievement.arrangement.length;y++){
     for (var x=0;x<game.achievement.arrangement[y].length;x++){
       var a=game.achievement.arrangement[y][x];
@@ -838,13 +839,16 @@ function updateachiev(){
           var m=game.achievement.name[a];
           var s=m.search(",");
           m=m.replace("$",",");
-          document.getElementById("achievementearned").innerHTML=m.substr(0,s);
-          document.getElementById("achievementearned").title=m.substr(s+1,m.length-s-1);
-          showhide("achievementearned",true);
-          setTimeout(function (){showhide("achievementearned",false);},7500);
+          if (n!=""){n+="<br/>";}
+          n+="<span style=\"color:#202020;\" title=\""+m.substr(s+1,m.length-s-1)+"\">"+m.substr(0,s)+"</span>";
         }
       }
     }
+  }
+  if (n!=""){
+    document.getElementById("achievementearned").innerHTML=n;
+    showhide("achievementearned",true);
+    setTimeout(function (){showhide("achievementearned",false);},7500);
   }
 }
 function achievementupdate(){
@@ -864,13 +868,13 @@ function achievementupdate(){
           o.className+=" done";
         }else{
           var t=false;
-          for (var a=-2;a<=2;a++){
-            for (var b=-2+Math.abs(a);b<=2-Math.abs(a);b++){
-              if (typeof game.achievement.arrangement[y+a]!=="undefined"){
-                if (game.achievement.done[game.achievement.arrangement[y+a][x+b]]){t=true;break;}}
+          for (var u=-2;u<=2;u++){
+            for (var v=-2+Math.abs(u);v<=2-Math.abs(u);v++){
+              if (typeof game.achievement.arrangement[y+u]!=="undefined"){
+                if (game.achievement.done[game.achievement.arrangement[y+u][x+v]]){t=true;break;}}
             }
           }
-          if (!t){o.className+=" hidden"}
+          if (!t){o.className+=" hidden";}
         }
       }
     }
