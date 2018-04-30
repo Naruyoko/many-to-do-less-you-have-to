@@ -53,7 +53,7 @@ function initializevars(){
             m=1.2;
           }
           if (game.achievement.done[33]){m*=1+0.01*game.achievement.completed();}
-          return Math.pow(m,Math.floor(game.production.etime));
+          return Math.pow(m,Math.floor(game.currency.etime));
         }),
         achievement_31:(function (){return Math.max(Math.pow(1.000001,Math.floor(game.currency.existance))/(Math.log(Math.pow(Math.floor(game.currency.existance)+1,1/1000)+1)+0.3),1);}),
         achievement_33:(function (){return 1+0.01*game.achievement.completed();})
@@ -145,9 +145,12 @@ function initializevars(){
       energy:0,
       explosion:0
     },
+    option:{
+      disableshake:(function (){return document.getElementById("checkbox.disableshake").checked;})
+    },
     datainfo:{
-      version:"α 0.0.4",
-      release:201804271 //YYYYMMDDX
+      version:"α 0.0.4 patch 1",
+      release:201804301 //YYYYMMDDX
     }
   };
 }
@@ -476,10 +479,10 @@ function updatedisp(){
     showhide("div.status.etime",true);
     document.getElementById("disp.etime").innerHTML=notation(Math.floor(game.currency.etime));
     document.getElementById("disp.status.etime").innerHTML=notation(Math.floor(game.status.etime));
-    if (Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100<1000)){
-      document.getElementById("disp.etime2").innerHTML="+"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%";
+    if (game.production.existanceboost.etime()-1<10){
+      document.getElementById("disp.etime2").innerHTML="+"+notation(Math.round(game.production.existanceboost.etime()*100-100))+"%";
     }else{
-      document.getElementById("disp.etime2").innerHTML="×"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100)/100);
+      document.getElementById("disp.etime2").innerHTML="×"+notation(Math.round(game.production.existanceboost.etime()*100)/100);
     }
   }
   if (game.unlocked.thought){
@@ -525,9 +528,15 @@ function updatedisp(){
     document.getElementById("disp.upgrade.existability_1").innerHTML=Math.round((game.currency.existability()-Math.pow(game.currency.existability(),3))*1000)/10+"%";
   }
   if (game.currency.energy>=5){
-    document.body.style="position:absolute;top:"+Math.random()*5+"px;left:"+Math.random()*5+"px;transform:rotate("+Math.random()*100+");width:100%;height:100%;";
+    if (!game.option.disableshake()){
+      document.body.style="position:absolute;top:"+Math.random()*5+"px;left:"+Math.random()*5+"px;transform:rotate("+Math.random()*100+");width:100%;height:100%;";
+    }else{
+      document.body.style="";
+    }
+    showhide("div.disableshake",true);
   }else{
     document.body.style="";
+    showhide("div.disableshake",false);
   }
   if (saved){document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved.getTime())/10)/100+" seconds ago";}
 }

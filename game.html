@@ -36,6 +36,7 @@
   <button id="button.convetime" type="button" class="hidden" onclick="convetime()" title="You need to think.&#10;Resets experienced time, existance, and existivity.">Thought the word.<br/>Cost: - experienced time,<br/>  - existivity</button><br>
   <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10;　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words thought</button><br>
   <button id="button.convenergy" type="button" class="hidden" onclick="convenergy()" title="BOOM&#10;Resets energy, thoughts, words,&#10;　 experienced time, existance, and existivity.">Let your energy burst!<br/>Cost: 5 joules of energy,<br/>  1 billion existivity</button><br>
+  <div id="div.disableshake" class="hidden"><input type="checkbox" id="checkbox.disableshake" ckecked> Disable shake</div>
   <div style="border:black 1px solid;background-color:white;position:absolute;top:0px;right:0px;width:300px;padding:5px;text-align:center;" id="div.explosion" class="hidden">
     <p style="color:darkgreen">You have <span id="disp.explosion" class="middle"></span> explosion points.</p>
     <button id="button.upgrade.etime_1" onclick="buy_upgrade_etime_1()">Double the effect of experience,<br/>and experiencing five more existances.<br/>Cost: 1 Explosion point</button>
@@ -154,12 +155,15 @@
 <div id="achievementearned" class="hidden" style="position:absolute;top:0px;right:0px;background-color:#87cefa;color:#202020;font-size:14px;padding:4px;border-radius:2px;border:2px darkgray solid;">
   Insert text
 </div>
-<div class="footer" style="z-index:-1;">
-  Refferences:    <br>
-  Inspired by <a href="https://ivark.github.io" target="_blank">Antimatter Dimensions</a><br>
-  Incremental game reddit: <a href="https://www.reddit.com/r/incremental_games/" target="_blank">/r/incremental_games</a><br/><br>
-  <u onclick="changelogtoggle(true)">Changelog</u><br>
-  Have an issue? Report it <a href="https://github.com/Naruyoko/many-to-do-less-you-have-to/issues/new" target="_blank">here</a>!
+<div class="footer" style="background-color:rgba(230,230,230,0.8);left:0;" onmouseover='showhide("footer_content",true)' onmouseout='showhide("footer_content",false)'>
+  <div style="color:#202020;font-size:14px">^</div>
+  <div id="footer_content" class="hidden">
+    Refferences:    <br>
+    Inspired by <a href="https://ivark.github.io" target="_blank">Antimatter Dimensions</a><br>
+    Incremental game reddit: <a href="https://www.reddit.com/r/incremental_games/" target="_blank">/r/incremental_games</a><br/><br>
+    <u onclick="changelogtoggle(true)">Changelog</u><br>
+    Have an issue? Report it <a href="https://github.com/Naruyoko/many-to-do-less-you-have-to/issues/new" target="_blank">here</a>!
+  </div>
 </div>
 <div style="background-color:rgba(200,200,240,0.8);position:fixed;right:0px;bottom:0px;height:80px;width:160px;margin:3px;padding:5px;border-radius:2px;">
   <button id="button.confirmcookie" type="button" style="text-align:center;background-color:#ffff80;color:#303030;position:absolute;right:5px;bottom:5px;border:2px solid black;border-radius:4px;" onclick="acceptcookie()">Accept cookies to<br/>save progresses.</button>
