@@ -534,9 +534,19 @@ function updatedisp(){
   }
   if (game.currency.energy>=5){
     if (!game.option.disableshake()){
-      document.body.style="position:absolute;top:"+Math.random()*5+"px;left:"+Math.random()*5+"px;transform:rotate("+Math.random()*100+");width:100%;height:100%;";
+      document.body.style.position="absolute";
+      document.body,style.top=Math.random()*5+"px";
+      document.body,style.left=Math.random()*5+"px";
+      document.body,style.transform="rotate("+Math.random()*100+")";
+      document.body,style.width="100%";
+      document.body,style.height="100%";
     }else{
-      document.body.style="";
+      document.body.style.position="";
+      document.body,style.top="";
+      document.body,style.left="";
+      document.body,style.transform="";
+      document.body,style.width="";
+      document.body,style.height="";
     }
     showhide("div.disableshake",true);
   }else{
@@ -544,9 +554,9 @@ function updatedisp(){
     showhide("div.disableshake",false);
   }
   if (game.option.disablewrap()){
-    document.getElementById("disp.currency").whiteSpace="nowrap";
+    document.getElementById("disp.currency").style.whiteSpace="nowrap";
   }else{
-    document.getElementById("disp.currency").whiteSpace="";
+    document.getElementById("disp.currency").style.whiteSpace="";
   }
   if (saved){document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved.getTime())/10)/100+" seconds ago";}
 }
