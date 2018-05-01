@@ -95,16 +95,16 @@ function initializevars(){
       upgrade_existability_1:(function (){return (game.currency.existance>=4000)&&!game.upgrade.existability_1;}),
       upgrade_existance_1:(function (){return (game.currency.energy>=1)&&!game.upgrade.existance_1;}),
       upgrade_etime_1:(function (){return (game.currency.explosion>=1)&&!game.upgrade.etime_1;}),
-      autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity;}),
-      autoconvexista:(function (){return (game.currency.thought>=6)&&(game.currency.word>=60)&&(game.currency.etime>=10)&&!game.autobuy.existance.bought;})
+      autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity;}),
+      autoconvexista:(function (){return (game.currency.thought>=6)&&(game.currency.word>=60)&&(game.currency.etime>=10)&&!game.autobuy.existance.bought;})
     },
-    upgrade:{
-      convexisti_1:{
+    upgrade:{
+      convexisti_1:{
         bought:false,
         enable:(function (){return document.getElementById("upgrade.convexisti_1.enable").checked;}),
         ison:(function (){return game.upgrade.convexisti_1.bought&&game.upgrade.convexisti_1.enable();})
       },
-      convexisti_2:{
+      convexisti_2:{
         bought:false,
         enable:(function (){return document.getElementById("upgrade.convexisti_2.enable").checked;}),
         ison:(function (){return game.upgrade.convexisti_2.bought&&game.upgrade.convexisti_2.enable();})
@@ -437,15 +437,15 @@ function updatecurr(){
   game.currency.etime+=game.production.etime*timeelapsed;
   if (game.currency.etime>Math.round(game.currency.thought*2+4)){game.currency.etime=Math.round(game.currency.thought*2+4);}
   game.status.etime+=Math.max(Math.floor(game.currency.etime)-f,0);
-  if ((timeelapsed>1/game.currency.thought)&&(game.currency.thought!=0)){
+  if ((timeelapsed>1/game.currency.thought)&&(game.currency.thought!=0)){
     var x=timeelapsed*game.currency.thought-1;
     var r=Math.random();
-    var p_0=(2/Math.pow(26,2)+1/Math.pow(26,3)+3/Math.pow(26,4))/5;
-    var p=exp.conv(0);
+    var p_0=(2/Math.pow(26,2)+1/Math.pow(26,3)+3/Math.pow(26,4))/5;
+    var p=exp.conv(0);
     var i=0;
-    for (i=0;(i<=Math.ceil(x))&&(r>Math.pow(10,p[0]));i++){
-      p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(x-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(exp.conv(x)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(x-i))))));
-    }
+    for (i=0;(i<=Math.ceil(x))&&(r>Math.pow(10,p[0]));i++){
+      p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(x-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(exp.conv(x)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(x-i))))));
+    }
     game.currency.word+=i-1;
     game.status.word+=i-1;
   }
@@ -457,7 +457,6 @@ function updateautosave(){
   if (!saved){return;}
   if (d.getTime()-saved.getTime()>=60000){savecookie();}
 }
-var bodyOffset=[0,0,0];
 function updatedisp(){
   if (game.currency.convexistiearn.total()!=1){
     document.getElementById("disp.existivity2").innerHTML=notation(game.currency.convexistiearn.total());
@@ -824,7 +823,7 @@ function convenergy(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (!game.upgrade.etime_1){game.unlocked.existance=false};
+  if (!game.upgrade.etime_1){game.unlocked.existance=false;}
   game.unlocked.etime=false;
   game.unlocked.thought=false;
   game.unlocked.energy=false;
