@@ -151,7 +151,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.4 patch 1",
-      release:201804301 //YYYYMMDDX
+      release:201804311 //YYYYMMDDX
     }
   };
 }
@@ -535,22 +535,27 @@ function updatedisp(){
   if (game.currency.energy>=5){
     if (!game.option.disableshake()){
       document.body.style.position="absolute";
-      document.body,style.top=Math.random()*5+"px";
-      document.body,style.left=Math.random()*5+"px";
-      document.body,style.transform="rotate("+Math.random()*100+")";
-      document.body,style.width="100%";
-      document.body,style.height="100%";
+      document.body.style.top=Math.random()*5+"px";
+      document.body.style.left=Math.random()*5+"px";
+      document.body.style.transform="rotate("+Math.random()*100+")";
+      document.body.style.width="100%";
+      document.body.style.height="100%";
     }else{
       document.body.style.position="";
-      document.body,style.top="";
-      document.body,style.left="";
-      document.body,style.transform="";
-      document.body,style.width="";
-      document.body,style.height="";
+      document.body.style.top="";
+      document.body.style.left="";
+      document.body.style.transform="";
+      document.body.style.width="";
+      document.body.style.height="";
     }
     showhide("div.disableshake",true);
   }else{
-    document.body.style="";
+    document.body.style.position="";
+    document.body.style.top="";
+    document.body.style.left="";
+    document.body.style.transform="";
+    document.body.style.width="";
+    document.body.style.height="";
     showhide("div.disableshake",false);
   }
   if (game.option.disablewrap()){
