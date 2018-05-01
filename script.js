@@ -146,7 +146,8 @@ function initializevars(){
       explosion:0
     },
     option:{
-      disableshake:(function (){return document.getElementById("checkbox.disableshake").checked;})
+      disableshake:(function (){return document.getElementById("checkbox.disableshake").checked;}),
+      disablewrap:(function (){return document.getElementById("checkbox.disablewrap").checked;})
     },
     datainfo:{
       version:"α 0.0.4 patch 1",
@@ -279,6 +280,8 @@ function savecookie(){//change name
   setCookie("game.status.explosion",game.status.explosion,7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccepted,7);
+  setCookie("game.option.disableshake",game.option.disableshake(),7);
+  setCookie("game.option.disablewrap",game.option.disablewrap(),7);
   setCookie("game.datainfo.version",game.datainfo.version,7);
   setCookie("game.datainfo.release",game.datainfo.release,7);
   //save={
@@ -338,6 +341,8 @@ function loadcookie(){//changename
   game.status.word=Number(getCookie("game.status.word"));
   game.status.energy=Number(getCookie("game.status.energy"));
   game.status.explosion=Number(getCookie("game.status.explosion"));
+  document.getElementById("checkbox.disableshake").checked=getCookie("game.option.disableshake")=="true";
+  document.getElementById("checkbox.disablewrap").checked=getCookie("game.option.disablewrap")=="true";
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){
     acceptcookie();
@@ -537,6 +542,11 @@ function updatedisp(){
   }else{
     document.body.style="";
     showhide("div.disableshake",false);
+  }
+  if (game.option.disablewrap()){
+    document.getElementById("disp.currency").whiteSpace="nowrap";
+  }else{
+    document.getElementById("disp.currency").whiteSpace="";
   }
   if (saved){document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved.getTime())/10)/100+" seconds ago";}
 }
