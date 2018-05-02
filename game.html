@@ -68,8 +68,20 @@
   <div id="upgrade.existance_1" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
     <p>Temperature Mapping</p>
     <p>Boosts existivity production by existances by 5 times.<br>
-    <span style="font-size:10px;">This is equivalent to 8.82747 seconds of experienced time.</span></p>
+    <span style="font-size:12px;">This is equivalent to 8.82747 seconds of experienced time.</span></p>
     <button id="button.upgrade.existance_1" type="button" onclick="buy_upgrade_existance_1()" class="hidden">Cost: 1 joule of energy</button>
+  </div>
+  <div id="upgrade.word_1" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
+    <p>Existing Words</p>
+    <p>
+      Words and existances boosts each other.<br>
+      Existances boost existance production by words, and words boost existivity production by existances.
+      <span style="font-size:12px;">The boosts are shown in word boost by existances, then existance boost by words.</span>
+    </p>
+    <button id="button.upgrade.word_1" type="button" onclick="buy_upgrade_word_1()" class="hidden">Cost: 2 thoughts,<br/>  100 words thought,<br/>  1,000 existances</button>
+    <div id="div.upgrade.word_1.bottom" class="hidden" style="white-space:nowrap;">Enabled: <input type="checkbox" id="upgrade.word_1.enable"></input>  Boost: ×
+    <span class="large" id="disp.upgrade.word_1.1"></span>, ×
+    <span class="large" id="disp.upgrade.word_1.2"></span></div>
   </div>
 </div>
 <div id="scr.shop.autoconv" class="hidden">
