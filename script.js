@@ -53,7 +53,7 @@ function initializevars(){
             m=1.2;
           }
           if (game.achievement.done[33]){m*=1+0.01*game.achievement.completed();}
-          return Math.pow(m,Math.floor(game.production.etime));
+          return Math.pow(m,Math.floor(game.currency.etime));
         }),
         achievement_31:(function (){return Math.max(Math.pow(1.000001,Math.floor(game.currency.existance))/(Math.log(Math.pow(Math.floor(game.currency.existance)+1,1/1000)+1)+0.3),1);}),
         achievement_33:(function (){return 1+0.01*game.achievement.completed();})
@@ -95,16 +95,16 @@ function initializevars(){
       upgrade_existability_1:(function (){return (game.currency.existance>=4000)&&!game.upgrade.existability_1;}),
       upgrade_existance_1:(function (){return (game.currency.energy>=1)&&!game.upgrade.existance_1;}),
       upgrade_etime_1:(function (){return (game.currency.explosion>=1)&&!game.upgrade.etime_1;}),
-      autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity;}),
-      autoconvexista:(function (){return (game.currency.thought>=6)&&(game.currency.word>=60)&&(game.currency.etime>=10)&&!game.autobuy.existance.bought;})
+      autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity;}),
+      autoconvexista:(function (){return (game.currency.thought>=6)&&(game.currency.word>=60)&&(game.currency.etime>=10)&&!game.autobuy.existance.bought;})
     },
-    upgrade:{
-      convexisti_1:{
+    upgrade:{
+      convexisti_1:{
         bought:false,
         enable:(function (){return document.getElementById("upgrade.convexisti_1.enable").checked;}),
         ison:(function (){return game.upgrade.convexisti_1.bought&&game.upgrade.convexisti_1.enable();})
       },
-      convexisti_2:{
+      convexisti_2:{
         bought:false,
         enable:(function (){return document.getElementById("upgrade.convexisti_2.enable").checked;}),
         ison:(function (){return game.upgrade.convexisti_2.bought&&game.upgrade.convexisti_2.enable();})
@@ -145,9 +145,13 @@ function initializevars(){
       energy:0,
       explosion:0
     },
+    option:{
+      disableshake:(function (){return document.getElementById("checkbox.disableshake").checked;}),
+      disablewrap:(function (){return document.getElementById("checkbox.disablewrap").checked;})
+    },
     datainfo:{
-      version:"α 0.0.4",
-      release:201804271 //YYYYMMDDX
+      version:"α 0.0.4 patch 1",
+      release:201804311 //YYYYMMDDX
     }
   };
 }
@@ -276,6 +280,8 @@ function savecookie(){//change name
   setCookie("game.status.explosion",game.status.explosion,7);
   setCookie("lasttime",lasttime,7);
   setCookie("cookieaccepted",cookieaccepted,7);
+  setCookie("game.option.disableshake",game.option.disableshake(),7);
+  setCookie("game.option.disablewrap",game.option.disablewrap(),7);
   setCookie("game.datainfo.version",game.datainfo.version,7);
   setCookie("game.datainfo.release",game.datainfo.release,7);
   //save={
@@ -335,6 +341,8 @@ function loadcookie(){//changename
   game.status.word=Number(getCookie("game.status.word"));
   game.status.energy=Number(getCookie("game.status.energy"));
   game.status.explosion=Number(getCookie("game.status.explosion"));
+  document.getElementById("checkbox.disableshake").checked=getCookie("game.option.disableshake")=="true";
+  document.getElementById("checkbox.disablewrap").checked=getCookie("game.option.disablewrap")=="true";
   lasttime=Number(getCookie("lasttime"));
   if (getCookie("cookieaccepted")){
     acceptcookie();
@@ -429,15 +437,15 @@ function updatecurr(){
   game.currency.etime+=game.production.etime*timeelapsed;
   if (game.currency.etime>Math.round(game.currency.thought*2+4)){game.currency.etime=Math.round(game.currency.thought*2+4);}
   game.status.etime+=Math.max(Math.floor(game.currency.etime)-f,0);
-  if ((timeelapsed>1/game.currency.thought)&&(game.currency.thought!=0)){
+  if ((timeelapsed>1/game.currency.thought)&&(game.currency.thought!=0)){
     var x=timeelapsed*game.currency.thought-1;
     var r=Math.random();
-    var p_0=(2/Math.pow(26,2)+1/Math.pow(26,3)+3/Math.pow(26,4))/5;
-    var p=exp.conv(0);
+    var p_0=(2/Math.pow(26,2)+1/Math.pow(26,3)+3/Math.pow(26,4))/5;
+    var p=exp.conv(0);
     var i=0;
-    for (i=0;(i<=Math.ceil(x))&&(r>Math.pow(10,p[0]));i++){
-      p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(x-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(exp.conv(x)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(x-i))))));
-    }
+    for (i=0;(i<=Math.ceil(x))&&(r>Math.pow(10,p[0]));i++){
+      p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(x-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(exp.conv(x)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(x-i))))));
+    }
     game.currency.word+=i-1;
     game.status.word+=i-1;
   }
@@ -449,7 +457,6 @@ function updateautosave(){
   if (!saved){return;}
   if (d.getTime()-saved.getTime()>=60000){savecookie();}
 }
-var bodyOffset=[0,0,0];
 function updatedisp(){
   if (game.currency.convexistiearn.total()!=1){
     document.getElementById("disp.existivity2").innerHTML=notation(game.currency.convexistiearn.total());
@@ -476,10 +483,10 @@ function updatedisp(){
     showhide("div.status.etime",true);
     document.getElementById("disp.etime").innerHTML=notation(Math.floor(game.currency.etime));
     document.getElementById("disp.status.etime").innerHTML=notation(Math.floor(game.status.etime));
-    if (Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100<1000)){
-      document.getElementById("disp.etime2").innerHTML="+"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100-100))+"%";
+    if (game.production.existanceboost.etime()-1<10){
+      document.getElementById("disp.etime2").innerHTML="+"+notation(Math.round(game.production.existanceboost.etime()*100-100))+"%";
     }else{
-      document.getElementById("disp.etime2").innerHTML="×"+notation(Math.round(Math.pow(1.2,Math.floor(game.currency.etime))*100)/100);
+      document.getElementById("disp.etime2").innerHTML="×"+notation(Math.round(game.production.existanceboost.etime()*100)/100);
     }
   }
   if (game.unlocked.thought){
@@ -525,9 +532,35 @@ function updatedisp(){
     document.getElementById("disp.upgrade.existability_1").innerHTML=Math.round((game.currency.existability()-Math.pow(game.currency.existability(),3))*1000)/10+"%";
   }
   if (game.currency.energy>=5){
-    document.body.style="position:absolute;top:"+Math.random()*5+"px;left:"+Math.random()*5+"px;transform:rotate("+Math.random()*100+");width:100%;height:100%;";
+    if (!game.option.disableshake()){
+      document.body.style.position="absolute";
+      document.body.style.top=Math.random()*5+"px";
+      document.body.style.left=Math.random()*5+"px";
+      document.body.style.transform="rotate("+Math.random()*100+")";
+      document.body.style.width="100%";
+      document.body.style.height="100%";
+    }else{
+      document.body.style.position="";
+      document.body.style.top="";
+      document.body.style.left="";
+      document.body.style.transform="";
+      document.body.style.width="";
+      document.body.style.height="";
+    }
+    showhide("div.disableshake",true);
   }else{
-    document.body.style="";
+    document.body.style.position="";
+    document.body.style.top="";
+    document.body.style.left="";
+    document.body.style.transform="";
+    document.body.style.width="";
+    document.body.style.height="";
+    showhide("div.disableshake",false);
+  }
+  if (game.option.disablewrap()){
+    document.getElementById("disp.currency").style.whiteSpace="nowrap";
+  }else{
+    document.getElementById("disp.currency").style.whiteSpace="";
   }
   if (saved){document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved.getTime())/10)/100+" seconds ago";}
 }
@@ -790,7 +823,7 @@ function convenergy(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (!game.upgrade.etime_1){game.unlocked.existance=false};
+  if (!game.upgrade.etime_1){game.unlocked.existance=false;}
   game.unlocked.etime=false;
   game.unlocked.thought=false;
   game.unlocked.energy=false;
