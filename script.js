@@ -247,57 +247,57 @@ function getCookie(cname) {//delete in α 0.0.5 update
 } //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 12:36 EDT
 function savecookie(){//change name
   if (!cookieaccepted){return;}
-  setCookie("game.currency.existivity",game.currency.existivity,7);
-  setCookie("game.currency.existance",game.currency.existance,7);
-  setCookie("game.currency.etime",game.currency.etime,7);
-  setCookie("game.currency.etimebought",game.currency.etimebought,7);
-  setCookie("game.currency.thought",game.currency.thought,7);
-  setCookie("game.currency.word",game.currency.word,7);
-  setCookie("game.currency.energy",game.currency.energy,7);
-  setCookie("game.currency.explosion",game.currency.explosion,7);
-  setCookie("game.unlocked.existance",game.unlocked.existance,7);
-  setCookie("game.unlocked.etime",game.unlocked.etime,7);
-  setCookie("game.unlocked.thought",game.unlocked.thought,7);
-  setCookie("game.unlocked.energy",game.unlocked.energy,7);
-  setCookie("game.unlocked.explosion",game.unlocked.explosion,7);
-  setCookie("game.unlocked.convexista",game.unlocked.convexista,7);
-  setCookie("game.unlocked.convetime",game.unlocked.convetime,7);
-  setCookie("game.unlocked.convthought",game.unlocked.convthought,7);
-  setCookie("game.unlocked.convenergy",game.unlocked.convenergy,7);
-  setCookie("game.unlocked.upgrade.convexisti_1",game.unlocked.upgrade.convexisti_1,7);
-  setCookie("game.unlocked.upgrade.convexisti_2",game.unlocked.upgrade.convexisti_2,7);
-  setCookie("game.unlocked.upgrade.existance_1",game.unlocked.upgrade.existance_1,7);
-  setCookie("game.unlocked.upgrade.word_1",game.unlocked.upgrade.word_1,7);
-  setCookie("game.unlocked.autobuyshop",game.unlocked.autobuyshop,7);
-  setCookie("game.unlocked.buyautoconvexista",game.unlocked.buyautoconvexista,7);
-  setCookie("game.upgrade.convexisti_1.bought",game.upgrade.convexisti_1.bought,7);
-  setCookie("game.upgrade.convexisti_1.enable",game.upgrade.convexisti_1.enable(),7);
-  setCookie("game.upgrade.convexisti_2.bought",game.upgrade.convexisti_2.bought,7);
-  setCookie("game.upgrade.convexisti_2.enable",game.upgrade.convexisti_2.enable(),7);
-  setCookie("game.upgrade.existability_1",game.upgrade.existability_1,7);
-  setCookie("game.upgrade.existance_1",game.upgrade.existance_1,7);
-  setCookie("game.upgrade.etime_1",game.upgrade.etime_1,7);
-  setCookie("game.upgrade.word_1.bought",game.upgrade.word_1.bought,7);
-  setCookie("game.upgrade.word_1.enable",game.upgrade.word_1.enable(),7);
-  setCookie("game.autobuy.existivity",game.autobuy.existivity,7);
-  setCookie("game.autobuy.existivityon",game.autobuy.existivityon(),7);
-  setCookie("game.autobuy.existance.bought",game.autobuy.existance.bought,7);
-  setCookie("game.autobuy.existance.enable",game.autobuy.existance.enable(),7);
-  setCookie("game.achievement.done",JSON.stringify(game.achievement.done),7);
-  setCookie("game.status.timeplayed",game.status.timeplayed,7);
-  setCookie("game.status.existivity",game.status.existivity,7);
-  setCookie("game.status.existance",game.status.existance,7);
-  setCookie("game.status.etime",game.status.etime,7);
-  setCookie("game.status.thought",game.status.thought,7);
-  setCookie("game.status.word",game.status.word,7);
-  setCookie("game.status.energy",game.status.energy,7);
-  setCookie("game.status.explosion",game.status.explosion,7);
-  setCookie("lasttime",lasttime,7);
-  setCookie("cookieaccepted",cookieaccepted,7);
-  setCookie("game.option.disableshake",game.option.disableshake(),7);
-  setCookie("game.option.disablewrap",game.option.disablewrap(),7);
-  setCookie("game.datainfo.version",game.datainfo.version,7);
-  setCookie("game.datainfo.release",game.datainfo.release,7);
+  setCookie("game.currency.existivity",game.currency.existivity,365);
+  setCookie("game.currency.existance",game.currency.existance,365);
+  setCookie("game.currency.etime",game.currency.etime,365);
+  setCookie("game.currency.etimebought",game.currency.etimebought,365);
+  setCookie("game.currency.thought",game.currency.thought,365);
+  setCookie("game.currency.word",game.currency.word,365);
+  setCookie("game.currency.energy",game.currency.energy,365);
+  setCookie("game.currency.explosion",game.currency.explosion,365);
+  setCookie("game.unlocked.existance",game.unlocked.existance,365);
+  setCookie("game.unlocked.etime",game.unlocked.etime,365);
+  setCookie("game.unlocked.thought",game.unlocked.thought,365);
+  setCookie("game.unlocked.energy",game.unlocked.energy,365);
+  setCookie("game.unlocked.explosion",game.unlocked.explosion,365);
+  setCookie("game.unlocked.convexista",game.unlocked.convexista,365);
+  setCookie("game.unlocked.convetime",game.unlocked.convetime,365);
+  setCookie("game.unlocked.convthought",game.unlocked.convthought,365);
+  setCookie("game.unlocked.convenergy",game.unlocked.convenergy,365);
+  setCookie("game.unlocked.upgrade.convexisti_1",game.unlocked.upgrade.convexisti_1,365);
+  setCookie("game.unlocked.upgrade.convexisti_2",game.unlocked.upgrade.convexisti_2,365);
+  setCookie("game.unlocked.upgrade.existance_1",game.unlocked.upgrade.existance_1,365);
+  setCookie("game.unlocked.upgrade.word_1",game.unlocked.upgrade.word_1,365);
+  setCookie("game.unlocked.autobuyshop",game.unlocked.autobuyshop,365);
+  setCookie("game.unlocked.buyautoconvexista",game.unlocked.buyautoconvexista,365);
+  setCookie("game.upgrade.convexisti_1.bought",game.upgrade.convexisti_1.bought,365);
+  setCookie("game.upgrade.convexisti_1.enable",game.upgrade.convexisti_1.enable(),365);
+  setCookie("game.upgrade.convexisti_2.bought",game.upgrade.convexisti_2.bought,365);
+  setCookie("game.upgrade.convexisti_2.enable",game.upgrade.convexisti_2.enable(),365);
+  setCookie("game.upgrade.existability_1",game.upgrade.existability_1,365);
+  setCookie("game.upgrade.existance_1",game.upgrade.existance_1,365);
+  setCookie("game.upgrade.etime_1",game.upgrade.etime_1,365);
+  setCookie("game.upgrade.word_1.bought",game.upgrade.word_1.bought,365);
+  setCookie("game.upgrade.word_1.enable",game.upgrade.word_1.enable(),365);
+  setCookie("game.autobuy.existivity",game.autobuy.existivity,365);
+  setCookie("game.autobuy.existivityon",game.autobuy.existivityon(),365);
+  setCookie("game.autobuy.existance.bought",game.autobuy.existance.bought,365);
+  setCookie("game.autobuy.existance.enable",game.autobuy.existance.enable(),365);
+  setCookie("game.achievement.done",JSON.stringify(game.achievement.done),365);
+  setCookie("game.status.timeplayed",game.status.timeplayed,365);
+  setCookie("game.status.existivity",game.status.existivity,365);
+  setCookie("game.status.existance",game.status.existance,365);
+  setCookie("game.status.etime",game.status.etime,365);
+  setCookie("game.status.thought",game.status.thought,365);
+  setCookie("game.status.word",game.status.word,365);
+  setCookie("game.status.energy",game.status.energy,365);
+  setCookie("game.status.explosion",game.status.explosion,365);
+  setCookie("lasttime",lasttime,365);
+  setCookie("cookieaccepted",cookieaccepted,365);
+  setCookie("game.option.disableshake",game.option.disableshake(),365);
+  setCookie("game.option.disablewrap",game.option.disablewrap(),365);
+  setCookie("game.datainfo.version",game.datainfo.version,365);
+  setCookie("game.datainfo.release",game.datainfo.release,365);
   //save={
   //  game:game,
   //  version:version,
@@ -372,7 +372,7 @@ function deletecookie(){//changename
   if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
   initializevars();
   savecookie();
-  setCookie("lasttime",0,7);
+  setCookie("lasttime",0,365);
   //localStorage.removeItem("save");
   //replace with above in α 0.0.5 update
   window.location.reload(true);
@@ -406,8 +406,8 @@ function passive(){
   if (timeelapsedleft>0.2){
     console.log("The game is lagging, was offline or inactive! Time elapsed: "+Math.round(timeelapsedleft*1000)+" ms, simulated with "+Math.floor(Math.log(timeelapsedleft)/Math.log(1.25)+9.2)+" ticks.");
   }
-  if (timeelapsedleft>=21600){game.achievement.done[27]=true;}
-  if (timeelapsedleft>=604800){game.achievement.done[29]=true;}
+  if (timeelapsedleft>=21600){earnachievement(27);}
+  if (timeelapsedleft>=604800){earnachievement(29);}
   for (;timeelapsedleft>0.2;){
     timeelapsed=timeelapsedleft/5;
     tick();
@@ -737,14 +737,14 @@ function convexisti(){
       if (game.currency.existance>=30){game.unlocked.autobuyshop=true;}
       if (game.currency.existance>=80){game.unlocked.upgrade.convexisti_2=true;}
       if (game.currency.existance>=1500){game.unlocked.upgrade.existability_1=true;}
-      if (game.currency.existability()<0.05){game.achievement.done[10]=true;}
-      if (game.currency.existability()<0.005){game.achievement.done[11]=true;}
-      if (game.currency.existability()<0.005){game.achievement.done[23]=true;}
+      if (game.currency.existability()<0.05){earnachievement(10);}
+      if (game.currency.existability()<0.005){earnachievement(11);}
+      if (game.currency.existability()<0.005){earnachievement(23);}
     }else{
-      game.achievement.done[2]=true;
-      if (game.currency.existability()>0.98){game.achievement.done[12]=true;}
-      if (game.currency.existability()>0.995){game.achievement.done[13]=true;}
-      if (game.currency.existability()>0.99999){game.achievement.done[24]=true;}
+      earnachievement(2);
+      if (game.currency.existability()>0.98){earnachievement(12);}
+      if (game.currency.existability()>0.995){earnachievement(13);}
+      if (game.currency.existability()>0.99999){earnachievement(24);}
     }
     game.currency.existivity=0;
   }else{
@@ -757,14 +757,14 @@ function convexisti(){
       if (game.currency.existance>=30){game.unlocked.autobuyshop=true;}
       if (game.currency.existance>=80){game.unlocked.upgrade.convexisti_2=true;}
       if (game.currency.existance>=1500){game.unlocked.upgrade.existability_1=true;}
-      if (game.currency.existability()<0.05){game.achievement.done[10]=true;}
-      if (game.currency.existability()<0.005){game.achievement.done[11]=true;}
-      if (game.currency.existability()<0.005){game.achievement.done[23]=true;}
+      if (game.currency.existability()<0.05){earnachievement(10);}
+      if (game.currency.existability()<0.005){earnachievement(11);}
+      if (game.currency.existability()<0.005){earnachievement(23);}
     }else{
-      game.achievement.done[2]=true;
-      if (game.currency.existability()>0.98){game.achievement.done[12]=true;}
-      if (game.currency.existability()>0.995){game.achievement.done[13]=true;}
-      if (game.currency.existability()>0.99999){game.achievement.done[24]=true;}
+      earnachievement(2);
+      if (game.currency.existability()>0.98){earnachievement(12);}
+      if (game.currency.existability()>0.995){earnachievement(13);}
+      if (game.currency.existability()>0.99999){earnachievement(24);}
       game.currency.existabilityboost+=game.currency.existability()/2.5;
     }
     game.currency.existabilityboost/=2;
@@ -933,24 +933,25 @@ function updateachiev(){
       var a=game.achievement.arrangement[y][x];
       if (game.achievement.arrangement[y][x]!=-1){
         if (!game.achievement.done[a]&&eval(game.achievement.condition[a])){
-          game.achievement.done[a]=true;
-          var m=game.achievement.name[a];
-          var s=m.search(",");
-          m=m.replace("$",",");
-          if (n!=""){n+="<br/>";}
-          n+="<span style=\"color:#202020;\" title=\""+m.substr(s+1,m.length-s-1)+"\">"+m.substr(0,s)+"</span>";
-          t=true;
+          earnachievement(a);
         }
       }
     }
   }
-  if (t){
-    document.getElementById("achievementearned").innerHTML=n;
-    showhide("achievementearned",true);
-    clearInterval(achievinterval);
-    achievinterval=setTimeout(function (){showhide("achievementearned",false);achievshown=false;},7500);
-    achievshown=true;
-  }
+}
+function earnachievement(a){
+  if (game.achievement.done[a]){return;}
+  game.achievement.done[a]=true;
+  var m=game.achievement.name[a];
+  var s=m.search(",");
+  m=m.replace("$",",");
+  if (n!=""){n+="<br/>";}
+  n+="<span style=\"color:#202020;\" title=\""+m.substr(s+1,m.length-s-1)+"\">"+m.substr(0,s)+"</span>";
+  document.getElementById("achievementearned").innerHTML=n;
+  showhide("achievementearned",true);
+  clearInterval(achievinterval);
+  achievinterval=setTimeout(function (){showhide("achievementearned",false);achievshown=false;},7500);
+  achievshown=true;
 }
 function achievementupdate(){
   updateachiev();
