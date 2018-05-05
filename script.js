@@ -922,11 +922,6 @@ function buyautoconvexista(){
 var achievinterval;
 var achievshown=false;
 function updateachiev(){
-  if (achievshown){
-    var n=document.getElementById("achievementearned").innerHTML;
-  }else{
-    var n="";
-  }
   var t=false;
   for (var y=0;y<game.achievement.arrangement.length;y++){
     for (var x=0;x<game.achievement.arrangement[y].length;x++){
@@ -945,6 +940,11 @@ function earnachievement(a){
   var m=game.achievement.name[a];
   var s=m.search(",");
   m=m.replace("$",",");
+  if (achievshown){
+    var n=document.getElementById("achievementearned").innerHTML;
+  }else{
+    var n="";
+  }
   if (n!=""){n+="<br/>";}
   n+="<span style=\"color:#202020;\" title=\""+m.substr(s+1,m.length-s-1)+"\">"+m.substr(0,s)+"</span>";
   document.getElementById("achievementearned").innerHTML=n;
