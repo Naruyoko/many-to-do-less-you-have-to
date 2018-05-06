@@ -63,7 +63,7 @@ function initializevars(){
         }),
         upgrade_word_1:(function (){
           var r=Math.pow(Math.pow(game.currency.word,0.02),Math.log(Math.pow(game.currency.word,0.1))/Math.log(2));
-          if (isNaN(r)&&!isFinite(r)){return 1;}
+          if (isNaN(r)||!isFinite(r)){return 1;}
           return Math.max(1,r);
         }),
         achievement_31:(function (){return Math.max(Math.pow(1.000001,Math.floor(game.currency.existance))/(Math.log(Math.pow(Math.floor(game.currency.existance)+1,1/1000)+1)+0.3),1);}),
