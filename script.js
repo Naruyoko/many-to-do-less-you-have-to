@@ -172,7 +172,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.4 patch 2",
-      release:201805021 //YYYYMMDDX
+      release:201805051 //YYYYMMDDX
     }
   };
 }
