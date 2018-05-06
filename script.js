@@ -276,6 +276,8 @@ function savecookie(){//change name
   setCookie("game.unlocked.convenergy",game.unlocked.convenergy,365);
   setCookie("game.unlocked.upgrade.convexisti_1",game.unlocked.upgrade.convexisti_1,365);
   setCookie("game.unlocked.upgrade.convexisti_2",game.unlocked.upgrade.convexisti_2,365);
+  setCookie("game.unlocked.upgrade.existability_1",game.unlocked.upgrade.existability_1,365);
+  setCookie("game.unlocked.upgrade.existability_2",game.unlocked.upgrade.existability_2,365);
   setCookie("game.unlocked.upgrade.existance_1",game.unlocked.upgrade.existance_1,365);
   setCookie("game.unlocked.upgrade.word_1",game.unlocked.upgrade.word_1,365);
   setCookie("game.unlocked.autobuyshop",game.unlocked.autobuyshop,365);
@@ -343,6 +345,8 @@ function loadcookie(){//changename
   game.unlocked.convenergy=getCookie("game.unlocked.convenergy")=="true";
   game.unlocked.upgrade.convexisti_1=getCookie("game.unlocked.upgrade.convexisti_1")=="true";
   game.unlocked.upgrade.convexisti_2=getCookie("game.unlocked.upgrade.convexisti_2")=="true";
+  game.unlocked.upgrade.existability_1=getCookie("game.unlocked.upgrade.existability_1")=="true";
+  game.unlocked.upgrade.existability_2=getCookie("game.unlocked.upgrade.existability_2")=="true";
   game.unlocked.upgrade.existance_1=getCookie("game.unlocked.upgrade.existance_1")=="true";
   game.unlocked.upgrade.word_1=getCookie("game.unlocked.upgrade.word_1")=="true";
   game.unlocked.autobuyshop=getCookie("game.unlocked.autobuyshop")=="true";
