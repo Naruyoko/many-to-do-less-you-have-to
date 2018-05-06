@@ -910,7 +910,7 @@ function buy_upgrade_existability_2(){
   if (!game.canbuy.upgrade_existability_2()){return;}
   game.currency.etime-=20;
   game.currency.etimebought-=20;
-  game.currency.existance-=7000000;
+  game.currency.existance-=700000;
   game.upgrade.existability_2=true;
 }
 function buy_upgrade_existance_1(){
