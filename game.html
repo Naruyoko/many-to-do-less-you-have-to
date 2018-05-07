@@ -16,7 +16,7 @@
 <div id="disp.currency">
   <div id="div.disp.existivity">Your existivity is <span class="large" id="disp.existivity"></span> and has <span class="large" id="disp.existability"></span> chance of <span id="div.disp.existivity2" class="hidden"><span class="large" id="disp.existivity2"></span> existances </span></span>existing.</div>
   <div id="div.disp.existance" class="hidden">You know <span class="large" id="disp.existance"></span> existances. They produce <span class="large" id="disp.existance2"></span> existivity each second.</div>
-  <div id="div.disp.etime" class="hidden">Existances experienced as much as <span class="large" id="disp.etime"></span> seconds. It boosts the production of existivity by <span class="large" id="disp.etime2"></span>.</div>
+  <div id="div.disp.etime" class="hidden">Existances experienced as much as <span class="large" id="disp.etime"></span> seconds. It boosts the production of existivity from existances by <span class="large" id="disp.etime2"></span>.</div>
   <div id="div.disp.thought" class="hidden">You have <span class="large" id="disp.thought"></span> thoughts and think <span id="disp.thought2"></span> strings per second.  Recently generated: <span id="disp.genword"></span><br/>You have thought of <span class="large" id="disp.word"></span> <span title="Many to do, Less you have to.">words in the title</span> and finds <span class="large" id="disp.thought3"></span> existances per second.</div>
   <div id="div.disp.energy" class="hidden">There are <span class="large" id="disp.energy"></span> joules of energy in your system. Existances and existivity together experience <span class="large" id="disp.energy2"></span> seconds per second.</div>
 </div>
@@ -65,11 +65,30 @@
     <div id="div.upgrade.existability_1.bottom" class="hidden" style="white-space:nowrap;">Boost: +
     <span class="large" id="disp.upgrade.existability_1"></span></div>
   </div>
+  <div id="upgrade.existability_2" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
+    <p>Weighted Average</p>
+    <p>The lower your existability, more boost you get to it. <span style="font-size:12px;">The II</span></p>
+    <button id="button.upgrade.existability_2" type="button" onclick="buy_upgrade_existability_2()" class="hidden">Cost: 20 experienced time,<br/>  700,000 existances</button>
+    <div id="div.upgrade.existability_2.bottom" class="hidden" style="white-space:nowrap;">Boost: +
+    <span class="large" id="disp.upgrade.existability_2"></span></div>
+  </div>
   <div id="upgrade.existance_1" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
     <p>Temperature Mapping</p>
     <p>Boosts existivity production by existances by 5 times.<br>
-    <span style="font-size:10px;">This is equivalent to 8.82747 seconds of experienced time.</span></p>
+    <span style="font-size:12px;">This is equivalent to 8.82747 seconds of experienced time.</span></p>
     <button id="button.upgrade.existance_1" type="button" onclick="buy_upgrade_existance_1()" class="hidden">Cost: 1 joule of energy</button>
+  </div>
+  <div id="upgrade.word_1" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
+    <p>Existing Words</p>
+    <p>
+      Words and existances boosts each other.<br>
+      Existances boost existance production by words, and words boost existivity production by existances.
+      <span style="font-size:12px;">The boosts are shown in word boost by existances, then existance boost by words.</span>
+    </p>
+    <button id="button.upgrade.word_1" type="button" onclick="buy_upgrade_word_1()" class="hidden">Cost: 2 thoughts,<br/>  100 words thought,<br/>  1,000 existances</button>
+    <div id="div.upgrade.word_1.bottom" class="hidden" style="white-space:nowrap;">Enabled: <input type="checkbox" id="upgrade.word_1.enable"></input>  Boost: ×
+    <span class="large" id="disp.upgrade.word_1.1"></span>, ×
+    <span class="large" id="disp.upgrade.word_1.2"></span></div>
   </div>
 </div>
 <div id="scr.shop.autoconv" class="hidden">
@@ -152,6 +171,7 @@
     <td></td>
   </tr>
 </table>
+<br>
 <div id="achievementearned" class="hidden" style="position:absolute;top:0px;right:0px;background-color:#87cefa;color:#202020;font-size:14px;padding:4px;border-radius:2px;border:2px darkgray solid;">
   Insert text
 </div>
