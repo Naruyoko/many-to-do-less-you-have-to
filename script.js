@@ -511,7 +511,7 @@ function updatedisp(){
     showhide("div.disp.existivity2",false);
   }
   var m="";
-  if ((game.currency.existabilityboost)&&(game.currency.convexistiearn.total()==1)){
+  if ((game.currency.existabilityboost)&&!game.upgrade.convexisti_1.ison()){
     m="<span style=\"color:#009933\">(+"+Math.round(game.currency.existabilityboost*1000)/10+"%)</span>";
   }
   document.getElementById("disp.existivity").innerHTML=notation(Math.round(game.currency.existivity*100)/100);
