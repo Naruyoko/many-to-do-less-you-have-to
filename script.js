@@ -1064,4 +1064,10 @@ function changelogtoggle(t){
 }
 loadcookie();
 setgenwordinterval();
+if (!Math.cbrt) { //include Math.cbrt() for older enviroments
+  Math.cbrt = function(x) {
+    var y = Math.pow(Math.abs(x), 1/3);
+    return x < 0 ? -y : y;
+  };
+}
 var loading=false;
