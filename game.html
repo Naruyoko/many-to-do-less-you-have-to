@@ -39,7 +39,23 @@
   <div id="div.disableshake" class="hidden"><input type="checkbox" id="checkbox.disableshake" ckecked> Disable shake</div>
   <div style="border:black 1px solid;background-color:white;position:absolute;top:0px;right:0px;width:300px;padding:5px;text-align:center;" id="div.explosion" class="hidden">
     <p style="color:darkgreen">You have <span id="disp.explosion" class="middle"></span> explosion points.</p>
-    <button id="button.upgrade.etime_1" onclick="buy_upgrade_etime_1()">Double the effect of experience,<br/>and experiencing five more existances.<br/>Cost: 1 Explosion point</button>
+    <div id="upgrade.etime_1" class="box" style="padding:3px;margin:2px;">
+      <p>Speed it up</p>
+      <p>Double the effect of experience, and experiencing five more existances.</p>
+      <button id="button.upgrade.etime_1" onclick="buy_upgrade_etime_1()">Cost: 1 Explosion point</button>
+    </div>
+    <div id="upgrade.energy_1" class="box hidden" style="padding:3px;margin:2px;">
+      <p>c/=sqrt(2)</p>
+      <p>Double the production from energy.</p>
+      <button id="button.upgrade.energy_1" onclick="buy_upgrade_energy_1()">Cost: 2 Explosion points</button>
+    </div>
+    <div id="upgrade.existance_2" class="box hidden" style="padding:3px;margin:2px;">
+      <p>Woah, You have some business goin' on.</p>
+      <p>Boost existance by ×10, and yet<br>the lower your existability, more boost you get to it. <span style="font-size:12px;">The III, you know.</span>
+      <button id="button.upgrade.existance_2" onclick="buy_upgrade_existance_2()">Cost: 4 Explosion points</button>
+      <div id="div.upgrade.existance_2.bottom" class="hidden" style="white-space:nowrap;">Boost: +
+      <span class="large" id="disp.upgrade.existance_2"></span></div>
+    </div>
   </div>
 </div>
 <div id="scr.shop.upgrade" class="hidden" style="width:95%;margin:auto;">
@@ -58,27 +74,27 @@
     <div id="div.upgrade.convexisti_1.bottom" class="hidden" style="white-space:nowrap;">Enabled: <input type="checkbox" id="upgrade.convexisti_1.enable"></input>  Boost: ×
     <span class="large" id="disp.upgrade.convexisti_1"></span></div>
   </div>
-  <div id="upgrade.existability_1" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
+  <div id="upgrade.existability_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
     <p>Twisted Space</p>
     <p>The lower your existability, more boost you get to it.</p>
     <button id="button.upgrade.existability_1" type="button" onclick="buy_upgrade_existability_1()" class="hidden">Cost: 4,000 existances</button>
     <div id="div.upgrade.existability_1.bottom" class="hidden" style="white-space:nowrap;">Boost: +
     <span class="large" id="disp.upgrade.existability_1"></span></div>
   </div>
-  <div id="upgrade.existability_2" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
+  <div id="upgrade.existability_2" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
     <p>Weighted Average</p>
     <p>The lower your existability, more boost you get to it. <span style="font-size:12px;">The II</span></p>
     <button id="button.upgrade.existability_2" type="button" onclick="buy_upgrade_existability_2()" class="hidden">Cost: 20 experienced time,<br/>  700,000 existances</button>
     <div id="div.upgrade.existability_2.bottom" class="hidden" style="white-space:nowrap;">Boost: +
     <span class="large" id="disp.upgrade.existability_2"></span></div>
   </div>
-  <div id="upgrade.existance_1" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
+  <div id="upgrade.existance_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
     <p>Temperature Mapping</p>
     <p>Boosts existivity production by existances by 5 times.<br>
     <span style="font-size:12px;">This is equivalent to 8.82747 seconds of experienced time.</span></p>
     <button id="button.upgrade.existance_1" type="button" onclick="buy_upgrade_existance_1()" class="hidden">Cost: 1 joule of energy</button>
   </div>
-  <div id="upgrade.word_1" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
+  <div id="upgrade.word_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
     <p>Existing Words</p>
     <p>
       Words and existances boosts each other.<br>
@@ -93,7 +109,7 @@
 </div>
 <div id="scr.shop.autoconv" class="hidden">
   <button id="button.buyautoconvexisti" type="button" onclick="buyautoconvexisti()" title="Your existances will work to find other existances for you.">Auto find existance<br/>Cost: 200 existance</button>
-  <span id="form.autoconvexisti">Find existance when you have <input id="input.autoconvexisti" type="text"></input> existivity.</span><br>
+  <span id="form.autoconvexisti" class="hidden">Find existance when you have <input id="input.autoconvexisti" type="text"></input> existivity.</span><br>
   <button id="button.buyautoconvexista" type="button" class="hidden" onclick="buyautoconvexista()" title="The experienced thoughts experiences more.">Auto find existance<br/>Cost: 6 thoughts,<br/>  60 words thought,<br/>  10 experienced time</button>
   <span id="div.autobuy.existance.enable" class="hidden">Enable: <input id="autobuy.existance.enable" type="checkbox"></input></span><br>
 </div>
