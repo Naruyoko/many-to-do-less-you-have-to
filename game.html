@@ -12,12 +12,15 @@
   <meta name="description" content="Incremental made.">
   <meta name="keywords" content="Game,Incremental,Online,HTML game,MtdLYHt">
   <meta name="author" content="Naruyoko">
-  <meta name
 </head>
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" href="stylesheet.css" type="text/css">
 <html lang="en">
-  <img id="loadpic" src="./files/pictures/title.png" />
+  <div id="div.loading">
+    <img src="./files/pictures/title.png" /><br>
+    If you have time to read this, try reloading the page.<br>
+    If that doesn't fix this, report issue from the left-bottom triangle.
+  </div>
   <div id="disp.currency">
     <div id="div.disp.existivity">Your existivity is <span class="large" id="disp.existivity"></span> and has <span class="large" id="disp.existability"></span> chance of <span id="div.disp.existivity2" class="hidden"><span class="large" id="disp.existivity2"></span> existances </span></span>existing.</div>
     <div id="div.disp.existance" class="hidden">You know <span class="large" id="disp.existance"></span> existances. They produce <span class="large" id="disp.existance2"></span> existivity each second.</div>
@@ -226,7 +229,7 @@
   function waituntilload(){
     if (!loading){
       clearInterval(waituntilloadinterval);
-      document.getElementById("loadpic").className="hidden";
+      showhide("div.loading",false);
       var passiveinterval=setInterval(passive,100);
     }
   }
