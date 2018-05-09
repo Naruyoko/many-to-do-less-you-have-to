@@ -186,7 +186,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.4 patch 3",
-      release:201805071 //YYYYMMDDX
+      release:201805081 //YYYYMMDDX
     }
   };
 }
