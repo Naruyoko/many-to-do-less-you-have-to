@@ -62,7 +62,7 @@ function initializevars(){
             m=1.2;
           }
           if (game.achievement.done[33]){m*=1+0.01*game.achievement.completed();}
-          if (game.achievement.done[41]){m*=Math.pow(Math.log(game.status.timeplayed/3600)/Math.log(1.5),0.3)+1;}
+          if (game.achievement.done[41]){m*=Math.pow(Math.log(game.status.timeplayed/3600+8.6)/Math.log(8.6),0.28);}
           return Math.pow(m,Math.floor(game.currency.etime));
         }),
         upgrade_word_1:(function (){
