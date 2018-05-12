@@ -878,7 +878,7 @@ function convetime(){
   if (!game.canbuy.thought()){return;}
   game.currency.thought++;
   game.status.thought++;
-  game.currency.word+=5;
+  if (game.achievement.done[36]&&game.achievement.done[37]){game.currency.word+=5;}
   game.currency.etime=0;
   game.currency.etimebought=0;
   game.currency.existivity=0;
