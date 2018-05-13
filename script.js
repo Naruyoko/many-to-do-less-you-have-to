@@ -590,27 +590,42 @@ function updatedisp(){
   if (game.upgrade.convexisti_1.bought){
     showhide("div.upgrade.convexisti_1.bottom",true);
     document.getElementById("disp.upgrade.convexisti_1").innerHTML=notation(Math.round(game.currency.convexistiearn.upgrade_convexisti_1()*1000)/1000);
+    document.getElementById("button.upgrade.convexisti_1").innerHTML="Bought";
   }
   if (game.upgrade.convexisti_2.bought){
     showhide("div.upgrade.convexisti_2.bottom",true);
     document.getElementById("disp.upgrade.convexisti_2").innerHTML=notation(Math.round(game.currency.convexistiearn.upgrade_convexisti_2()*1000)/1000);
+    document.getElementById("button.upgrade.convexisti_2").innerHTML="Bought";
   }
   if (game.upgrade.existability_1){
     showhide("div.upgrade.existability_1.bottom",true);
     document.getElementById("disp.upgrade.existability_1").innerHTML=Math.round(game.currency.existability.upgrade_existability_1()*1000)/10+"%";
+    document.getElementById("button.upgrade.existability_1").innerHTML="Bought";
   }
   if (game.upgrade.existability_2){
     showhide("div.upgrade.existability_2.bottom",true);
     document.getElementById("disp.upgrade.existability_2").innerHTML=Math.round(game.currency.existability.upgrade_existability_2()*1000)/10+"%";
+    document.getElementById("button.upgrade.existability_2").innerHTML="Bought";
+  }
+  if (game.upgrade.existance_1){
+    document.getElementById("button.upgrade.existance_1").innerHTML="Bought";
   }
   if (game.upgrade.existance_2){
     showhide("div.upgrade.existance_2.bottom",true);
     document.getElementById("disp.upgrade.existance_2").innerHTML=Math.round(game.currency.existability.upgrade_existance_2()*1000)/10+"%";
+    document.getElementById("button.upgrade.existance_2").innerHTML="Bought";
+  }
+  if (game.upgrade.etime_1){
+    document.getElementById("button.upgrade.etime_1").innerHTML="Bought";
   }
   if (game.upgrade.word_1.bought){
     showhide("div.upgrade.word_1.bottom",true);
     document.getElementById("disp.upgrade.word_1.1").innerHTML=notation(Math.round(Math.max(Math.pow(1.3,Math.pow(game.currency.existance,0.05)),1)*1000)/1000);
     document.getElementById("disp.upgrade.word_1.2").innerHTML=notation(Math.round(game.production.existanceboost.upgrade_word_1()*1000)/1000);
+    document.getElementById("button.upgrade.word_1").innerHTML="Bought";
+  }
+  if (game.upgrade.energy_1){
+    document.getElementById("button.upgrade.energy_1").innerHTML="Bought";
   }
   if (game.currency.energy>=5){
     if (!game.option.disableshake()){
