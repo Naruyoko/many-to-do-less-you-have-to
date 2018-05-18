@@ -15,6 +15,7 @@ button * {
   border: 1px solid #4CAF50;
   border-radius:2px;
   color:#070707;
+  height:auto;
 }
 button.changescr {
   float:left;
