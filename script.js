@@ -26,7 +26,7 @@ function initializevars(){
           var b=game.currency.existability.base()+game.currency.existability.upgrade_existability_1();
           return Math.cbrt(b)-b;
         }),
-        upgrade_existance_2:(function (){return
+        upgrade_existance_2:(function (){
           var b=game.currency.existability.base()+game.currency.existability.upgrade_existability_1()+game.currency.existability.upgrade_existability_2();
           return Math.pow(b,1/4)-b;
         })
