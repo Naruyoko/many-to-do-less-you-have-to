@@ -1,6 +1,6 @@
 //Original by Naruyoko(You can delete this if you want)
 var exp=exp||{};
-exp=(
+exp={
   add:function (a,b){
     if (a[1]&&b[1]||(!a[1])&&(!b[1])){
       return [Math.max(a[0],b[0])+Math.log10(1+Math.pow(10,-Math.abs(a[0]-b[0]))),a[1]];
@@ -148,4 +148,4 @@ exp=(
       }
     }
   }
-);
+};
