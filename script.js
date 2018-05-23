@@ -688,7 +688,7 @@ function updatedisp(){
     document.getElementById("disp.upgrade.word_1.2").innerHTML=notation(Math.round(game.production.existanceboost.upgrade_word_1()*1000)/1000);
     document.getElementById("button.upgrade.word_1").innerHTML="Bought";
   }
-  if (game.upgrade.convthought_1.bought){
+  if (game.upgrade.convthought_1){
     document.getElementById("button.upgrade.convthought_1").innerHTML="Bought";
   }
   if (game.upgrade.energy_1){
