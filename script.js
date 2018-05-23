@@ -162,7 +162,7 @@ function initializevars(){
       upgrade_existance_2:(function (){return (game.currency.explosion>=4)&&!game.upgrade.existance_2;}),
       upgrade_etime_1:(function (){return (game.currency.explosion>=1)&&!game.upgrade.etime_1;}),
       upgrade_word_1:(function (){return (game.currency.thought>=2)&&(game.currency.word>=100)&&(game.currency.existance>=1000)&&!game.upgrade.word_1;}),
-      upgrade_convthought_1:(function (){return (game.currency.energy>=4)&&(game.currency.thought>=5)&&!game.upgrade.word_1;}),
+      upgrade_convthought_1:(function (){return (game.currency.energy>=4)&&(game.currency.thought>=5)&&!game.upgrade.convthought_1;}),
       upgrade_energy_1:(function (){return (game.currency.explosion>=2)&&!game.upgrade.energy_1;}),
       autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity.bought;}),
       autoconvexista:(function (){return (game.currency.thought>=6)&&(game.currency.word>=60)&&(game.currency.etime>=10)&&!game.autobuy.existance.bought;}),
@@ -1105,9 +1105,9 @@ function buy_upgrade_word_1(){
 }
 function buy_upgrade_convthought_1(){
   if (!game.canbuy.upgrade_convthought_1()){return;}
-  game.currency.energy-=3;
+  game.currency.energy-=4;
   game.currency.thought-=5;
-  game.upgrade.convthought_1.bought=true;
+  game.upgrade.convthought_1=true;
 }
 function buy_upgrade_energy_1(){
   if (!game.canbuy.upgrade_energy_1()){return;}
