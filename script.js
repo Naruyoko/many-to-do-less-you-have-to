@@ -136,7 +136,8 @@ function initializevars(){
         existance_1:false,
         etime_1:false,
         word_1:false,
-        convthought_1:false
+        convthought_1:false,
+        energy_2:false
       },
       autobuyshop:false,
       buyautoconvexista:false,
@@ -162,6 +163,7 @@ function initializevars(){
       upgrade_word_1:(function (){return (game.currency.thought>=2)&&(game.currency.word>=100)&&(game.currency.existance>=1000)&&!game.upgrade.word_1;}),
       upgrade_convthought_1:(function (){return (game.currency.energy>=4)&&(game.currency.thought>=5)&&!game.upgrade.convthought_1;}),
       upgrade_energy_1:(function (){return (game.currency.explosion>=2)&&!game.upgrade.energy_1;}),
+      upgrade_energy_2:(function (){return (game.currency.word>=500)&&!game.upgrade.energy_2;}),
       autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity.bought;}),
       autoconvexista:(function (){return (game.currency.thought>=6)&&(game.currency.word>=60)&&(game.currency.etime>=10)&&!game.autobuy.existance.bought;}),
       autoconvetime:(function (){return (game.currency.explosion>=3)&&(game.currency.energy>=4)&&!game.autobuy.etime.bought;})
@@ -188,7 +190,8 @@ function initializevars(){
         ison:(function (){return game.upgrade.word_1.bought&&game.upgrade.word_1.enable();})
       },
       convthought_1:false,
-      energy_1:false
+      energy_1:false,
+      energy_2:false
     },
     autobuy:{
       existivity:false,
@@ -240,7 +243,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.4 patch 3",
-      release:201805211 //YYYYMMDDX
+      release:201805251 //YYYYMMDDX
     }
   };
 }
@@ -365,6 +368,7 @@ function savecookie(){//change name
   setCookie("game.upgrade.word_1.enable",game.upgrade.word_1.enable(),365);
   setCookie("game.upgrade.convthought_1",game.upgrade.convthought_1,365);
   setCookie("game.upgrade.energy_1",game.upgrade.energy_1,365);
+  setCookie("game.upgrade.energy_2",game.upgrade.energy_2,365);
   setCookie("game.autobuy.existivity.bought",game.autobuy.existivity.bought,365);
   setCookie("game.autobuy.existivity.threshold",game.autobuy.existivity.threshold(),365);
   setCookie("game.autobuy.existivity.enable",game.autobuy.existivity.enable(),365);
@@ -443,6 +447,7 @@ function loadcookie(){//changename
   document.getElementById("upgrade.word_1.enable").checked=getCookie("game.upgrade.word_1.enable")=="true";
   game.upgrade.convthought_1=getCookie("game.upgrade.convthought_1")=="true";
   game.upgrade.energy_1=getCookie("game.upgrade.energy_1")=="true";
+  game.upgrade.energy_2=getCookie("game.upgrade.energy_2")=="true";
   if (game.datainfo.release>=201805211){
     game.autobuy.existivity.bought=getCookie("game.autobuy.existivity.bought")=="true";
     document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivity.threshold");
@@ -553,6 +558,7 @@ function updateprod(){
     game.production.etime*=1+0.01*game.achievement.completed();
   }
   if (game.upgrade.energy_1){game.production.etime*=2;}
+  if (game.upgrade.energy_2){game.production.etime*=Math.pow(Math.log10(6*game.currency.word+10.611),2.26)-0.1*Math.pow(2*game.currency.word*2+3,-0.36);}
 }
 function updatecurr(){
   var f=game.currency.existivity;
@@ -691,6 +697,11 @@ function updatedisp(){
   }
   if (game.upgrade.energy_1){
     document.getElementById("button.upgrade.energy_1").innerHTML="Bought";
+  }
+  if (game.upgrade.energy_2){
+    showhide("div.upgrade.energy_2.bottom",true);
+    document.getElementById("disp.upgrade.energy_2").innerHTML=notation(Math.pow(Math.log10(6*game.currency.word+10.611),2.26)-0.1*Math.pow(2*game.currency.word*2+3,-0.36));
+    document.getElementById("button.upgrade.energy_2").innerHTML="Bought";
   }
   if (game.currency.energy>=5){
     if (!game.option.disableshake()){
@@ -845,6 +856,11 @@ function updatebutton(){
   }else{
     document.getElementById("button.upgrade.energy_1").className="unavailable";
   }
+  if (game.canbuy.upgrade_energy_2()){
+    document.getElementById("button.upgrade.energy_2").className="";
+  }else{
+    document.getElementById("button.upgrade.energy_2").className="unavailable";
+  }
   if (game.unlocked.changescr()){showhide("changescr",true);}
   if (game.unlocked.upgrade.shop()){document.getElementById("button.changescr_shop_upgrade").className="changescr";}
   if (game.unlocked.upgrade.convexisti_1){showhide("upgrade.convexisti_1",true);}
@@ -853,6 +869,7 @@ function updatebutton(){
   if (game.unlocked.upgrade.existability_2){showhide("upgrade.existability_2",true);}
   if (game.unlocked.upgrade.existance_1){showhide("upgrade.existance_1",true);}
   if (game.unlocked.upgrade.word_1){showhide("upgrade.word_1",true);}
+  if (game.unlocked.upgrade.energy_2){showhide("upgrade.energy_2",true);}
   if (game.unlocked.upgrade.convthought_1){showhide("upgrade.convthought_1",true);}
   if (game.upgrade.etime_1){showhide("upgrade.energy_1",true);}
   if (game.upgrade.energy_1){showhide("upgrade.existance_2",true);}
@@ -1111,6 +1128,11 @@ function buy_upgrade_energy_1(){
   if (!game.canbuy.upgrade_energy_1()){return;}
   game.currency.explosion-=2;
   game.upgrade.energy_1=true;
+}
+function buy_upgrade_energy_2(){
+  if (!game.canbuy.upgrade_energy_2()){return;}
+  game.currency.word-=500;
+  game.upgrade.energy_2=true;
 }
 function buyautoconvexisti(){
   if (!game.canbuy.autoconvexisti()){return;}
