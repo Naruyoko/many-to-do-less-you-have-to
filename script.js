@@ -243,7 +243,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.4 patch 3",
-      release:201805251 //YYYYMMDDX
+      release:201806271 //YYYYMMDDX
     }
   };
 }
@@ -302,6 +302,7 @@ var cookieaccepted=false;
 function acceptcookie(){
   cookieaccepted=true;
   document.getElementById("button.confirmcookie").className="hidden";
+  document.getElementById("cookienotice").className="hidden";
   document.getElementById("div.cookie").className="";
   saved=new Date();
 }
