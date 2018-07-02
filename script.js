@@ -243,7 +243,8 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.4 patch 3",
-      release:201807021 //YYYYMMDDX
+      release:201807022, //YYYYMMDDX
+      lasttime:0
     }
   };
 }
@@ -386,19 +387,13 @@ function savecookie(){//change name
   setCookie("game.status.word",game.status.word,365);
   setCookie("game.status.energy",game.status.energy,365);
   setCookie("game.status.explosion",game.status.explosion,365);
-  setCookie("lasttime",lasttime,365);
   setCookie("cookieaccepted",cookieaccepted,365);
   setCookie("game.option.disableshake",game.option.disableshake(),365);
   setCookie("game.option.disablewrap",game.option.disablewrap(),365);
   setCookie("game.option.smallui",game.option.smallui(),365);
   setCookie("game.datainfo.version",game.datainfo.version,365);
   setCookie("game.datainfo.release",game.datainfo.release,365);
-  //save={
-  //  game:game,
-  //  version:version,
-  //  release:release,
-  //  lasttime:lasttime,
-  //}
+  setCookie("game.datainfo.lasttime",game.datainfo.lasttime,365);
   //localStorage.setItem("save",JSON.stringify(game));
   //replace with above in α 0.0.5 update
   saved=new Date();
@@ -449,7 +444,7 @@ function loadcookie(){//changename
   game.upgrade.convthought_1=getCookie("game.upgrade.convthought_1")=="true";
   game.upgrade.energy_1=getCookie("game.upgrade.energy_1")=="true";
   game.upgrade.energy_2=getCookie("game.upgrade.energy_2")=="true";
-  if (game.datainfo.release>=201805211){
+  if (getCookie("game.datainfo.release")>=201805211){
     game.autobuy.existivity.bought=getCookie("game.autobuy.existivity.bought")=="true";
     document.getElementById("input.autoconvexisti").value=getCookie("game.autobuy.existivity.threshold");
     document.getElementById("autobuy.existivity.enable").checked=getCookie("game.autobuy.existivity.enable");
@@ -473,7 +468,11 @@ function loadcookie(){//changename
   document.getElementById("checkbox.disableshake").checked=getCookie("game.option.disableshake")=="true";
   document.getElementById("checkbox.disablewrap").checked=getCookie("game.option.disablewrap")=="true";
   document.getElementById("checkbox.smallui").checked=getCookie("game.option.smallui")=="true";
-  lasttime=Number(getCookie("lasttime"));
+  if (getCookie("game.datainfo.release")<201807022){
+    game.datainfo.lasttime=Number(getCookie("lasttime"));
+  }else{
+    game.datainfo.lasttime=Number(getCookie("game.datainfo.lasttime"));
+  }
   if (getCookie("cookieaccepted")){
     acceptcookie();
     saved=new Date();
@@ -482,10 +481,10 @@ function loadcookie(){//changename
 }
 var wasoffline=true;
 function deletecookie(){//changename
-  if (!window.confirm("Do you REALLY want to reset? No going back!")){return;}
+  if (!window.confirm("Do you REALLY want to reset? No going back!")||!window.confirm("Are you REALLY, ＲＥＡＬＬＹ that sure want to reset? There's seriously no going back!")){return;}
   initializevars();
   savecookie();
-  setCookie("lasttime",0,365);
+  setCookie("game.datainfo.lasttime",0,365);
   //localStorage.removeItem("save");
   //replace with above in α 0.0.5 update
   window.location.reload(true);
@@ -502,14 +501,13 @@ function showhide(x,t){
 }
 var timeelapsedleft=0;
 var timeelapsed;
-var lasttime=0;
 var d=new Date();
 function passive(){
-  if (lasttime!==0){
+  if (game.datainfo.lasttime!==0){
     d=new Date();
-    timeelapsedleft=(d.getTime()-lasttime)/1000;
+    timeelapsedleft=(d.getTime()-game.datainfo.lasttime)/1000;
   }
-  lasttime=d.getTime();
+  game.datainfo.lasttime=d.getTime();
   if (timeelapsedleft<=0){return;}
   if (wasoffline){
     wasoffline=false;
@@ -1222,12 +1220,16 @@ function achievementupdate(){
 function changelogtoggle(t){
   showhide("changelog",t);
 }
-loadcookie();
-setgenwordinterval();
-if (!Math.cbrt){ //define Math.cbrt() for older enviroments
-  Math.cbrt=function (x){
-    var y=Math.pow(Math.abs(x),1/3);
-    return x<0?-y:y;
-  };
+var passiveinterval;
+function onload(){
+  loadcookie();
+  setgenwordinterval();
+  if (!Math.cbrt){ //define Math.cbrt() for older enviroments
+    Math.cbrt=function (x){
+      var y=Math.pow(Math.abs(x),1/3);
+      return x<0?-y:y;
+    };
+  }
+  showhide("div.loading",false);
+  passiveinterval=setInterval(passive,100);
 }
-var loading=false;

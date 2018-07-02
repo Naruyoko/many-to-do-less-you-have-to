@@ -16,9 +16,10 @@
     <meta name="author" content="Naruyoko">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="stylesheet.css" type="text/css">
+    <script src="./script.js"></script>
     <script src="https://naruyoko.github.io/tests/expMath/expMath.js"></script>
   </head>
-  <body>
+  <body onload="onload()">
     <div id="div.loading">
       <img src="./files/pictures/title.png" /><br>
       If you have time to read this, try reloading the page.<br>
@@ -275,17 +276,5 @@
       <button type="button" onclick="changelogtoggle(false)" style="position:absolute;right:15px;top:10px;">X</button>
       <object type="text/html" data="./changelog.html" style="margin:auto;width:95%;height:85%;position:absolute;top:30px;background-color:#ffffff"></object>
     </div>
-    <script>
-      function waituntilload(){
-        if (!loading){
-          clearInterval(waituntilloadinterval);
-          showhide("div.loading",false);
-          var passiveinterval=setInterval(passive,100);
-        }
-      }
-      var loading=true;
-      var waituntilloadinterval=setInterval(waituntilload,100);
-    </script>
-    <script src="./script.js"></script>
   </body>
 </html>
