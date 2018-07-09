@@ -52,3 +52,44 @@ td.achievement {
 td.done {
   background-color:#80df80;
 }
+.switch{
+  position:relative;
+  display:inline;
+}
+.switch input{display:none;}
+.slider{
+  position:absolute;
+  cursor:pointer;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color:#909090;
+  -webkit-transition:.2s;
+  transition:.2s;
+}
+.slider:before{
+  position:absolute;
+  content:"";
+  height:80%;
+  width:40%;
+  left:10%;
+  bottom:10%;
+  background-color:white;
+  -webkit-transition:.2s;
+  transition:.2s;
+}
+input:checked+.slider{
+  background-color:#4893D3;
+}
+input:checked+.slider:before{
+  -webkit-transform:translateX(100%);
+  -ms-transform:translateX(100%);
+  transform:translateX(100%);
+}
+.slider.round{
+  border-radius:34px;
+}
+.slider.round:before{
+  border-radius:50%;
+}

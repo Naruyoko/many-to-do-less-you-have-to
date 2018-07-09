@@ -48,7 +48,13 @@
       <button id="button.convetime" type="button" class="hidden" onclick="convetime()" title="You need to think.&#10;Resets experienced time, existance, and existivity.">Thought the word.<br/>Cost: - experienced time,<br/>  - existivity</button><br>
       <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10;　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words thought</button><br>
       <button id="button.convenergy" type="button" class="hidden" onclick="convenergy()" title="BOOM&#10;Resets energy, thoughts, words,&#10;　 experienced time, existance, and existivity.">Let your energy burst!<br/>Cost: 5 joules of energy,<br/>  1 billion existivity</button><br>
-      <div id="div.disableshake" class="hidden"><input type="checkbox" id="checkbox.disableshake" ckecked> Disable shake</div>
+      <div id="div.disableshake" class="hidden">
+        Disable shake
+        <label class="switch">
+          <input type="checkbox" id="checkbox.disableshake" ckecked>
+          <span class="slider" style="width:32px;height:16px;"></span>
+        </label>
+      </div>
       <div style="border:black 1px solid;background-color:white;position:absolute;top:0px;right:0px;width:300px;padding:5px;text-align:center;" id="div.explosion" class="hidden">
         <p style="color:darkgreen">You have <span id="disp.explosion" class="middle"></span> explosion points.</p>
         <div id="upgrade.etime_1" class="box" style="padding:3px;margin:2px;">
@@ -75,7 +81,12 @@
         <p>Productive existances</p>
         <p>The more existances you have, the more existances you get from making it exist.</p>
         <button id="button.upgrade.convexisti_2" type="button" onclick="buy_upgrade_convexisti_2()">Cost: 150 existances</button>
-        <div id="div.upgrade.convexisti_2.bottom" class="hidden" style="white-space:nowrap;">Enabled: <input type="checkbox" id="upgrade.convexisti_2.enable"></input>  Boost: ×
+        <div id="div.upgrade.convexisti_2.bottom" class="hidden" style="white-space:nowrap;">Enabled:
+        <label class="switch">
+          <input type="checkbox" id="upgrade.convexisti_2.enable">
+          <span class="slider" style="width:32px;height:16px;"></span>
+        </label>
+        <span style="width:32px;display:inline-block;"></span>  Boost: ×
         <span class="large" id="disp.upgrade.convexisti_2"></span></div>
       </div>
       <div id="upgrade.convexisti_1" class="box hidden" style="background-color:white;text-align:center;width:44%;padding:5px;margin:1%;float:left">
@@ -83,7 +94,13 @@
         <p>Increases the amount of existances to be found, but dramatically decreases and creates a peak around 720000 existivity to the probability.</p>
         <p>Disables boost on fail. Always resets existivity completely when finding existance.</p>
         <button id="button.upgrade.convexisti_1" type="button" onclick="buy_upgrade_convexisti_1()" class="hidden">Cost: 200,000 existivity</button>
-        <div id="div.upgrade.convexisti_1.bottom" class="hidden" style="white-space:nowrap;">Enabled: <input type="checkbox" id="upgrade.convexisti_1.enable"></input>  Boost: ×
+        <div id="div.upgrade.convexisti_1.bottom" class="hidden" style="white-space:nowrap;">
+          Enabled:
+          <label class="switch">
+            <input type="checkbox" id="upgrade.convexisti_1.enable">
+            <span class="slider" style="width:32px;height:16px;"></span>
+          </label>
+          <span style="width:32px;display:inline-block;"></span>  Boost: ×
         <span class="large" id="disp.upgrade.convexisti_1"></span></div>
       </div>
       <div id="upgrade.existability_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
@@ -103,7 +120,7 @@
       <div id="upgrade.existance_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
         <p>Temperature Mapping</p>
         <p>Boosts existivity production by existances by 5 times.<br>
-        <span style="font-size:12px;">This is equivalent to 8.82747 seconds of experienced time.</span></p>
+        <span style="font-size:12px;">This is equivalent to <span id="disp.upgrade.existance_1">8.82747</span> seconds of experienced time.</span></p>
         <button id="button.upgrade.existance_1" type="button" onclick="buy_upgrade_existance_1()" class="hidden">Cost: 1 joule of energy</button>
       </div>
       <div id="upgrade.word_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
@@ -114,7 +131,13 @@
           <span style="font-size:12px;">The boosts are shown in word boost by existances, then existance boost by words.</span>
         </p>
         <button id="button.upgrade.word_1" type="button" onclick="buy_upgrade_word_1()" class="hidden">Cost: 2 thoughts,<br/>  100 words thought,<br/>  1,000 existances</button>
-        <div id="div.upgrade.word_1.bottom" class="hidden" style="white-space:nowrap;">Enabled: <input type="checkbox" id="upgrade.word_1.enable"></input>  Boost: ×
+        <div id="div.upgrade.word_1.bottom" class="hidden" style="white-space:nowrap;">
+          Enabled:
+          <label class="switch">
+            <input type="checkbox" id="upgrade.word_1.enable">
+            <span class="slider" style="width:32px;height:16px;"></span>
+          </label>
+          <span style="width:32px;display:inline-block;"></span>  Boost: ×
         <span class="large" id="disp.upgrade.word_1.1"></span>, ×
         <span class="large" id="disp.upgrade.word_1.2"></span></div>
       </div>
@@ -140,17 +163,33 @@
         <button id="button.buyautoconvexisti" type="button" onclick="buyautoconvexisti()" title="Your existances will work to find other existances for you." style="float:left">Auto find existance<br/>Cost: 200 existance</button>
         <span id="form.autoconvexisti" class="hidden" style="float:left">
           Find existance when you have <input id="input.autoconvexisti" type="text"> existivity.<br>
-          Enable: <input id="autobuy.existivity.enable" type="checkbox">
+          Enable:
+          <label class="switch">
+            <input type="checkbox" id="autobuy.existivity.enable">
+            <span class="slider" style="width:32px;height:16px;"></span>
+          </label>
         </span>
       </div>
       <div style="clear:both"></div>
       <div>
         <button id="button.buyautoconvexista" type="button" class="hidden" onclick="buyautoconvexista()" title="The experienced thoughts experiences more.">Auto experiencing<br/>Cost: 6 thoughts,<br/>  60 words thought,<br/>  10 experienced time</button>
-        <span id="div.autobuy.existance.enable" class="hidden">Enable: <input id="autobuy.existance.enable" type="checkbox"></span>
+        <span id="div.autobuy.existance.enable" class="hidden">
+          Enable:
+          <label class="switch">
+            <input type="checkbox" id="autobuy.existance.enable">
+            <span class="slider" style="width:32px;height:16px;"></span>
+          </label>
+        </span>
       </div>
       <div>
         <button id="button.buyautoconvetime" type="button" class="hidden" onclick="buyautoconvetime()" title="The circulating forms of energy created a central system to reflex.">Auto thinker<br/>Cost: 3 explosion points,<br/>  4 energy</button>
-        <span id="div.autobuy.etime.enable" class="hidden">Enable: <input id="autobuy.etime.enable" type="checkbox"></span>
+        <span id="div.autobuy.etime.enable" class="hidden">
+          Enable:
+          <label class="switch">
+            <input type="checkbox" id="autobuy.etime.enable">
+            <span class="slider" style="width:32px;height:16px;"></span>
+          </label>
+        </span>
       </div>
     </div>
     <div id="scr.status" class="hidden">
