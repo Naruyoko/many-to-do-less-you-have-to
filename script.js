@@ -233,6 +233,7 @@ function initializevars(){
     },
     status:{
       timeplayed:0,
+      totaltime:0,
       existivity:0,
       existance:0,
       etime:0,
@@ -248,7 +249,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.4 patch 3",
-      release:201807022, //YYYYMMDDX
+      release:201807231, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -303,6 +304,15 @@ function notation(i){
     r+="illion";
     return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+r;
   }
+}
+function timeFormat(t){
+  var m="";
+  if (t>=86400*365){m+=notation(Math.floor(t/(86400*365)))+" years ";}
+  if (t>=86400){m+=Math.floor(t/86400&365)+" days ";}
+  if (t>=3600){m+=Math.floor(t/3600%24)+" hours ";}
+  if (t>=60){m+=Math.floor(t/60%60)+" minutes ";}
+  if (t>=10){m+=Math.floor(t%60)+" seconds";}else{m=t.toFixed(4)+" seconds";}
+  return m;
 }
 var cookieaccepted=false;
 function acceptcookie(){
@@ -385,6 +395,7 @@ function savecookie(){//change name
   setCookie("game.autobuy.etime.enable",game.autobuy.etime.enable(),365);
   setCookie("game.achievement.done",JSON.stringify(game.achievement.done),365);
   setCookie("game.status.timeplayed",game.status.timeplayed,365);
+  setCookie("game.status.totaltime",game.status.totaltime,365);
   setCookie("game.status.existivity",game.status.existivity,365);
   setCookie("game.status.existance",game.status.existance,365);
   setCookie("game.status.etime",game.status.etime,365);
@@ -463,6 +474,11 @@ function loadcookie(){//changename
   document.getElementById("autobuy.etime.enable").checked=getCookie("game.autobuy.etime.enable");
   if (getCookie("game.achievement.done").length!==0){game.achievement.done=JSON.parse(getCookie("game.achievement.done"));}
   game.status.timeplayed=Number(getCookie("game.status.timeplayed"));
+  if (release>=201807231){
+    game.status.totaltime=Number(getCookie("game.status.totaltime"));
+  }else{
+    game.status.totaltime=Number(getCookie("game.status.timeplayed"));
+  }
   game.status.existivity=Number(getCookie("game.status.existivity"));
   game.status.existance=Number(getCookie("game.status.existance"));
   game.status.etime=Number(getCookie("game.status.etime"));
@@ -503,6 +519,8 @@ function showhide(x,t){
   }else{
     if (document.getElementById(x).className.search("hidden")==-1){document.getElementById(x).className+=" hidden";}
   }
+  o=document.getElementById(x).className;
+  document.getElementById(x).className=o.replace(/  /g," ");
 }
 var timeelapsedleft=0;
 var timeelapsed;
@@ -519,6 +537,7 @@ function passive(){
   }else{
     game.status.timeplayed+=timeelapsedleft;
   }
+    game.status.totaltime+=timeelapsedleft;
   if (timeelapsedleft>0.2){
     console.log("The game is lagging, was offline or inactive! Time elapsed: "+Math.round(timeelapsedleft*1000)+" ms, simulated with "+Math.floor(Math.log(timeelapsedleft)/Math.log(1.25)+9.2)+" ticks.");
   }
@@ -652,13 +671,8 @@ function updatedisp(){
     document.getElementById("disp.explosion").innerHTML=notation(game.currency.explosion);
     document.getElementById("disp.status.explosion").innerHTML=notation(game.status.explosion);
   }
-  var m="";
-  var t=game.status.timeplayed;
-  if (t>=86400){m+=Math.floor(t/86400)+" days ";}
-  if (t>=3600){m+=Math.floor(t/3600%24)+" hours ";}
-  if (t>=60){m+=Math.floor(t/60%60)+" minutes ";}
-  m+=Math.floor(t%60)+" seconds";
-  document.getElementById("disp.status.timeplayed").innerHTML=m;
+  document.getElementById("disp.status.timeplayed").innerHTML=timeFormat(game.status.timeplayed);
+  document.getElementById("disp.status.totaltime").innerHTML=timeFormat(game.status.totaltime);
   if (game.upgrade.convexisti_1.bought){
     showhide("div.upgrade.convexisti_1.bottom",true);
     document.getElementById("disp.upgrade.convexisti_1").innerHTML=notation(Math.round(game.currency.convexistiearn.upgrade_convexisti_1()*1000)/1000);
