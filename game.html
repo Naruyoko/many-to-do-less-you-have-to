@@ -24,12 +24,18 @@
       <img src="./files/pictures/title.png" /><br>
       If you have time to read this, try reloading the page.<br>
       If that doesn't fix this, report issue from the left-bottom triangle.
+      <noscript>
+        You need Javascript enabled to play this game.
+      </noscript>
     </div>
     <div id="disp.currency">
       <div id="div.disp.existivity">Your existivity is <span class="large" id="disp.existivity"></span> and has <span class="large" id="disp.existability"></span> chance of <span id="div.disp.existivity2" class="hidden"><span class="large" id="disp.existivity2"></span> existances </span></span>existing.</div>
       <div id="div.disp.existance" class="hidden">You know <span class="large" id="disp.existance"></span> existances. They produce <span class="large" id="disp.existance2"></span> existivity each second.</div>
       <div id="div.disp.etime" class="hidden">Existances experienced as much as <span class="large" id="disp.etime"></span> seconds. It boosts the production of existivity from existances by <span class="large" id="disp.etime2"></span>.</div>
-      <div id="div.disp.thought" class="hidden">You have <span class="large" id="disp.thought"></span> thoughts and think <span id="disp.thought2"></span> strings per second.  Recently generated: <span id="disp.genword"></span><br/>You have thought of <span class="large" id="disp.word"></span> <span title="Many to do, Less you have to.">words in the title</span> and finds <span class="large" id="disp.thought3"></span> existances per second.</div>
+      <div id="div.disp.thought" class="hidden">
+        You have <span class="large" id="disp.thought"></span> thoughts and think <span id="disp.thought2"></span> strings per second.  Recently generated: <span id="disp.genword"></span><br>
+        You have thought of <span class="large" id="disp.word"></span> <span class="tooltip">words in the title<span class="tooltiptext">Many to do, Less you have to.</span></span> and finds <span class="large" id="disp.thought3"></span> existances per second.
+      </div>
       <div id="div.disp.energy" class="hidden">There are <span class="large" id="disp.energy"></span> joules of energy in your system. Existances and existivity together experience <span class="large" id="disp.energy2"></span> seconds per second.</div>
     </div>
     <p id="changescr" class="hidden">
@@ -43,11 +49,11 @@
     </p>
     <hr>
     <div id="scr.shop.general" style="position:relative;">
-      <button id="button.convexisti" type="button" onclick="convexisti()" title="See if it exists.&#10;Reduces existivity or resets it if it is low.">Make it exist!</button><br>
-      <button id="button.convexista" type="button" class="hidden" onclick="convexista()" title="Repeating makes efficient.&#10;Resets existivity and reduces most of existances.">Experience.<br/>Cost: - existances</button><br>
-      <button id="button.convetime" type="button" class="hidden" onclick="convetime()" title="You need to think.&#10;Resets experienced time, existance, and existivity.">Thought the word.<br/>Cost: - experienced time,<br/>  - existivity</button><br>
-      <button id="button.convthought" type="button" class="hidden" onclick="convthought()" title="Energy heat up the encouragement.&#10;Resets thoughts, words, experienced time,&#10;　 existance, and existivity.">Be energetic!!<br/>Cost: - thoughts,<br/>  - words thought</button><br>
-      <button id="button.convenergy" type="button" class="hidden" onclick="convenergy()" title="BOOM&#10;Resets energy, thoughts, words,&#10;　 experienced time, existance, and existivity.">Let your energy burst!<br/>Cost: 5 joules of energy,<br/>  1 billion existivity</button><br>
+      <span class="tooltip"><button id="button.convexisti" type="button" onclick="convexisti()">Make it exist!</button><span class="tooltiptext">See if it exists.<br>Reduces existivity or resets it if it is low.</span></span><br>
+      <span class="tooltip"><button id="button.convexista" type="button" class="hidden" onclick="convexista()">Experience.<br/>Cost: - existances</button><span class="tooltiptext">Repeating makes efficient.<br>Resets existivity and reduces most of existances.</span></span><br>
+      <span class="tooltip"><button id="button.convetime" type="button" class="hidden" onclick="convetime()">Thought the word.<br/>Cost: - experienced time,<br/>  - existivity</button><span class="tooltiptext">You need to think.<br>Resets experienced time, existance, and existivity.</span></span><br>
+      <span class="tooltip"><button id="button.convthought" type="button" class="hidden" onclick="convthought()">Be energetic!!<br/>Cost: - thoughts,<br/>  - words thought</button><span class="tooltiptext">Energy heat up the encouragement.<br>Resets thoughts, words, experienced time,<br>　 existance, and existivity.</span></span><br>
+      <span class="tooltip"><button id="button.convenergy" type="button" class="hidden" onclick="convenergy()">Let your energy burst!<br/>Cost: 5 joules of energy,<br/>  1 billion existivity</button><span class="tooltiptext">BOOM<br>Resets energy, thoughts, words,<br>　 experienced time, existance, and existivity.</span></span><br>
       <div id="div.disableshake" class="hidden">
         Disable shake
         <label class="switch">
@@ -93,7 +99,7 @@
         <p>Enhance existivity.</p>
         <p>Increases the amount of existances to be found, but dramatically decreases and creates a peak around 720000 existivity to the probability.</p>
         <p>Disables boost on fail. Always resets existivity completely when finding existance.</p>
-        <button id="button.upgrade.convexisti_1" type="button" onclick="buy_upgrade_convexisti_1()" class="hidden">Cost: 200,000 existivity</button>
+        <button id="button.upgrade.convexisti_1" type="button" onclick="buy_upgrade_convexisti_1()">Cost: 200,000 existivity</button>
         <div id="div.upgrade.convexisti_1.bottom" class="hidden" style="white-space:nowrap;">
           Enabled:
           <label class="switch">
@@ -106,14 +112,14 @@
       <div id="upgrade.existability_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
         <p>Twisted Space</p>
         <p>The lower your existability, more boost you get to it.</p>
-        <button id="button.upgrade.existability_1" type="button" onclick="buy_upgrade_existability_1()" class="hidden">Cost: 4,000 existances</button>
+        <button id="button.upgrade.existability_1" type="button" onclick="buy_upgrade_existability_1()">Cost: 4,000 existances</button>
         <div id="div.upgrade.existability_1.bottom" class="hidden" style="white-space:nowrap;">Boost: +
         <span class="large" id="disp.upgrade.existability_1"></span></div>
       </div>
       <div id="upgrade.existability_2" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
         <p>Weighted Average</p>
         <p>The lower your existability, more boost you get to it. <span style="font-size:12px;">The II</span></p>
-        <button id="button.upgrade.existability_2" type="button" onclick="buy_upgrade_existability_2()" class="hidden">Cost: 20 experienced time,<br/>  700,000 existances</button>
+        <button id="button.upgrade.existability_2" type="button" onclick="buy_upgrade_existability_2()">Cost: 20 experienced time,<br/>  700,000 existances</button>
         <div id="div.upgrade.existability_2.bottom" class="hidden" style="white-space:nowrap;">Boost: +
         <span class="large" id="disp.upgrade.existability_2"></span></div>
       </div>
@@ -121,7 +127,7 @@
         <p>Temperature Mapping</p>
         <p>Boosts existivity production by existances by 5 times.<br>
         <span style="font-size:12px;">This is equivalent to <span id="disp.upgrade.existance_1">8.82747</span> seconds of experienced time.</span></p>
-        <button id="button.upgrade.existance_1" type="button" onclick="buy_upgrade_existance_1()" class="hidden">Cost: 1 joule of energy</button>
+        <button id="button.upgrade.existance_1" type="button" onclick="buy_upgrade_existance_1()">Cost: 1 joule of energy</button>
       </div>
       <div id="upgrade.word_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
         <p>Existing Words</p>
@@ -130,7 +136,7 @@
           Existances boost existance production by words, and words boost existivity production by existances.
           <span style="font-size:12px;">The boosts are shown in word boost by existances, then existance boost by words.</span>
         </p>
-        <button id="button.upgrade.word_1" type="button" onclick="buy_upgrade_word_1()" class="hidden">Cost: 2 thoughts,<br/>  100 words thought,<br/>  1,000 existances</button>
+        <button id="button.upgrade.word_1" type="button" onclick="buy_upgrade_word_1()">Cost: 2 thoughts,<br/>  100 words thought,<br/>  1,000 existances</button>
         <div id="div.upgrade.word_1.bottom" class="hidden" style="white-space:nowrap;">
           Enabled:
           <label class="switch">
@@ -146,14 +152,14 @@
         <p>
           Being energetic requires way less words.
         </p>
-        <button id="button.upgrade.convthought_1" type="button" onclick="buy_upgrade_convthought_1()" class="hidden">Cost: 4 energy,<br/>  5 thought</button>
+        <button id="button.upgrade.convthought_1" type="button" onclick="buy_upgrade_convthought_1()">Cost: 4 energy,<br/>  5 thought</button>
       </div>
       <div id="upgrade.energy_2" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
         <p>EneWorExp</p>
         <p>
           Experienceing from energy is boosted by words.
         </p>
-        <button id="button.upgrade.energy_2" type="button" onclick="buy_upgrade_energy_2()" class="hidden">Cost: 500 words</button>
+        <button id="button.upgrade.energy_2" type="button" onclick="buy_upgrade_energy_2()">Cost: 500 words</button>
         <div id="div.upgrade.energy_2.bottom" class="hidden" style="white-space:nowrap;">Boost: ×
         <span class="large" id="disp.upgrade.energy_2"></span></div>
       </div>
@@ -266,8 +272,7 @@
         <td></td>
         <td></td>
       </tr>
-    </table>
-    <br>
+    </table><br>
     <div id="achievementearned" class="hidden" style="position:absolute;top:0px;right:0px;background-color:#87cefa;color:#202020;font-size:14px;padding:4px;border-radius:2px;border:2px darkgray solid;">
       Insert text
     </div>
