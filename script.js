@@ -477,7 +477,7 @@ function loadcookie(){//changename
   document.getElementById("autobuy.etime.enable").checked=getCookie("game.autobuy.etime.enable");
   if (getCookie("game.achievement.done").length!==0){game.achievement.done=JSON.parse(getCookie("game.achievement.done"));}
   game.status.timeplayed=Number(getCookie("game.status.timeplayed"));
-  if (release>=201807231){
+  if (getCookie("game.datainfo.release")>=201807231){
     game.status.totaltime=Number(getCookie("game.status.totaltime"));
   }else{
     game.status.totaltime=Number(getCookie("game.status.timeplayed"));
