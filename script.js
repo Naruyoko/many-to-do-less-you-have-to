@@ -638,9 +638,9 @@ function updatedisp(){
   }
   document.getElementById("disp.existivity").innerHTML=notation(Math.round(game.currency.existivity*100)/100);
   document.getElementById("disp.status.existivity").innerHTML=notation(Math.round(game.status.existivity*100)/100);
-  if ((game.currency.existability.total()<0.01)&&(game.currency.existability.total()>=1e-9)){
+  if ((game.currency.existability.total()<0.01)&&(game.currency.existability.total()>=1e-6)){
     document.getElementById("disp.existability").innerHTML=(100*game.currency.existability.total()).toPrecision(2)+"%"+m;
-  }else if ((game.currency.existability.total()>=0.99)&&(game.currency.existability.total()<1-1e-9)){
+  }else if ((game.currency.existability.total()>=0.99)&&(game.currency.existability.total()<1-1e-6)){
     document.getElementById("disp.existability").innerHTML=(100-(100-100*game.currency.existability.total()).toPrecision(2))+"%"+m;
   }else{
     document.getElementById("disp.existability").innerHTML=Math.round(1000*game.currency.existability.total())/10+"%"+m;
@@ -774,22 +774,22 @@ function updatedisp(){
 }
 function updatebutton(){
   toggleclass("button.convexisti","unavailable",!game.canbuy.existance());
-  if (document.getElementById("button.convexista").className=="hidden"){
+  if (document.getElementById("button.convexista").className.search("hidden")!=-1){
     if (game.unlocked.convexista){showhide("button.convexista",true);}
   }else{
     toggleclass("button.convexista","unavailable",!game.canbuy.etime());
   }
-  if (document.getElementById("button.convetime").className=="hidden"){
+  if (document.getElementById("button.convetime").className.search("hidden")!=-1){
     if (game.unlocked.convetime){showhide("button.convetime",true);}
   }else{
     toggleclass("button.convetime","unavailable",!game.canbuy.thought());
   }
-  if (document.getElementById("button.convthought").className=="hidden"){
+  if (document.getElementById("button.convthought").className.search("hidden")!=-1){
     if (game.unlocked.convthought){showhide("button.convthought",true);}
   }else{
     toggleclass("button.convthought","unavailable",!game.canbuy.energy());
   }
-  if (document.getElementById("button.convenergy").className=="hidden"){
+  if (document.getElementById("button.convenergy").className.search("hidden")!=-1){
     if (game.unlocked.convenergy){showhide("button.convenergy",true);}
   }else{
     toggleclass("button.convenergy","unavailable",!game.canbuy.explosion());
@@ -1011,6 +1011,7 @@ function convenergy(){
   game.unlocked.convexista=false;
   game.unlocked.convetime=false;
   game.unlocked.convthought=false;
+  game.unlocked.convenergy=false;
   showhide("div.disp.existance",false);
   showhide("div.disp.etime",false);
   showhide("div.disp.thought",false);
@@ -1018,6 +1019,7 @@ function convenergy(){
   showhide("button.convexista",false);
   showhide("button.convetime",false);
   showhide("button.convthought",false);
+  showhide("button.convenergy",false);
   game.unlocked.explosion=true;
   updateprod();
   game.unlocked.upgrade.etime_1=true;
