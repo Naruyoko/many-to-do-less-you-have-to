@@ -638,9 +638,9 @@ function updatedisp(){
   }
   document.getElementById("disp.existivity").innerHTML=notation(Math.round(game.currency.existivity*100)/100);
   document.getElementById("disp.status.existivity").innerHTML=notation(Math.round(game.status.existivity*100)/100);
-  if ((game.currency.existability.total()<0.01)&&(game.currency.existability.total()>=1e-6)){
+  if ((game.currency.existability.total()<0.01)&&(game.currency.existability.total()>=1e-8)){
     document.getElementById("disp.existability").innerHTML=(100*game.currency.existability.total()).toPrecision(2)+"%"+m;
-  }else if ((game.currency.existability.total()>=0.99)&&(game.currency.existability.total()<1-1e-6)){
+  }else if ((game.currency.existability.total()>=0.99)&&(game.currency.existability.total()<1-1e-8)){
     document.getElementById("disp.existability").innerHTML=(100-(100-100*game.currency.existability.total()).toPrecision(2))+"%"+m;
   }else{
     document.getElementById("disp.existability").innerHTML=Math.round(1000*game.currency.existability.total())/10+"%"+m;
