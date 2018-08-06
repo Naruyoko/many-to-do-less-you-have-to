@@ -623,15 +623,23 @@ function updatecurr(){
   }
   if (game.currency.genworddelay<=0){
     var x=Math.floor(-game.currency.genworddelay)+1;
-    var r=Math.random();
     var p_0=(2/Math.pow(26,2)+1/Math.pow(26,3)+3/Math.pow(26,4))/5;
-    var p=exp.conv(0);
     var i=0;
-    for (i=0;(i<=Math.ceil(x))&&(r>Math.pow(10,p[0]));i++){
-      p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(x-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(exp.conv(x)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(x-i))))));
+    if (x<100000){
+      for (var n=0;n<x;n++){
+        if (Math.random()<p_0){i++;}
+      }
+    }else{
+      var r=Math.random();
+      var p=exp.conv(0);
+      for (;(i<=Math.max(x,2500000))&&(r>Math.pow(10,p[0]));i++){
+        p=exp.add(p,exp.mult(exp.mult(exp.pow(exp.conv(1-p_0),exp.conv(Math.max(x,2500000)-i)),exp.pow(exp.conv(p_0),exp.conv(i))),exp.div(exp.fact(Math.max(x,2500000)),exp.mult(exp.fact(exp.conv(i)),exp.fact(exp.conv(Math.max(x,2500000)-i))))));
+      }
+      i--;
+      if (x>2500000){i=Math.floor(i*x/2500000);}
     }
-    game.currency.word+=i-1;
-    game.status.word+=i-1;
+    game.currency.word+=i;
+    game.status.word+=i;
     game.currency.genworddelay+=x;
   }
   game.currency.thought+=game.production.thought*timeelapsed;
