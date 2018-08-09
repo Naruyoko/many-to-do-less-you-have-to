@@ -233,7 +233,7 @@ function initializevars(){
       "game.currency.existivity>=1000","game.currency.existivity>=1e+7","game.currency.thought>=6","undefined","undefined","game.currency.convexistiearn.total()>=100","game.autobuy.existivity.bought","undefined","game.status.timeplayed>=20*60","undefined",//2x
       "game.currency.existabilityboost>=0.25","Math.floor(game.currency.existance)==123456","game.currency.explosion>=1","function temp(){var it=true;for(var i=0;i<9;i++){if (!game.achievement.done[game.achievement.arrangement[0][i]]){it=false;break;}}return it;}temp();","game.currency.existivity>=1e+15","game.production.existanceboost.etime.total()>=1e+6","(game.currency.word>=150)&&(game.currency.thought<=1)","(game.currency.thought>=8)&&(game.currency.word<=4)","game.status.explosion>=5","game.autobuy.etime.bought",//3x
       "game.currency.existivity>=1e+9","game.status.etime>=3600","game.status.word>=1000","(game.currency.convexistiearn.total()>=3000)&&(game.currency.existability.total()>=0.9)","game.production.existivity>=1e+12","game.currency.etime>=20","(game.currency.word>=5000)||(game.status.word>=25000)","game.achievement.completed()>=40","game.currency.existabilityboost>=0.35","game.production.existanceboost.etime.total()>=Math.pow(Number.MAX_VALUE,3/100)",//4x
-      "(game.currency.thought>=12)&&(game.currency.word>=1000)","(game.currency.existability.total()>=2e-8)&&(game.currency.existability.total()<=4e-8)","game.status.timeplayed>=172800","(Math.floor(game.currency.etime)>game.currency.etimebought*2)&&(game.currency.etimebought>12)","(game.currency.etime-game.currency.etimebought>=1)&&(game.currency.thought<=1)","game.currency.energy>=6","game.currency.word>=game.currency.thought*1000"],//5x
+      "(game.currency.thought>=12)&&(game.currency.word>=1000)","(game.currency.existability.total()>=2e-8)&&(game.currency.existability.total()<=4e-8)","game.status.timeplayed>=172800","(Math.floor(game.currency.etime)>game.currency.etimebought*2)&&(game.currency.etimebought>12)","(game.currency.etime-game.currency.etimebought>=1)&&(game.currency.thought<=1)","game.currency.energy>=6","(game.currency.word>=game.currency.thought*1000)&&(game.currency.thought>=1)"],//5x
       name:["Big Bang?,Open game.","There IS Something Rather Than Nothing,Find an existance.","Bad Roll,Fail to find an existance.","Crowding,Find 8 existances.","Time\u2122,Let them experience.","Good experience,Have +200% boost by experiences.","Non-mechanic Integration,Have a thought.\nReward: Unlock Achievemnts","0.6\u2030,Get a word.","Almost Gurantee,Have probability exceed 99.9999%.","Yes Brainer,Have 4 thoughts and 120 words.",//0x
       "Quantum Fluctuation I,Successfully find existance with less than 5% chance.","Quantum Fluctuation II,Successfully find existance with less than 0.5% chance.","Quantum Fluctuation -I,Fail to find existance with more than 98% chance.","Quantum Fluctuation -II,Fail to find existance with more than 99.5% chance.","W=F·d·cos\u03b8,Have some energy in your system.","Work!,Have 4 joules of energy.","Swarn,A group of 1,000 existances.","Stream,A group of 100,000 existances.","Overpowered,Get ×100 boost by experienced time.","Okay$ You had Enough.,Have 10 million existances.",//1x
       "You don't need this much.,Reach 1,000 existivity.","Why Would You Need That?!,Reach 10 million existivity.","Confused,Have 6 thoughts.","Quantum Fluctuation III,Successfully find existance with less than 0.01% chance.","Quantum Fluctuation -III,Fail to find existance with more than 99.999% chance.","Gimme More!,Let 100 experiences available in a click.","You have a Coop,Have an autobuyer.","Don't you dare sleep,Be offline for over 6 hours in a row.","You Are In This,Play for 20 minutes","Comeback,Leave game for a week.",//2x
@@ -267,7 +267,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.4 patch 4",
-      release:201808091, //YYYYMMDDX
+      release:201808092, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -492,7 +492,12 @@ function loadcookie(){//changename
   document.getElementById("autobuy.existance.enable").checked=getCookie("game.autobuy.existance.enable");
   game.autobuy.etime.bought=getCookie("game.autobuy.etime.bought")=="true";
   document.getElementById("autobuy.etime.enable").checked=getCookie("game.autobuy.etime.enable");
-  if (getCookie("game.achievement.done").length!==0){game.achievement.done=JSON.parse(getCookie("game.achievement.done"));}
+  if (getCookie("game.achievement.done").length!==0){
+    game.achievement.done=JSON.parse(getCookie("game.achievement.done"));
+    if (getCookie("game.datainfo.release")<201808092){
+      game.achievement.done[56]=false;
+    }
+  }
   game.status.timeplayed=Number(getCookie("game.status.timeplayed"));
   if (getCookie("game.datainfo.release")>=201807231){
     game.status.totaltime=Number(getCookie("game.status.totaltime"));
