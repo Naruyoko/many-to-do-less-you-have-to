@@ -1326,7 +1326,7 @@ function changelogtoggle(t){
 var passiveinterval;
 function onload(){
   console.log("Script Initilizing:"+(new Date).getTime());
-  loadcookie();
+  loadsave();
   if (!Math.cbrt){ //define Math.cbrt() for older enviroments
     Math.cbrt=function (x){
       var y=Math.pow(Math.abs(x),1/3);
