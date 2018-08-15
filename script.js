@@ -1,28 +1,28 @@
-// "Many to do, Less You Have to by Naruyoko"
-// Hey llo, haxxor! (btw the word "hack" isn't necessarily bad.)
-// I can't take responsibility for messing around with code.
-// .......##.....##....###....##....##.##....##....########..#######.....########...#######.............
-// .......###...###...##.##...###...##..##..##........##....##.....##....##.....##.##.....##............
-// .......####.####..##...##..####..##...####.........##....##.....##....##.....##.##.....##............
-// .......##.###.##.##.....##.##.##.##....##..........##....##.....##....##.....##.##.....##.####.......
-// .......##.....##.#########.##..####....##..........##....##.....##....##.....##.##.....##.####.......
-// .......##.....##.##.....##.##...###....##..........##....##.....##....##.....##.##.....##..##........
-// .......##.....##.##.....##.##....##....##..........##.....#######.....########...#######..##.........
-// .............##.......########..######...######.....##....##..#######..##.....##.....................
-// .............##.......##.......##....##.##....##.....##..##..##.....##.##.....##.....................
-// .............##.......##.......##.......##............####...##.....##.##.....##.....................
-// .............##.......######....######...######........##....##.....##.##.....##.....................
-// .............##.......##.............##.......##.......##....##.....##.##.....##.....................
-// .............##.......##.......##....##.##....##.......##....##.....##.##.....##.....................
-// .............########.########..######...######........##.....#######...#######......................
-// .........................##.....##....###....##.....##.########....########..#######.................
-// .........................##.....##...##.##...##.....##.##.............##....##.....##................
-// .........................##.....##..##...##..##.....##.##.............##....##.....##................
-// .........................#########.##.....##.##.....##.######.........##....##.....##................
-// .........................##.....##.#########..##...##..##.............##....##.....##................
-// .........................##.....##.##.....##...##.##...##.............##....##.....##.###............
-// .........................##.....##.##.....##....###....########.......##.....#######..###............
-// oof, the above ASCII takes alot of space.
+/*"Many to do, Less You Have to by Naruyoko"
+Hey llo, haxxor! (btw the word "hack" isn't necessarily bad.)
+I can't take responsibility for messing around with code.
+.......##.....##....###....##....##.##....##....########..#######.....########...#######.............
+.......###...###...##.##...###...##..##..##........##....##.....##....##.....##.##.....##............
+.......####.####..##...##..####..##...####.........##....##.....##....##.....##.##.....##............
+.......##.###.##.##.....##.##.##.##....##..........##....##.....##....##.....##.##.....##.####.......
+.......##.....##.#########.##..####....##..........##....##.....##....##.....##.##.....##.####.......
+.......##.....##.##.....##.##...###....##..........##....##.....##....##.....##.##.....##..##........
+.......##.....##.##.....##.##....##....##..........##.....#######.....########...#######..##.........
+.............##.......########..######...######.....##....##..#######..##.....##.....................
+.............##.......##.......##....##.##....##.....##..##..##.....##.##.....##.....................
+.............##.......##.......##.......##............####...##.....##.##.....##.....................
+.............##.......######....######...######........##....##.....##.##.....##.....................
+.............##.......##.............##.......##.......##....##.....##.##.....##.....................
+.............##.......##.......##....##.##....##.......##....##.....##.##.....##.....................
+.............########.########..######...######........##.....#######...#######......................
+.........................##.....##....###....##.....##.########....########..#######.................
+.........................##.....##...##.##...##.....##.##.............##....##.....##................
+.........................##.....##..##...##..##.....##.##.............##....##.....##................
+.........................#########.##.....##.##.....##.######.........##....##.....##................
+.........................##.....##.#########..##...##..##.............##....##.....##................
+.........................##.....##.##.....##...##.##...##.............##....##.....##.###............
+.........................##.....##.##.....##....###....########.......##.....#######..###............
+oof, the above ASCII takes alot of space.*/
 var game;
 function initializevars(){
   game={
@@ -200,8 +200,6 @@ function initializevars(){
       energy_2:false
     },
     autobuy:{
-      existivity:false,
-      existivityon:(function (){return Number(document.getElementById("input.autoconvexisti").value);}),
       existivity:{
         bought:false,
         enable:(function (){return document.getElementById("autobuy.existivity.enable").checked;}),
@@ -266,8 +264,8 @@ function initializevars(){
       smallui:(function (){return document.getElementById("checkbox.smallui").checked;})
     },
     datainfo:{
-      version:"α 0.0.4 patch 4",
-      release:201808092, //YYYYMMDDX
+      version:"α 0.0.5",
+      release:201808151, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -333,20 +331,21 @@ function timeFormat(t){
   return m;
 }
 var cookieaccepted=false;
-function acceptcookie(){
+/*function acceptcookie(){
   cookieaccepted=true;
   document.getElementById("button.confirmcookie").className="hidden";
   document.getElementById("cookienotice").className="hidden";
   document.getElementById("div.cookie").className="";
   saved=new Date();
-}
-function setCookie(cname, cvalue, exdays) { //delete in α 0.0.5 update
+}*/
+function setCookie(cname, cvalue, exdays) {//used only for data migration
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    return String(cvalue);
 } //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 11:39 EDT
-function getCookie(cname) {//delete in α 0.0.5 update
+function getCookie(cname) {//used only for data migration
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -361,8 +360,8 @@ function getCookie(cname) {//delete in α 0.0.5 update
     }
     return "";
 } //code from https://www.w3schools.com/js/js_cookies.asp at 2018/03/18 12:36 EDT
-function savecookie(){//change name
-  if (!cookieaccepted){return;}
+function savecookie(){//used only for data migration
+  //if (!cookieaccepted){return;}
   setCookie("game.currency.existivity",game.currency.existivity,365);
   setCookie("game.currency.existance",game.currency.existance,365);
   setCookie("game.currency.etime",game.currency.etime,365);
@@ -429,15 +428,10 @@ function savecookie(){//change name
   setCookie("game.datainfo.version",game.datainfo.version,365);
   setCookie("game.datainfo.release",game.datainfo.release,365);
   setCookie("game.datainfo.lasttime",game.datainfo.lasttime,365);
-  //localStorage.setItem("save",JSON.stringify(game));
-  //replace with above in α 0.0.5 update
   saved=new Date();
 }
-function loadcookie(){//changename
-  if (!document.cookie){return;}
-  //replace with !localStorage.getItem("save") in α 0.0.5 update
-  //var save=JSON.parse(localStorage.getItem("save"));
-  //if (typeof save.[varname]!=="undefined"){game.[varname]=save.[varname]};
+function loadcookie(){//used only for data migration
+  //if (!document.cookie){return;}
   game.currency.existivity=Number(getCookie("game.currency.existivity"));
   game.currency.existance=Number(getCookie("game.currency.existance"));
   game.currency.etime=Number(getCookie("game.currency.etime"));
@@ -525,14 +519,140 @@ function loadcookie(){//changename
   }
 }
 var wasoffline=true;
-function deletecookie(){//changename
-  if (!window.confirm("Do you REALLY want to reset? No going back!")||!window.confirm("Are you REALLY, ＲＥＡＬＬＹ that sure want to reset? There's seriously no going back!")){return;}
+function deletecookie(force=false){//used only for data migration
+  if (!force&&(!window.confirm("Do you REALLY want to reset? No going back!")||!window.confirm("Are you REALLY, ＲＥＡＬＬＹ that sure want to reset? There's seriously no going back!"))){return;}
   initializevars();
   savecookie();
   setCookie("game.datainfo.lasttime",0,365);
-  //localStorage.removeItem("save");
-  //replace with above in α 0.0.5 update
-  window.location.reload(true);
+  if (!force) window.location.reload(true);
+}
+function savegame(){
+  var save=JSON.parse(JSON.stringify(game));
+  delete save.currency.existability;
+  delete save.currency.convexistiearn;
+  delete save.production;
+  delete save.unlocked.changescr;
+  delete save.unlocked.upgrade.shop;
+  delete save.canbuy;
+  save.upgrade.convexisti_1.enable=game.upgrade.convexisti_1.enable();
+  delete save.upgrade.convexisti_1.ison;
+  save.upgrade.convexisti_2.enable=game.upgrade.convexisti_2.enable();
+  delete save.upgrade.convexisti_2.ison;
+  save.upgrade.word_1.enable=game.upgrade.word_1.enable();
+  delete save.upgrade.word_1.ison;
+  save.autobuy.existivity.enable=game.autobuy.existivity.enable();
+  save.autobuy.existivity.threshold=game.autobuy.existivity.threshold();
+  delete save.autobuy.existivity.ison;
+  save.autobuy.existance.enable=game.autobuy.existance.enable();
+  delete save.autobuy.existance.ison;
+  save.autobuy.etime.enable=game.autobuy.etime.enable();
+  delete save.autobuy.etime.ison;
+  delete save.achievement.arrangement;
+  delete save.achievement.condition;
+  delete save.achievement.name;
+  delete save.achievement.completed;
+  save.option.disableshake=game.option.disableshake();
+  save.option.disablewrap=game.option.disablewrap();
+  save.option.smallui=game.option.smallui();
+  save.datainfo.version=save.datainfo.version.replace("α","alpha");
+  var a=Math.floor(Math.random()*64);
+  localStorage.setItem("MtdLYHt.save",rotbase64(btoa(JSON.stringify(save)),a)+":"+String.fromCharCode(a+64));
+  saved=new Date();
+}
+function loadgame(){
+  var save=localStorage.getItem("MtdLYHt.save");
+  if (!save){
+    if (document.cookie){
+      if (getCookie("game.datainfo.release")>=201808151){
+        alert("Something seems wrong with your old save... Did you modify it?");
+      }
+      alert("Migrating save...");
+      loadcookie();
+      savegame();
+      deletecookie();
+    }
+  }
+  if (save.charAt(save.length-2)!=":"){
+    alert("Invalid save");
+    return false;
+  }
+  try{
+    atob(rotbase64(save.substr(0,save.length-2),-1*(save.charCodeAt(save.length-1))+128));
+  }catch(e){
+    alert("Invalid save");
+    return false;
+  }
+  var decodedsave=JSON.parse(atob(rotbase64(save.substr(0,save.length-2),-1*save.charCodeAt(save.length-1)+128)));
+  if ((decodedsave.datainfo.release>game.datainfo.release)&&confirm("Your save somehow seems to have later version: "+decodedsave.datainfo.version.replace("alpha","α"))){
+
+  }
+  delete decodedsave.datainfo.version;
+  delete decodedsave.datainfo.release;
+  document.getElementById("upgrade.convexisti_1.enable").checked=decodedsave.upgrade.convexisti_1.enable;
+  delete decodedsave.upgrade.convexisti_1.enable;
+  document.getElementById("upgrade.convexisti_2.enable").checked=decodedsave.upgrade.convexisti_2.enable;
+  delete decodedsave.upgrade.convexisti_2.enable;
+  document.getElementById("upgrade.word_1.enable").checked=decodedsave.upgrade.word_1.enable;
+  delete decodedsave.upgrade.word_1.enable;
+  document.getElementById("input.autoconvexisti").value=decodedsave.autobuy.existivity.threshold;
+  delete decodedsave.autobuy.existivity.threshold;
+  document.getElementById("autobuy.existivity.enable").checked=decodedsave.autobuy.existivity.enable;
+  delete decodedsave.autobuy.existivity.enable;
+  document.getElementById("autobuy.existance.enable").checked=decodedsave.autobuy.existance.enable;
+  delete decodedsave.autobuy.existance.enable;
+  document.getElementById("autobuy.etime.enable").checked=decodedsave.autobuy.etime.enable;
+  delete decodedsave.autobuy.etime.enable;
+  document.getElementById("checkbox.disableshake").checked=decodedsave.option.disableshake;
+  delete decodedsave.option.disableshake;
+  document.getElementById("checkbox.disablewrap").checked=decodedsave.option.disablewrap;
+  delete decodedsave.option.disablewrap;
+  document.getElementById("checkbox.smallui").checked=decodedsave.option.smallui;
+  delete decodedsave.option.smallui;
+  function isObject(item){
+    return (item&&typeof item==='object'&&!Array.isArray(item));
+  }
+  function mergeDeep(target,source){
+    let output=Object.assign({},target);
+    if (isObject(target)&&isObject(source)){
+      Object.keys(source).forEach(key=>{
+        if (isObject(source[key])){
+          if (!(key in target))
+            Object.assign(output,{[key]:source[key]});
+          else
+            output[key]=mergeDeep(target[key],source[key]);
+        }else{
+          Object.assign(output,{[key]:source[key]});
+        }
+      });
+    }
+    return output;
+  }//retrieved from https://stackoverflow.com/a/37164538
+  game=mergeDeep(game,decodedsave);
+  saved=new Date();
+  return true;
+}
+function deletegame(force=false){
+  if (!force&&(!window.confirm("Do you REALLY want to reset? No going back!")||!window.confirm("Are you REALLY, ＲＥＡＬＬＹ that sure want to reset? There's seriously no going back!"))){return;}
+  localStorage.removeItem("MtdLYHt.save");
+  if (!force) window.location.reload(true);
+}
+}
+function rotbase64(instr,rot){
+  const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  var outstr="";
+  for (var i=0;i<instr.length;i++){
+    if (["+","/"].includes(instr.charAt(i))){
+      var v=chars.search("\\"+instr.charAt(i));
+    }else{
+      var v=chars.search(instr.charAt(i));
+    }
+    if (v!=-1){
+      outstr+=chars.charAt((v+rot)%64);
+    }else{
+      outstr+=instr.charAt(i);
+    }
+  }
+  return outstr;
 }
 function showhide(x,t){
   toggleclass(x,"hidden",!t);

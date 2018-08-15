@@ -228,18 +228,15 @@
         <div id="div.smallui"><input type="checkbox" id="checkbox.smallui" ckecked> Smaller currency display</div>
       </div>
     </div>
-    <div id="cookie" style="background-color:rgba(200,200,240,0.8);position:fixed;right:0px;bottom:0px;max-height:86px;margin:3px;padding:5px;border-radius:2px;" onmouseover='showhide("cookie_content",true)' onmouseout='showhide("cookie_content",false)'>
+    <div id="save" style="background-color:rgba(200,200,240,0.8);position:fixed;right:0px;bottom:0px;max-height:86px;margin:3px;padding:5px;border-radius:2px;" onmouseover='showhide("save_content",true)' onmouseout='showhide("save_content",false)'>
       <img src="./files/pictures/tinyleftarrow.png" height="24" />
-      <div id="cookie_content" class="hidden" style="position:relative;top:-16px;left:0px;height:80px;width:160px;">
-        <button id="button.confirmcookie" type="button" style="text-align:center;background-color:#ffff80;color:#303030;position:absolute;right:5px;bottom:5px;border:2px solid black;border-radius:4px;" onclick="showhide(&quot;cookienotice&quot;,true)">Accept cookies to<br/>save progresses.</button>
-        <div id="div.cookie" class="hidden">
-          <button id="button.savecookie" type="button" style="text-align:center;position:absolute;right:5px;bottom:60px;background-color:#ffff80;color:#303030;border:1px solid black;border-radius:4px;" onclick="savecookie()">SAVE the Game</button><br>
-          <div id="disp.saved" title="Automatically saves every 60 seconds." style="color:#202020;background-color:#f0f0ff;position:absolute;right:5px;bottom:40px;white-space:nowrap;">Saved NaN seconds ago.</div><br>
-          <button id="button.deletecookie" type="button" style="text-align:center;position:absolute;right:5px;bottom:5px;background-color:#ff4040;color:#303030;border:1px solid black;border-radius:4px;" onclick="deletecookie()">Delete the SAVE</button><br>
-        </div>
+      <div id="save_content" class="hidden" style="position:relative;top:-16px;left:0px;height:80px;width:160px;">
+        <button id="button.savegame" type="button" style="text-align:center;position:absolute;right:5px;bottom:60px;background-color:#ffff80;color:#303030;border:1px solid black;border-radius:4px;" onclick="savegame()">SAVE the Game</button><br>
+        <div id="disp.saved" title="Automatically saves every 60 seconds." style="color:#202020;background-color:#f0f0ff;position:absolute;right:5px;bottom:40px;white-space:nowrap;">Saved NaN seconds ago.</div><br>
+        <button id="button.deletegame" type="button" style="text-align:center;position:absolute;right:5px;bottom:5px;background-color:#ff4040;color:#303030;border:1px solid black;border-radius:4px;" onclick="deletegame()">Delete the SAVE</button><br>
       </div>
     </div>
-    <div id="cookienotice" class="hidden" style="background-color:#d0d0d0;width:80%;height:80%;padding:10px;position:absolute;top:10%;left:10%;overflow:auto;border:2px gray solid;border-radius:2px;">
+    <!--<div id="cookienotice" class="hidden" style="background-color:#d0d0d0;width:80%;height:80%;padding:10px;position:absolute;top:10%;left:10%;overflow:auto;border:2px gray solid;border-radius:2px;">
       <p class="large">Cookie Notice</p>
       <p>
         This notice is to make this website's cookie usage to be GDPR compliant. I know this may be annoying to some people, but please follow me.
@@ -258,7 +255,7 @@
         <button onclick="acceptcookie()" style="background-color:#76e07a;width:150px;float:left;position:relative;left:20%;padding:3px;">Yes, I accept cookie.</button>
         <button onclick="showhide(&quot;cookienotice&quot;,false)" style="background-color:#e07676;width:150px;float:left;position:relative;right:20%;padding:3px;color:#606060;">No, I don't accept cookie.</button>
       </p>
-    </div>
+    </div>-->
     <div id="changelog" class="hidden" style="margin:auto;width:80%;min-width:200px;height:90%;min-height:150px;position:absolute;top:30px;border:2px solid black;background-color:#f0f0f0;">
       <button type="button" onclick="changelogtoggle(false)" style="position:absolute;right:15px;top:10px;">X</button>
       <object type="text/html" data="./changelog.html" style="margin:auto;width:95%;height:85%;position:absolute;top:30px;background-color:#ffffff"></object>
