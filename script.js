@@ -636,7 +636,6 @@ function deletegame(force=false){
   localStorage.removeItem("MtdLYHt.save");
   if (!force) window.location.reload(true);
 }
-}
 function rotbase64(instr,rot){
   const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
   var outstr="";
@@ -1326,7 +1325,7 @@ function changelogtoggle(t){
 var passiveinterval;
 function onload(){
   console.log("Script Initilizing:"+(new Date).getTime());
-  loadsave();
+  loadgame();
   if (!Math.cbrt){ //define Math.cbrt() for older enviroments
     Math.cbrt=function (x){
       var y=Math.pow(Math.abs(x),1/3);
