@@ -570,6 +570,8 @@ function loadgame(){
       loadcookie();
       savegame();
       deletecookie();
+    }else{
+      return false;
     }
   }
   if (save.charAt(save.length-2)!=":"){
