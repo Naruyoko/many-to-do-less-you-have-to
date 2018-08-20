@@ -265,7 +265,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201808151, //YYYYMMDDX
+      release:201808201, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -514,7 +514,7 @@ function loadcookie(){//used only for data migration
     game.datainfo.lasttime=Number(getCookie("game.datainfo.lasttime"));
   }
   if (getCookie("cookieaccepted")){
-    acceptcookie();
+    cookieaccepted=true;
     saved=new Date();
   }
 }
@@ -569,7 +569,7 @@ function loadgame(){
       alert("Migrating save...");
       loadcookie();
       savegame();
-      deletecookie();
+      deletecookie(true);
     }else{
       return false;
     }
@@ -1327,6 +1327,7 @@ function changelogtoggle(t){
 var passiveinterval;
 function onload(){
   console.log("Script Initilizing:"+(new Date).getTime());
+  console.time("took");
   loadgame();
   if (!Math.cbrt){ //define Math.cbrt() for older enviroments
     Math.cbrt=function (x){
@@ -1338,4 +1339,5 @@ function onload(){
   showhide("div.loading",false);
   passiveinterval=setInterval(passive,100);
   console.log("Loaded:"+(new Date).getTime());
+  console.timeEnd("took");
 }
