@@ -265,7 +265,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201808201, //YYYYMMDDX
+      release:201808231, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -336,7 +336,7 @@ var cookieaccepted=false;
   document.getElementById("button.confirmcookie").className="hidden";
   document.getElementById("cookienotice").className="hidden";
   document.getElementById("div.cookie").className="";
-  saved=new Date();
+  saved=new Date().getTime();
 }*/
 function setCookie(cname, cvalue, exdays) {//used only for data migration
     var d = new Date();
@@ -428,7 +428,7 @@ function savecookie(){//used only for data migration
   setCookie("game.datainfo.version",game.datainfo.version,365);
   setCookie("game.datainfo.release",game.datainfo.release,365);
   setCookie("game.datainfo.lasttime",game.datainfo.lasttime,365);
-  saved=new Date();
+  saved=new Date().getTime();
 }
 function loadcookie(){//used only for data migration
   //if (!document.cookie){return;}
@@ -515,7 +515,6 @@ function loadcookie(){//used only for data migration
   }
   if (getCookie("cookieaccepted")){
     cookieaccepted=true;
-    saved=new Date();
   }
 }
 var wasoffline=true;
@@ -557,7 +556,7 @@ function savegame(){
   save.datainfo.version=save.datainfo.version.replace("α","alpha");
   var a=Math.floor(Math.random()*64);
   localStorage.setItem("MtdLYHt.save",rotbase64(btoa(JSON.stringify(save)),a)+":"+String.fromCharCode(a+64));
-  saved=new Date();
+  saved=new Date().getTime();
 }
 function loadgame(){
   var save=localStorage.getItem("MtdLYHt.save");
@@ -585,8 +584,8 @@ function loadgame(){
     return false;
   }
   var decodedsave=JSON.parse(atob(rotbase64(save.substr(0,save.length-2),-1*save.charCodeAt(save.length-1)+128)));
-  if ((decodedsave.datainfo.release>game.datainfo.release)&&confirm("Your save somehow seems to have later version: "+decodedsave.datainfo.version.replace("alpha","α"))){
-
+  if ((decodedsave.datainfo.release>game.datainfo.release)&&!confirm("Your save somehow seems to have later version: "+decodedsave.datainfo.version.replace("alpha","α"))+"\n Do you want to load it anyways?"){
+    return false;
   }
   delete decodedsave.datainfo.version;
   delete decodedsave.datainfo.release;
@@ -630,7 +629,39 @@ function loadgame(){
     return output;
   }//retrieved from https://stackoverflow.com/a/37164538
   game=mergeDeep(game,decodedsave);
-  saved=new Date();
+  return true;
+}
+function exportgame(){
+  savegame();
+  var save=localStorage.getItem("MtdLYHt.save");
+  if (!save) return;
+  var textarea=document.getElementById("clipboard");
+  textarea.value=save;
+  showhide("clipboard",true);
+  textarea.select();
+  document.execCommand("copy");
+  showhide("clipboard",false);
+  alert("Copied to clipboard");
+}
+function importgame(){
+  if (!window.confirm("Do you really want to import? This will overwrite your current save!")) return;
+  var save=window.prompt("Paste your save.");
+  if (!save){
+    alert("Please put something to import.");
+    return false;
+  }
+  if (save.charAt(save.length-2)!=":"){
+    alert("Invalid save");
+    return false;
+  }
+  try{
+    atob(rotbase64(save.substr(0,save.length-2),-1*(save.charCodeAt(save.length-1))+128));
+  }catch(e){
+    alert("Invalid save");
+    return false;
+  }
+  localStorage.setItem("MtdLYHt.save",save);
+  window.location.reload(true);
   return true;
 }
 function deletegame(force=false){
@@ -774,7 +805,7 @@ function updatecurr(){
 var saved=false;
 function updateautosave(){
   if (!saved){return;}
-  if (d.getTime()-saved.getTime()>=60000){savecookie();}
+  if (d.getTime()-saved>=60000){savegame();}
 }
 function updatedisp(){
   if (game.currency.convexistiearn.total()!=1){
@@ -921,7 +952,7 @@ function updatedisp(){
   }else{
     document.getElementById("disp.currency").style.zoom="";
   }
-  if (saved){document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved.getTime())/10)/100+" seconds ago";}
+  if (saved){document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved)/10)/100+" seconds ago";}
 }
 function updatebutton(){
   toggleclass("button.convexisti","unavailable",!game.canbuy.existance());
@@ -1329,6 +1360,7 @@ function onload(){
   console.log("Script Initilizing:"+(new Date).getTime());
   console.time("took");
   loadgame();
+  saved=new Date().getTime();
   if (!Math.cbrt){ //define Math.cbrt() for older enviroments
     Math.cbrt=function (x){
       var y=Math.pow(Math.abs(x),1/3);
