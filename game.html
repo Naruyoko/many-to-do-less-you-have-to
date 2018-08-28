@@ -63,6 +63,7 @@
       </div>
       <div style="border:black 1px solid;background-color:white;position:absolute;top:0px;right:0px;width:300px;padding:5px;text-align:center;" id="div.explosion" class="hidden">
         <p style="color:darkgreen">You have <span id="disp.explosion" class="middle"></span> explosion points.</p>
+        <p id="div.residue" style="color:brown" class="hidden">There are <span id="disp.residue" class="middle"></span> residue, <span class="middle"><span id="disp.residue.production"></span>/s</span>.</p>
         <div id="upgrade.etime_1" class="box" style="padding:3px;margin:2px;">
           <p>Speed it up</p>
           <p>Double the effect of experience, and experiencing gives five more existances.</p>
@@ -79,6 +80,11 @@
           <button id="button.upgrade.existance_2" onclick="buy_upgrade_existance_2()">Cost: 4 Explosion points</button>
           <div id="div.upgrade.existance_2.bottom" class="hidden" style="white-space:nowrap;">Boost: +
           <span class="large" id="disp.upgrade.existance_2"></span></div>
+        </div>
+        <div id="unlock.residue" class="box hidden" style="padding:3px;margin:2px;">
+          <p>Unlock residue</p>
+          <p>Grows based on the existivity.</p>
+          <button id="button.unlock.residue" onclick="buy_unlock_residue()">Cost: 1,000 Explosion points</button>
         </div>
       </div>
     </div>

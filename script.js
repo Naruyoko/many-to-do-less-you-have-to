@@ -74,7 +74,8 @@ function initializevars(){
       genworddelay:1,
       word:0,
       energy:0,
-      explosion:0
+      explosion:0,
+      residue:[0,false]
     },
     production:{
       existivity:0.01,
@@ -120,7 +121,8 @@ function initializevars(){
         if (game.achievement.done[36]&&game.achievement.done[37]){r*=3}
         return r;
       }),
-      energy:0
+      energy:0,
+      residue:[-Infinity,false]
     },
     unlocked:{
       existance:false,
@@ -128,6 +130,7 @@ function initializevars(){
       thought:false,
       energy:false,
       explosion:false,
+      residue:false,
       convexista:false,
       convetime:false,
       convthought:false,
@@ -160,6 +163,7 @@ function initializevars(){
       }),
       explosion:(function (){return (game.currency.energy>=5)&&(game.currency.existivity>=1e+9);}),
       upgrade_convexisti_1:(function (){return (game.currency.existivity>=200000)&&!game.upgrade.convexisti_1.bought;}),
+      residue:(function (){return !game.unlocked.residue&&(game.currency.explosion>=1000);}),
       upgrade_convexisti_2:(function (){return (game.currency.existance>=150)&&!game.upgrade.convexisti_2.bought;}),
       upgrade_existability_1:(function (){return (game.currency.existance>=4000)&&!game.upgrade.existability_1;}),
       upgrade_existability_2:(function (){return (game.currency.etime>=20)&&(game.currency.existance>=700000)&&!game.upgrade.existability_2;}),
@@ -265,61 +269,135 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201808231, //YYYYMMDDX
+      release:201808281, //YYYYMMDDX
       lasttime:0
     }
   };
 }
 initializevars();
-function notation(i){
-  if (isNaN(i)){return "NaN";}
-  if (!isFinite(i)){return "Infinity";}
-  if (i<1000){return String(i);}
-  if ((i>=1000)&&(i<1e+6)){
-    var l;
-    var r=Math.floor(i%1000);
-    l=String(r);
-    if (r<10){l="00"+l;}
-    if ((r>=10)&&(r<100)){l="0"+l;}
-    return Math.floor(i/1000)+","+l;
-  }
-  var numbernames=["thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion","decillion","undecillion","duodecillion","tredecillion","quattuordecillion","quindecillion","sexdecillion","septendecillion","octodecillion","novemdecillion"];
-  var namefragments=[["","un","duo","tre","quattuor","quinqua","se","septe","outo","nove"],["","deci","viginti","triginta","quadraginta","quinquaginta","sexaginta","septuaginta","octoginta","nonaginta"],["","centi","ducenti","trecenti","quadringenti","quingenti","sesgenti","septingenti","octingenti","nongenti"],["","milli","micri","nani","pici","femti","atti","zepti","yocti"]];
-  var e=3*Math.floor(Math.log10(i)/3);
-  var l=Math.floor(e/3)-1;
-  if (l<=19){
-    return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+numbernames[l];
-  }else{
-    var r="";
-    var s;
-    var mu;
-    for (var g=Math.floor(Math.log10(l)/3);g>=0;g--){
-      var mu=Math.floor(l/Math.pow(1000,g))%1000;
-      s="";
-      var d=[mu%10,Math.floor(mu%100/10),Math.floor(mu/100)];
-      s=namefragments[0][d[0]];
-      if ([3,6].includes(d[0])&&(((d[1]!=0)&&[2,3,4,5].includes(d[1]))||((d[1]==0)&&[3,4].includes(d[2]==3)))){
-        s+="s";
-      }
-      if ((d[0]==6)&&(((d[1]!=0)&&(d[1]==8))||((d[1]==0)&&(d[2]==8)))){
-        s+="x";
-      }
-      if ([7,9].includes(d[0])&&(((d[1]!=0)&&[1,3,4,5,6,7].includes(d[1]))||((d[1]==0)&&[2,3,4,5,6,7].includes(d[2])))){
-        s+="n";
-      }
-      if ([7,9].includes(d[0])&&(((d[1]!=0)&&((d[1]==2)||(d[1]==8)))||((d[1]==0)&&(d[2]==8)))){
-        s+="m";
-      }
-      s+=namefragments[1][d[1]]+namefragments[2][d[2]]+namefragments[3][g];
-      r+=s;
+function notation(i,op=false){
+  if (typeof i=="number"){
+    if (isNaN(i)){return "NaN";}
+    if (!isFinite(i)){return "Infinity";}
+    if (i<1000){return String(i);}
+    if ((i>=1000)&&(i<1e+6)){
+      var l;
+      var r=Math.floor(i%1000);
+      l=String(r);
+      if (r<10){l="00"+l;}
+      if ((r>=10)&&(r<100)){l="0"+l;}
+      return Math.floor(i/1000)+","+l;
     }
-    var w=r.charAt(r.length-1);
-    if ((w=="a")||(w=="i")){
-      r=r.substr(0,r.length-1);
+    var numbernames=["thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion","decillion","undecillion","duodecillion","tredecillion","quattuordecillion","quindecillion","sexdecillion","septendecillion","octodecillion","novemdecillion"];
+    var namefragments=[["","un","duo","tre","quattuor","quinqua","se","septe","outo","nove"],["","deci","viginti","triginta","quadraginta","quinquaginta","sexaginta","septuaginta","octoginta","nonaginta"],["","centi","ducenti","trecenti","quadringenti","quingenti","sesgenti","septingenti","octingenti","nongenti"],["","milli","micri","nani","pici","femti","atti","zepti","yocti"]];
+    var e=3*Math.floor(Math.log10(i)/3);
+    var l=Math.floor(e/3)-1;
+    if (l<=19){
+      return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+numbernames[l];
+    }else{
+      var r="";
+      var s;
+      var mu;
+      for (var g=Math.floor(Math.log10(l)/3);g>=0;g--){
+        var mu=Math.floor(l/Math.pow(1000,g))%1000;
+        s="";
+        var d=[mu%10,Math.floor(mu%100/10),Math.floor(mu/100)];
+        s=namefragments[0][d[0]];
+        if ([3,6].includes(d[0])&&(((d[1]!=0)&&[2,3,4,5].includes(d[1]))||((d[1]==0)&&[3,4].includes(d[2]==3)))){
+          s+="s";
+        }
+        if ((d[0]==6)&&(((d[1]!=0)&&(d[1]==8))||((d[1]==0)&&(d[2]==8)))){
+          s+="x";
+        }
+        if ([7,9].includes(d[0])&&(((d[1]!=0)&&[1,3,4,5,6,7].includes(d[1]))||((d[1]==0)&&[2,3,4,5,6,7].includes(d[2])))){
+          s+="n";
+        }
+        if ([7,9].includes(d[0])&&(((d[1]!=0)&&((d[1]==2)||(d[1]==8)))||((d[1]==0)&&(d[2]==8)))){
+          s+="m";
+        }
+        s+=namefragments[1][d[1]]+namefragments[2][d[2]]+namefragments[3][g];
+        r+=s;
+      }
+      var w=r.charAt(r.length-1);
+      if ((w=="a")||(w=="i")){
+        r=r.substr(0,r.length-1);
+      }
+      r+="illion";
+      return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+r;
     }
-    r+="illion";
-    return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+r;
-  }
+  }else if (typeof i=="object"){
+    var inum=Number(exp.text(i,"e"));
+    if (isNaN(i[0])){return "NaN";}
+    if (!isFinite(i[0])){return i[0]>0?((i[1]?"-":"")+"Infinity"):"0";}
+    if (inum<1000){return String(inum);}
+    if ((inum>=1000)&&(inum<1e+6)){
+      var h=inum;
+      var l;
+      var r=Math.floor(h%1000);
+      l=String(r);
+      if (r<10){l="00"+l;}
+      if ((r>=10)&&(r<100)){l="0"+l;}
+      return Math.floor(h/1000)+","+l;
+    }
+    if ((i[0]>=3e27+3)&&!op){
+      var e=3*Math.floor(i[0]/3);
+      return Math.floor(Number(exp.text(exp.div(i,[e,false]),"e"))*1000)/1000+"E+"+e;
+    }
+    var numbernames=["thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion","decillion","undecillion","duodecillion","tredecillion","quattuordecillion","quindecillion","sexdecillion","septendecillion","octodecillion","novemdecillion"];
+    var namefragments=[["","un","duo","tre","quattuor","quinqua","se","septe","outo","nove"],["","deci","viginti","triginta","quadraginta","quinquaginta","sexaginta","septuaginta","octoginta","nonaginta"],["","centi","ducenti","trecenti","quadringenti","quingenti","sesgenti","septingenti","octingenti","nongenti"],["","milli","micro","nano","pico","femto","atto","zepto","yocto"],["","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"],["twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety","onehundred"]];
+    var e=3*Math.floor(i[0]/3);
+    var l=Math.floor(e/3)-1;
+    console.log(l);
+    if (l<=19){
+      return  Math.floor(Number(exp.text(exp.div(i,[e,false]),"e"))*1000)/1000+" "+numbernames[l];
+    }else{
+      var r="";
+      var s;
+      var mu;
+      for (var g=Math.floor(Math.log10(l)/3);g>=0;g--){
+        var mu=Math.floor(l/Math.pow(1000,g))%1000;
+        s="";
+        if ((mu===1)&&(g!==0)){
+          s="";
+        }else if ((mu<=19)&&(g===0)){
+          s=numbernames[mu];
+        }else{
+          var d=[mu%10,Math.floor(mu%100/10),Math.floor(mu/100)];
+          s=namefragments[0][d[0]];
+          if ([3,6].includes(d[0])&&(((d[1]!=0)&&[2,3,4,5].includes(d[1]))||((d[1]==0)&&[3,4].includes(d[2]==3)))){
+            s+="s";
+          }
+          if ((d[0]==6)&&(((d[1]!=0)&&(d[1]==8))||((d[1]==0)&&(d[2]==8)))){
+            s+="x";
+          }
+          if ([7,9].includes(d[0])&&(((d[1]!=0)&&[1,3,4,5,6,7].includes(d[1]))||((d[1]==0)&&[2,3,4,5,6,7].includes(d[2])))){
+            s+="n";
+          }
+          if ([7,9].includes(d[0])&&(((d[1]!=0)&&((d[1]==2)||(d[1]==8)))||((d[1]==0)&&(d[2]==8)))){
+            s+="m";
+          }
+          s+=namefragments[1][d[1]]+namefragments[2][d[2]];
+        }
+        if (mu!==0){
+          if (op){
+            if (g<=19){
+              r+=s+namefragments[4][g];
+            }else{
+              r+=s+namefragments[5][Math.floor(g/10)-2]+namefragments[4][g%10];
+            }
+          }else{
+            r+=s+namefragments[3][g];
+          }
+        }
+      }
+      var w=r.charAt(r.length-1);
+      if ((w=="a")||(w=="i")){
+        r=r.substr(0,r.length-1);
+      }
+      r+="illion";
+      return Math.floor(Number(exp.text(exp.div(i,[e,false]),"e"))*1000)/1000+" "+r;
+    }
+}
 }
 function timeFormat(t){
   var m="";
@@ -738,7 +816,7 @@ function tick(){
   updateautosave();
 }
 function updateauto(){
-  if (game.autobuy.existivity.ison()&&(game.currency.existivity>=game.autobuy.existivityon())&&!isNaN(game.autobuy.existivityon())){
+  if (game.autobuy.existivity.ison()&&(game.currency.existivity>=game.autobuy.existivity.threshold())&&!isNaN(game.autobuy.existivity.threshold())){
     convexisti();
   }
   if (game.autobuy.existance.ison()){
@@ -759,6 +837,11 @@ function updateprod(){
   }
   if (game.upgrade.energy_1){game.production.etime*=2;}
   if (game.upgrade.energy_2){game.production.etime*=Math.pow(Math.log10(6*game.currency.word+10.611),2.26)-0.1*Math.pow(2*game.currency.word*2+3,-0.36);}
+  if (game.unlocked.residue){
+    game.production.residue=exp.pow(exp.conv(game.currency.existivity),exp.conv(1/3));
+  }else{
+    game.production.residue=[-Infinity,false];
+  }
 }
 function updatecurr(){
   var f=game.currency.existivity;
@@ -801,6 +884,7 @@ function updatecurr(){
   }
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
+  game.currency.residue=exp.add(game.currency.residue,exp.mult(game.production.residue,exp.conv(timeelapsed)));
 }
 var saved=false;
 function updateautosave(){
@@ -867,6 +951,11 @@ function updatedisp(){
     showhide("div.status.explosion",true);
     document.getElementById("disp.explosion").innerHTML=notation(game.currency.explosion);
     document.getElementById("disp.status.explosion").innerHTML=notation(game.status.explosion);
+  }
+  if (game.unlocked.residue){
+    showhide("div.residue",true);
+    document.getElementById("disp.residue").innerHTML=game.currency.residue[0]>=3?notation(game.currency.residue):(Math.pow(10,game.currency.residue[0]).toFixed(3));
+    document.getElementById("disp.residue.production").innerHTML=game.production.residue[0]>=3?notation(game.production.residue):(Math.pow(10,game.production.residue[0]).toFixed(3));
   }
   document.getElementById("disp.status.timeplayed").innerHTML=timeFormat(game.status.timeplayed);
   document.getElementById("disp.status.totaltime").innerHTML=timeFormat(game.status.totaltime);
@@ -1001,6 +1090,7 @@ function updatebutton(){
   toggleclass("button.upgrade.convthought_1","unavailable",!game.canbuy.upgrade_convthought_1());
   toggleclass("button.upgrade.energy_1","unavailable",!game.canbuy.upgrade_energy_1());
   toggleclass("button.upgrade.energy_2","unavailable",!game.canbuy.upgrade_energy_2());
+  toggleclass("button.unlock.residue","unavailable",!game.canbuy.residue());
   if (game.unlocked.changescr()){showhide("changescr",true);}
   if (game.unlocked.upgrade.shop()){document.getElementById("button.changescr_shop_upgrade").className="changescr";}
   if (game.unlocked.upgrade.convexisti_1){showhide("upgrade.convexisti_1",true);}
@@ -1013,6 +1103,7 @@ function updatebutton(){
   if (game.unlocked.upgrade.convthought_1){showhide("upgrade.convthought_1",true);}
   if (game.upgrade.etime_1){showhide("upgrade.energy_1",true);}
   if (game.upgrade.energy_1){showhide("upgrade.existance_2",true);}
+  if (game.status.explosion>=10){showhide("unlock.residue",true);}
   if (game.unlocked.autobuyshop){showhide("button.changescr_shop_autoconv",true);}
   if (game.achievement.done[4]){showhide("button.changescr_status",true);}
   if (game.achievement.done[6]){showhide("button.changescr_achievement",true);}
@@ -1269,6 +1360,11 @@ function buy_upgrade_energy_2(){
   if (!game.canbuy.upgrade_energy_2()){return;}
   game.currency.word-=500;
   game.upgrade.energy_2=true;
+}
+function buy_unlock_residue(){
+  if (!game.canbuy.residue()){return;}
+  game.currency.explosion-=1000;
+  game.unlocked.residue=true;
 }
 function buyautoconvexisti(){
   if (!game.canbuy.autoconvexisti()){return;}
