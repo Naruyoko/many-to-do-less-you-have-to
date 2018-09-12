@@ -631,9 +631,8 @@ function savegame(){
   save.option.disableshake=game.option.disableshake();
   save.option.disablewrap=game.option.disablewrap();
   save.option.smallui=game.option.smallui();
-  save.datainfo.version=save.datainfo.version.replace("α","alpha");
   var a=Math.floor(Math.random()*64);
-  localStorage.setItem("MtdLYHt.save",rotbase64(btoa(JSON.stringify(save)),a)+":"+String.fromCharCode(a+64));
+  localStorage.setItem("MtdLYHt.save",encodedata(save));
   saved=new Date().getTime();
 }
 function loadgame(){
@@ -651,18 +650,13 @@ function loadgame(){
       return false;
     }
   }
-  if (save.charAt(save.length-2)!=":"){
-    alert("Invalid save");
-    return false;
-  }
   try{
-    atob(rotbase64(save.substr(0,save.length-2),-1*(save.charCodeAt(save.length-1))+128));
+    var decodedsave=decodedata(save);
   }catch(e){
-    alert("Invalid save");
+    alert("Invalid save!");
     return false;
   }
-  var decodedsave=JSON.parse(atob(rotbase64(save.substr(0,save.length-2),-1*save.charCodeAt(save.length-1)+128)));
-  if ((decodedsave.datainfo.release>game.datainfo.release)&&!confirm("Your save somehow seems to have later version: "+decodedsave.datainfo.version.replace("alpha","α"))+"\n Do you want to load it anyways?"){
+  if ((decodedsave.datainfo.release>game.datainfo.release)&&!confirm("Your save somehow seems to have later version: "+decodedsave.datainfo.version+"\n Do you want to load it anyways?"){
     return false;
   }
   delete decodedsave.datainfo.version;
@@ -746,23 +740,6 @@ function deletegame(force=false){
   if (!force&&(!window.confirm("Do you REALLY want to reset? No going back!")||!window.confirm("Are you REALLY, ＲＥＡＬＬＹ that sure want to reset? There's seriously no going back!"))){return;}
   localStorage.removeItem("MtdLYHt.save");
   if (!force) window.location.reload(true);
-}
-function rotbase64(instr,rot){
-  const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-  var outstr="";
-  for (var i=0;i<instr.length;i++){
-    if (["+","/"].includes(instr.charAt(i))){
-      var v=chars.search("\\"+instr.charAt(i));
-    }else{
-      var v=chars.search(instr.charAt(i));
-    }
-    if (v!=-1){
-      outstr+=chars.charAt((v+rot)%64);
-    }else{
-      outstr+=instr.charAt(i);
-    }
-  }
-  return outstr;
 }
 function showhide(x,t){
   toggleclass(x,"hidden",!t);
