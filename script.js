@@ -269,7 +269,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201809121, //YYYYMMDDX
+      release:201809122, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -651,12 +651,12 @@ function loadgame(){
     }
   }
   try{
-    var decodedsave=decodedata(save);
+    var decodedsave=JSON.parse(decodedata(save));
   }catch(e){
     alert("Invalid save!");
     return false;
   }
-  if ((decodedsave.datainfo.release>game.datainfo.release)&&!confirm("Your save somehow seems to have later version: "+decodedsave.datainfo.version+"\n Do you want to load it anyways?"){
+  if ((decodedsave.datainfo.release>game.datainfo.release)&&!confirm("Your save somehow seems to have later version: "+decodedsave.datainfo.version+"\n Do you want to load it anyways?")){
     return false;
   }
   delete decodedsave.datainfo.version;
