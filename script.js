@@ -269,7 +269,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201808281, //YYYYMMDDX
+      release:201809121, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -838,7 +838,7 @@ function updateprod(){
   if (game.upgrade.energy_1){game.production.etime*=2;}
   if (game.upgrade.energy_2){game.production.etime*=Math.pow(Math.log10(6*game.currency.word+10.611),2.26)-0.1*Math.pow(2*game.currency.word*2+3,-0.36);}
   if (game.unlocked.residue){
-    game.production.residue=exp.pow(exp.conv(game.currency.existivity),exp.conv(1/3));
+    game.production.residue=exp.pow(exp.conv(game.currency.existivity===0?game.production.existivity*timeelapsed:game.currency.existivity),exp.conv(1/3));
   }else{
     game.production.residue=[-Infinity,false];
   }
