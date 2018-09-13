@@ -347,7 +347,7 @@ function notation(i,op=false){
     var namefragments=[["","un","duo","tre","quattuor","quinqua","se","septe","outo","nove"],["","deci","viginti","triginta","quadraginta","quinquaginta","sexaginta","septuaginta","octoginta","nonaginta"],["","centi","ducenti","trecenti","quadringenti","quingenti","sesgenti","septingenti","octingenti","nongenti"],["","milli","micro","nano","pico","femto","atto","zepto","yocto"],["","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"],["twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety","onehundred"]];
     var e=3*Math.floor(i[0]/3);
     var l=Math.floor(e/3)-1;
-    console.log(l);
+    //console.log(l);
     if (l<=19){
       return  Math.floor(Number(exp.text(exp.div(i,[e,false]),"e"))*1000)/1000+" "+numbernames[l];
     }else{
@@ -631,8 +631,7 @@ function savegame(){
   save.option.disableshake=game.option.disableshake();
   save.option.disablewrap=game.option.disablewrap();
   save.option.smallui=game.option.smallui();
-  var a=Math.floor(Math.random()*64);
-  localStorage.setItem("MtdLYHt.save",encodedata(save));
+  localStorage.setItem("MtdLYHt.save",encodedata(JSON.stringify(save)));
   saved=new Date().getTime();
 }
 function loadgame(){
