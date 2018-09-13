@@ -34,6 +34,9 @@ function initializevars(){
           if (game.upgrade.existability_1){r+=game.currency.existability.upgrade_existability_1();}
           if (game.upgrade.existability_2){r+=game.currency.existability.upgrade_existability_2();}
           if (game.upgrade.existance_2){r+=game.currency.existability.upgrade_existance_2();}
+          if (game.upgrade.existability_1){r=game.currency.existability.upgrade_existability_1(r);}
+          if (game.upgrade.existability_2){r=game.currency.existability.upgrade_existability_2(r);}
+          if (game.upgrade.existance_2){r=game.currency.existability.upgrade_existance_2(r);}
           return r;
         }),
         base:(function (){
@@ -46,14 +49,20 @@ function initializevars(){
         upgrade_existability_1:(function (){
           var b=game.currency.existability.base();
           return Math.cbrt(b)-b;
+        upgrade_existability_1:(function (r){
+          return game.upgrade.existability_1?Math.cbrt(r):r;
         }),
         upgrade_existability_2:(function (){
           var b=game.currency.existability.base()+game.currency.existability.upgrade_existability_1();
           return Math.cbrt(b)-b;
+        upgrade_existability_2:(function (r){
+          return game.upgrade.existability_1?Math.cbrt(r):r;
         }),
         upgrade_existance_2:(function (){
           var b=game.currency.existability.base()+game.currency.existability.upgrade_existability_1()+game.currency.existability.upgrade_existability_2();
           return Math.pow(b,1/4)-b;
+        upgrade_existance_2:(function (r){
+          return game.upgrade.existability_1?Math.pow(r,1/4):r;
         })
       },
       convexistiearn:{
@@ -631,6 +640,10 @@ function savegame(){
   save.option.disableshake=game.option.disableshake();
   save.option.disablewrap=game.option.disablewrap();
   save.option.smallui=game.option.smallui();
+<<<<<<< HEAD
+=======
+  var a=Math.floor(Math.random()*64);
+>>>>>>> e317b115e1845027f597aa5279a0dedb949ab746
   localStorage.setItem("MtdLYHt.save",encodedata(JSON.stringify(save)));
   saved=new Date().getTime();
 }
