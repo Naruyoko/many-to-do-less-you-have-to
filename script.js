@@ -632,7 +632,7 @@ function savegame(){
   save.option.disablewrap=game.option.disablewrap();
   save.option.smallui=game.option.smallui();
   var a=Math.floor(Math.random()*64);
-  localStorage.setItem("MtdLYHt.save",encodedata(save));
+  localStorage.setItem("MtdLYHt.save",encodedata(JSON.stringify(save)));
   saved=new Date().getTime();
 }
 function loadgame(){
