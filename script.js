@@ -628,10 +628,6 @@ function savegame(){
   save.option.disableshake=game.option.disableshake();
   save.option.disablewrap=game.option.disablewrap();
   save.option.smallui=game.option.smallui();
-<<<<<<< HEAD
-=======
-  var a=Math.floor(Math.random()*64);
->>>>>>> e317b115e1845027f597aa5279a0dedb949ab746
   localStorage.setItem("MtdLYHt.save",encodedata(JSON.stringify(save)));
   saved=new Date().getTime();
 }
