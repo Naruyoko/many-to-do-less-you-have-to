@@ -31,9 +31,9 @@ function initializevars(){
       existability:{
         total:(function (){
           var r=game.currency.existability.base();
-          if (game.upgrade.existability_1){r=game.currency.existability.upgrade_existability_1(r);}
-          if (game.upgrade.existability_2){r=game.currency.existability.upgrade_existability_2(r);}
-          if (game.upgrade.existance_2){r=game.currency.existability.upgrade_existance_2(r);}
+          if (game.upgrade.existability_1){r=game.currency.existability.upgrade_existability_1(r);
+          if (game.upgrade.existability_2){r=game.currency.existability.upgrade_existability_2(r);
+          if (game.upgrade.existance_2){r=game.currency.existability.upgrade_existance_2(r);
           return r;
         }),
         base:(function (){
@@ -871,6 +871,11 @@ function updatedisp(){
   }else{
     showhide("div.disp.existivity2",false);
   }
+  var exa=[];
+  exa.push(game.currency.existability.base());
+  exa.push(game.currency.existability.upgrade_existability_1(exa[0]));
+  exa.push(game.currency.existability.upgrade_existability_2(exa[1]));
+  exa.push(game.currency.existability.upgrade_existance_2(exa[2]));
   var m="";
   if ((game.currency.existabilityboost)&&!game.upgrade.convexisti_1.ison()){
     m="<span style=\"color:#009933\">(+"+Math.round(game.currency.existabilityboost*1000)/10+"%)</span>";
@@ -944,12 +949,12 @@ function updatedisp(){
   }
   if (game.upgrade.existability_1){
     showhide("div.upgrade.existability_1.bottom",true);
-    document.getElementById("disp.upgrade.existability_1").innerHTML=Math.round(game.currency.existability.upgrade_existability_1()*1000)/10+"%";
+    document.getElementById("disp.upgrade.existability_1").innerHTML=Math.round((exa[1]-exa[0])*1000)/10+"%";
     document.getElementById("button.upgrade.existability_1").innerHTML="Bought";
   }
   if (game.upgrade.existability_2){
     showhide("div.upgrade.existability_2.bottom",true);
-    document.getElementById("disp.upgrade.existability_2").innerHTML=Math.round(game.currency.existability.upgrade_existability_2()*1000)/10+"%";
+    document.getElementById("disp.upgrade.existability_2").innerHTML=Math.round((exa[2]-exa[1])*1000)/10+"%";
     document.getElementById("button.upgrade.existability_2").innerHTML="Bought";
   }
   if (game.upgrade.existance_1){
@@ -958,7 +963,7 @@ function updatedisp(){
   }
   if (game.upgrade.existance_2){
     showhide("div.upgrade.existance_2.bottom",true);
-    document.getElementById("disp.upgrade.existance_2").innerHTML=Math.round(game.currency.existability.upgrade_existance_2()*1000)/10+"%";
+    document.getElementById("disp.upgrade.existance_2").innerHTML=Math.round((exa[3]-exa[2])*1000)/10+"%";
     document.getElementById("button.upgrade.existance_2").innerHTML="Bought";
   }
   if (game.upgrade.etime_1){
