@@ -31,9 +31,9 @@ function initializevars(){
       existability:{
         total:(function (){
           var r=game.currency.existability.base();
-          if (game.upgrade.existability_1){r=game.currency.existability.upgrade_existability_1(r);
-          if (game.upgrade.existability_2){r=game.currency.existability.upgrade_existability_2(r);
-          if (game.upgrade.existance_2){r=game.currency.existability.upgrade_existance_2(r);
+          if (game.upgrade.existability_1){r=game.currency.existability.upgrade_existability_1(r)};
+          if (game.upgrade.existability_2){r=game.currency.existability.upgrade_existability_2(r)};
+          if (game.upgrade.existance_2){r=game.currency.existability.upgrade_existance_2(r)};
           return r;
         }),
         base:(function (){
