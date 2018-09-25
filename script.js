@@ -37,12 +37,12 @@ function initializevars(){
           return r;
         }),
         base:(function (){
-          if (!game.upgrade.convexisti_1.ison()&&!game.upgrade.convexisti_3.ison()){
+          if (game.upgrade.convexisti_1.ison()&&game.upgrade.convexisti_3.ison()){
             return Math.pow(Math.sin(Math.pow(game.currency.existivity,0.412)/51.9372)/(10.2+Math.exp(Math.log(Math.pow(game.currency.existivity,0.34))/Math.log(6.72)))+1/(1.322+Math.exp(-Math.log(Math.pow(game.currency.existivity,0.69)/133742)/Math.log(1.86))),42*Math.E);
-          }else if (!game.upgrade.convexisti_1.ison()){
-            return (2/(1+Math.exp(-game.currency.existivity))-1)*(1-game.currency.existabilityboost)+game.currency.existabilityboost;
-          }else{
+          }else if (game.upgrade.convexisti_1.ison()){
             return Math.pow(Math.log(Math.sqrt(game.currency.existivity+1)),1.35)/(10+Math.exp(game.currency.convexistiearn.upgrade_convexisti_1()/50));
+          }else{
+            return (2/(1+Math.exp(-game.currency.existivity))-1)*(1-game.currency.existabilityboost)+game.currency.existabilityboost;
           }
         }),
         upgrade_existability_1:(function (r){
@@ -275,7 +275,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201809122, //YYYYMMDDX
+      release:201809251, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -395,10 +395,10 @@ function notation(i){
 function timeFormat(t){
   var m="";
   if (t>=86400*365){m+=notation(Math.floor(t/(86400*365)))+" years ";}
-  if (t>=86400){m+=Math.floor(t/86400&365)+" days ";}
+  if (t>=86400){m+=Math.floor(t/86400%365)+" days ";}
   if (t>=3600){m+=Math.floor(t/3600%24)+" hours ";}
   if (t>=60){m+=Math.floor(t/60%60)+" minutes ";}
-  if (t>=10){m+=Math.floor(t%60)+" seconds";}else{m=t.toFixed(4)+" seconds";}
+  if (t>=10){m+=Math.floor(t%60)+" seconds";}else{m=t.toFixed(3)+" seconds";}
   return m;
 }
 var cookieaccepted=false;
@@ -924,7 +924,20 @@ function updatedisp(){
     showhide("div.disp.energy",true);
     showhide("div.status.energy",true);
     document.getElementById("disp.energy").innerHTML=notation(game.currency.energy);
-    document.getElementById("disp.energy2").innerHTML=notation(Math.round(game.production.etime*1000)/1000);
+    document.getElementById("disp.energy2").innerHTML=game.production.etime>=0?"experience":"unexperience";
+    var t=Math.abs(game.production.etime);
+    var i;
+    if (t===0){
+      i="<span class=\"large\">0</span> seconds";
+    }else if (t<1/600){
+      i="<span class=\"large\">"+Math.floor(game.production.etime*3600000)/1000+"</span> seconds per <span class=\"medium\">hour</span>";
+    }else if (t<0.1){
+      i="<span class=\"large\">"+Math.floor(game.production.etime*60000)/1000+"</span> seconds per <span class=\"medium\">minute</span>";
+    }else{
+      i="<span class=\"large\">"+Math.floor(game.production.etime*100)/100+"</span> seconds per <span class=\"medium\">second</span>";
+    }
+    document.getElementById("disp.energy3").innerHTML=i;
+    document.getElementById("disp.energy4").innerHTML=t===0?"1 per ∞ seconds":("1 per "+timeFormat(1/game.production.etime));
     document.getElementById("disp.status.energy").innerHTML=notation(game.status.energy);
   }
   if (game.unlocked.explosion){
