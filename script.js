@@ -301,9 +301,7 @@ function notation(i){
     if (l<=19){
       return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+numbernames[l];
     }else{
-      var r="";
-      var s;
-      s="";
+      var s="";
       var d=[l%10,Math.floor(l%100/10),Math.floor(l/100)];
       s=namefragments[0][d[0]];
       if ([3,6].includes(d[0])&&(((d[1]!=0)&&[2,3,4,5].includes(d[1]))||((d[1]==0)&&[3,4].includes(d[2]==3)))){
@@ -319,12 +317,12 @@ function notation(i){
         s+="m";
       }
       s+=namefragments[1][d[1]]+namefragments[2][d[2]];
-      var w=r.charAt(r.length-1);
+      var w=s.charAt(s.length-1);
       if ((w=="a")||(w=="i")){
-        r=r.substr(0,r.length-1);
+        s=s.substr(0,s.length-1);
       }
-      r+="illion";
-      return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+r;
+      s+="illion";
+      return Math.floor(i/Math.pow(10,e)*1000)/1000+" "+s;
     }
   }else if (typeof i=="object"){
     var inum=Number(exp.text(i,"e"));
