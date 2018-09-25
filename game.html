@@ -19,6 +19,8 @@
     <script src="https://naruyoko.github.io/tests/encode/rotcode/rotcode.js"></script>
     <script src="https://naruyoko.github.io/tests/rot/base64/base64rot.js"></script>
     <script src="https://naruyoko.github.io/tests/expMath/expMath.js"></script>
+    <script src="https://naruyoko.github.io/tests/notation/normalsmall.js"></script>
+    <script src="https://naruyoko.github.io/tests/notation/normallarge.js"></script>
     <script src="./script.js"></script>
   </head>
   <body onload="onload()">
@@ -153,6 +155,21 @@
         <p>Boosts existivity production by existances by 5 times.<br>
         <span style="font-size:12px;">This is equivalent to <span id="disp.upgrade.existance_1">8.82747</span> seconds of experienced time.</span></p>
         <button id="button.upgrade.existance_1" type="button" onclick="buy_upgrade_existance_1()">Cost: 1 joule of energy</button>
+      </div>
+      <div id="upgrade.thought_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
+        <p>Abbrevia-table</p>
+        <p>
+          The words that thoughts think will have first letter from the target words' first letters.
+        </p>
+        <button id="button.upgrade.thought_1" type="button" onclick="buy_upgrade_thought_1()">Cost: 2 explosion points,<br/>  10 thoughts,<br/>  700 words thought</button>
+        <div id="div.upgrade.thought_1.bottom" class="hidden" style="white-space:nowrap;">
+          Enabled:
+          <label class="switch">
+            <input type="checkbox" id="upgrade.thought_1.enable">
+            <span class="slider" style="width:32px;height:16px;"></span>
+          </label>
+          <span style="width:32px;display:inline-block;"></span>
+        </div>
       </div>
       <div id="upgrade.word_1" class="box hidden" style="text-align:center;width:44%;padding:5px;margin:1%;float:left">
         <p>Existing Words</p>
