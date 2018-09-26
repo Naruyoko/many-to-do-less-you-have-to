@@ -38,7 +38,7 @@ function initializevars(){
         }),
         base:(function (){
           if (game.upgrade.convexisti_1.ison()&&game.upgrade.convexisti_3.ison()){
-            return Math.pow(Math.sin(Math.pow(game.currency.existivity,0.412)/51.9372)/(10.2+Math.exp(Math.log(Math.pow(game.currency.existivity,0.34))/Math.log(6.72)))+1/(1.322+Math.exp(-Math.log(Math.pow(game.currency.existivity,0.69)/133742)/Math.log(1.86))),42*Math.E);
+            return Math.pow(Math.sin(Math.pow(game.currency.existivity,0.392)/51.9372)/(10.3+Math.exp(Math.log(Math.pow(game.currency.existivity,0.34))/Math.log(6.72)))+1/(1.1+Math.exp(-Math.pow(Math.log(Math.pow(game.currency.existivity,0.8)/421337)/Math.log(49),8.4)))-1/(1+Math.exp(game.currency.existivity-1e6)),42*Math.PI/Math.E);
           }else if (game.upgrade.convexisti_1.ison()){
             return Math.pow(Math.log(Math.sqrt(game.currency.existivity+1)),1.35)/(10+Math.exp(game.currency.convexistiearn.upgrade_convexisti_1()/50));
           }else{
@@ -62,7 +62,7 @@ function initializevars(){
           if (game.upgrade.convexisti_2.ison()) x*=game.currency.convexistiearn.upgrade_convexisti_2();
           return Math.floor(x);
         }),
-        upgrade_convexisti_1:(function (){return game.upgrade.convexisti_3.ison()?(Math.pow((Math.log(Math.pow(game.currency.existivity,0.2373)/8.642+1))/Math.log(2.412),6.23234)+1):(Math.max(Math.cbrt(game.currency.existivity)/1.5+0.8,1));}),
+        upgrade_convexisti_1:(function (){return game.upgrade.convexisti_3.ison()?(Math.pow((Math.log(Math.pow(game.currency.existivity,0.2323)/11.642+1))/Math.log(2.512),6.23234)+1):(Math.max(Math.cbrt(game.currency.existivity)/1.5+0.8,1));}),
         upgrade_convexisti_2:(function (){return Math.max(Math.log(Math.floor(game.currency.existance))+1,1);})
       },
       existabilityboost:0,
@@ -282,7 +282,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201809252, //YYYYMMDDX
+      release:201809261, //YYYYMMDDX
       lasttime:0
     }
   };
