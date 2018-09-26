@@ -837,11 +837,11 @@ function updatedisp(){
     if (t===0){
       i="<span class=\"large\">0</span> seconds";
     }else if (t<1/600){
-      i="<span class=\"large\">"+Math.floor(game.production.etime*3600000)/1000+"</span> seconds per <span class=\"medium\">hour</span>";
+      i="<span class=\"large\">"+Math.floor(game.production.etime*3600000)/1000+"</span> seconds per <span class=\"middle\">hour</span>";
     }else if (t<0.1){
-      i="<span class=\"large\">"+Math.floor(game.production.etime*60000)/1000+"</span> seconds per <span class=\"medium\">minute</span>";
+      i="<span class=\"large\">"+Math.floor(game.production.etime*60000)/1000+"</span> seconds per <span class=\"middle\">minute</span>";
     }else{
-      i="<span class=\"large\">"+Math.floor(game.production.etime*100)/100+"</span> seconds per <span class=\"medium\">second</span>";
+      i="<span class=\"large\">"+Math.floor(game.production.etime*100)/100+"</span> seconds per <span class=\"middle\">second</span>";
     }
     document.getElementById("disp.energy3").innerHTML=i;
     document.getElementById("disp.energy4").innerHTML=t===0?"1 per ∞ seconds":("1 per "+timeFormat(1/game.production.etime));
