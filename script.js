@@ -95,7 +95,7 @@ function initializevars(){
           }),
           each:(function (){
             var m=1;
-            if (game.upgrade.etime_1){
+            if (game.upgrade.etime_1.bought){
               m=1.44;
             }else{
               m=1.2;
@@ -171,7 +171,7 @@ function initializevars(){
       upgrade_existability_2:(function (){return (game.currency.etime>=20)&&(game.currency.existance>=700000)&&!game.upgrade.existability_2;}),
       upgrade_existance_1:(function (){return (game.currency.energy>=1)&&!game.upgrade.existance_1;}),
       upgrade_existance_2:(function (){return (game.currency.explosion>=4)&&!game.upgrade.existance_2;}),
-      upgrade_etime_1:(function (){return (game.currency.explosion>=1)&&!game.upgrade.etime_1;}),
+      upgrade_etime_1:(function (){return (game.currency.explosion>=1)&&!game.upgrade.etime_1.bought;}),
       upgrade_thought_1:(function (){return (game.currency.explosion>=2)&&(game.currency.thought>=10)&&(game.currency.word>=700)&&!game.upgrade.thought_1;}),
       upgrade_word_1:(function (){return (game.currency.thought>=2)&&(game.currency.word>=100)&&(game.currency.existance>=1000)&&!game.upgrade.word_1;}),
       upgrade_convthought_1:(function (){return (game.currency.energy>=4)&&(game.currency.thought>=5)&&!game.upgrade.convthought_1;}),
@@ -201,7 +201,11 @@ function initializevars(){
       existability_2:false,
       existance_1:false,
       existance_2:false,
-      etime_1:false,
+      etime_1:{
+        bought:false,
+        enable:(function (){return document.getElementById("upgrade.etime_1.enable").checked;}),
+        ison:(function (){return game.upgrade.etime_1.bought&&game.upgrade.etime_1.enable();})
+      },
       thought_1:{
         bought:false,
         enable:(function (){return document.getElementById("upgrade.thought_1.enable").checked;}),
@@ -282,7 +286,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201809261, //YYYYMMDDX
+      release:201809262, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -510,6 +514,8 @@ function savegame(){
   delete save.upgrade.convexisti_2.ison;
   save.upgrade.convexisti_3.enable=game.upgrade.convexisti_3.enable();
   delete save.upgrade.convexisti_3.ison;
+  save.upgrade.etime_1.enable=game.upgrade.etime_1.enable();
+  delete save.upgrade.etime_1.ison;
   save.upgrade.thought_1.enable=game.upgrade.thought_1.enable();
   delete save.upgrade.thought_1.ison;
   save.upgrade.word_1.enable=game.upgrade.word_1.enable();
@@ -564,6 +570,12 @@ function loadgame(){
   if (decodedsave.upgrade.convexisti_3){
     document.getElementById("upgrade.convexisti_3.enable").checked=decodedsave.upgrade.convexisti_3.enable;
     delete decodedsave.upgrade.convexisti_3.enable;
+  }
+  if (typeof decodedsave.upgrade.etime_1=="object"){
+    document.getElementById("upgrade.etime_1.enable").checked=decodedsave.upgrade.etime_1.enable;
+    delete decodedsave.upgrade.etime_1.enable;
+  }else{
+    decodedsave.upgrade.etime_1={bought:decodedsave.upgrade.etime_1};
   }
   if (decodedsave.upgrade.thought_1){
     document.getElementById("upgrade.thought_1.enable").checked=decodedsave.upgrade.thought_1.enable;
@@ -893,7 +905,8 @@ function updatedisp(){
     document.getElementById("disp.upgrade.existance_2").innerHTML=Math.round((exa[3]-exa[2])*1000)/10+"%";
     document.getElementById("button.upgrade.existance_2").innerHTML="Bought";
   }
-  if (game.upgrade.etime_1){
+  if (game.upgrade.etime_1.bought){
+    showhide("div.upgrade.etime_1.bottom",true);
     document.getElementById("button.upgrade.etime_1").innerHTML="Bought";
   }
   if (game.upgrade.thought_1.bought){
@@ -1014,7 +1027,7 @@ function updatebutton(){
   if (game.unlocked.upgrade.word_1) showhide("upgrade.word_1",true);
   if (game.unlocked.upgrade.energy_2) showhide("upgrade.energy_2",true);
   if (game.unlocked.upgrade.convthought_1) showhide("upgrade.convthought_1",true);
-  if (game.upgrade.etime_1) showhide("upgrade.energy_1",true);
+  if (game.upgrade.etime_1.bought) showhide("upgrade.energy_1",true);
   if (game.upgrade.energy_1) showhide("upgrade.existance_2",true);
   if (game.status.explosion>=10) showhide("unlock.residue",true);
   if (game.unlocked.autobuyshop) showhide("button.changescr_shop_autoconv",true);
@@ -1122,7 +1135,7 @@ function convexista(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=game.currency.etimebought;
-  if (game.upgrade.etime_1) game.currency.existance+=5;
+  if (game.upgrade.etime_1.bought) game.currency.existance+=5;
   game.unlocked.etime=true;
   updateprod();
   if (game.currency.etime>=2) game.unlocked.convetime=true;
@@ -1138,7 +1151,7 @@ function convetime(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (game.upgrade.etime_1) game.currency.existance+=5;
+  if (game.upgrade.etime_1.bought) game.currency.existance+=5;
   game.unlocked.thought=true;
   updateprod();
   if (game.currency.thought>=2) game.unlocked.convthought=true;
@@ -1181,7 +1194,7 @@ function convthought(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (game.upgrade.etime_1) game.currency.existance+=5;
+  if (game.upgrade.etime_1.bought) game.currency.existance+=5;
   game.unlocked.energy=true;
   updateprod();
   game.unlocked.upgrade.existance_1=true;
@@ -1200,8 +1213,11 @@ function convenergy(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (game.upgrade.etime_1) game.currency.existance+=5;
-  if (!game.upgrade.etime_1) game.unlocked.existance=false;
+  if (game.upgrade.etime_1.bought){
+    game.currency.existance+=5;
+  }else{
+    game.unlocked.existance=false;
+  }
   game.unlocked.etime=false;
   game.unlocked.thought=false;
   game.unlocked.energy=false;
@@ -1266,7 +1282,7 @@ function buy_upgrade_etime_1(){
   game.currency.existance+=5;
   showhide("div.disp.existance",true);
   game.unlocked.existance=true;
-  game.upgrade.etime_1=true;
+  game.upgrade.etime_1.bought=true;
 }
 function buy_upgrade_thought_1(){
   if (!game.canbuy.upgrade_thought_1()) return;
