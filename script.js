@@ -143,6 +143,7 @@ function initializevars(){
         existability_1:false,
         existability_2:false,
         existance_1:false,
+        convexista_1:false,
         etime_1:false,
         thought_1:false,
         word_1:false,
@@ -171,6 +172,7 @@ function initializevars(){
       upgrade_existability_2:(function (){return (game.currency.etime>=20)&&(game.currency.existance>=700000)&&!game.upgrade.existability_2;}),
       upgrade_existance_1:(function (){return (game.currency.energy>=1)&&!game.upgrade.existance_1;}),
       upgrade_existance_2:(function (){return (game.currency.explosion>=4)&&!game.upgrade.existance_2;}),
+      upgrade_convexista_1:(function (){return (game.currency.explosion>=1)&&(game.currency.experience>=12)&&!game.upgrade.convexista_1.bought;}),
       upgrade_etime_1:(function (){return (game.currency.explosion>=1)&&!game.upgrade.etime_1.bought;}),
       upgrade_thought_1:(function (){return (game.currency.explosion>=2)&&(game.currency.thought>=10)&&(game.currency.word>=700)&&!game.upgrade.thought_1;}),
       upgrade_word_1:(function (){return (game.currency.thought>=2)&&(game.currency.word>=100)&&(game.currency.existance>=1000)&&!game.upgrade.word_1;}),
@@ -201,6 +203,11 @@ function initializevars(){
       existability_2:false,
       existance_1:false,
       existance_2:false,
+      convexista_1:{
+        bought:false,
+        enable:(function (){return document.getElementById("upgrade.convexista_1.enable").checked;}),
+        ison:(function (){return game.upgrade.convexista_1.bought&&game.upgrade.convexista_1.enable();})
+      },
       etime_1:{
         bought:false,
         enable:(function (){return document.getElementById("upgrade.etime_1.enable").checked;}),
@@ -286,7 +293,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201809262, //YYYYMMDDX
+      release:201809263, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -514,6 +521,8 @@ function savegame(){
   delete save.upgrade.convexisti_2.ison;
   save.upgrade.convexisti_3.enable=game.upgrade.convexisti_3.enable();
   delete save.upgrade.convexisti_3.ison;
+  save.upgrade.convexista_1.enable=game.upgrade.convexista_1.enable();
+  delete save.upgrade.convexista_1.ison;
   save.upgrade.etime_1.enable=game.upgrade.etime_1.enable();
   delete save.upgrade.etime_1.ison;
   save.upgrade.thought_1.enable=game.upgrade.thought_1.enable();
@@ -570,6 +579,10 @@ function loadgame(){
   if (decodedsave.upgrade.convexisti_3){
     document.getElementById("upgrade.convexisti_3.enable").checked=decodedsave.upgrade.convexisti_3.enable;
     delete decodedsave.upgrade.convexisti_3.enable;
+  }
+  if (decodedsave.upgrade.convexista_1){
+    document.getElementById("upgrade.convexista_1.enable").checked=decodedsave.upgrade.convexista_1.enable;
+    delete decodedsave.upgrade.convexista_1.enable;
   }
   if (typeof decodedsave.upgrade.etime_1=="object"){
     document.getElementById("upgrade.etime_1.enable").checked=decodedsave.upgrade.etime_1.enable;
@@ -905,6 +918,10 @@ function updatedisp(){
     document.getElementById("disp.upgrade.existance_2").innerHTML=Math.round((exa[3]-exa[2])*1000)/10+"%";
     document.getElementById("button.upgrade.existance_2").innerHTML="Bought";
   }
+  if (game.upgrade.convexista_1.bought){
+    showhide("div.upgrade.convexista_1.bottom",true);
+    document.getElementById("button.upgrade.convexista_1").innerHTML="Bought";
+  }
   if (game.upgrade.etime_1.bought){
     showhide("div.upgrade.etime_1.bottom",true);
     document.getElementById("button.upgrade.etime_1").innerHTML="Bought";
@@ -1008,6 +1025,7 @@ function updatebutton(){
   toggleclass("button.upgrade.existability_2","unavailable",!game.canbuy.upgrade_existability_2());
   toggleclass("button.upgrade.existance_1","unavailable",!game.canbuy.upgrade_existance_1());
   toggleclass("button.upgrade.existance_2","unavailable",!game.canbuy.upgrade_existance_2());
+  toggleclass("button.upgrade.convexista_1","unavailable",!game.canbuy.upgrade_convexista_1())
   toggleclass("button.upgrade.etime_1","unavailable",!game.canbuy.upgrade_etime_1());
   toggleclass("button.upgrade.thought_1","unavailable",!game.canbuy.upgrade_thought_1());
   toggleclass("button.upgrade.word_1","unavailable",!game.canbuy.upgrade_word_1());
@@ -1023,6 +1041,7 @@ function updatebutton(){
   if (game.unlocked.upgrade.existability_1) showhide("upgrade.existability_1",true);
   if (game.unlocked.upgrade.existability_2) showhide("upgrade.existability_2",true);
   if (game.unlocked.upgrade.existance_1) showhide("upgrade.existance_1",true);
+  if (game.unlocked.upgrade.convexista_1) showhide("upgrade.convexista_1",true);
   if (game.unlocked.upgrade.thought_1) showhide("upgrade.thought_1",true);
   if (game.unlocked.upgrade.word_1) showhide("upgrade.word_1",true);
   if (game.unlocked.upgrade.energy_2) showhide("upgrade.energy_2",true);
@@ -1135,11 +1154,13 @@ function convexista(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=game.currency.etimebought;
+  if (game.upgrade.convexista_1.bought) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
   if (game.upgrade.etime_1.bought) game.currency.existance+=5;
   game.unlocked.etime=true;
   updateprod();
   if (game.currency.etime>=2) game.unlocked.convetime=true;
   if (game.currency.etime>=20) game.unlocked.upgrade.existability_2=true;
+ if (game.unlocked.explosion&&(game.currency.experience>=8)) game.unlocked.upgrade.convexisti_3=true;
 }
 function convetime(){
   if (!game.canbuy.thought()) return;
@@ -1151,6 +1172,7 @@ function convetime(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
+  if (game.upgrade.convexista_1.bought) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
   if (game.upgrade.etime_1.bought) game.currency.existance+=5;
   game.unlocked.thought=true;
   updateprod();
@@ -1194,6 +1216,7 @@ function convthought(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
+  if (game.upgrade.convexista_1.bought) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
   if (game.upgrade.etime_1.bought) game.currency.existance+=5;
   game.unlocked.energy=true;
   updateprod();
@@ -1213,11 +1236,9 @@ function convenergy(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (game.upgrade.etime_1.bought){
-    game.currency.existance+=5;
-  }else{
-    game.unlocked.existance=false;
-  }
+  if (game.upgrade.convexista_1.bought) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
+  if (game.upgrade.etime_1.bought) game.currency.existance+=5;
+  if (game.currency.existance===0) game.unlocked.existance=false;
   game.unlocked.etime=false;
   game.unlocked.thought=false;
   game.unlocked.energy=false;
@@ -1275,6 +1296,12 @@ function buy_upgrade_existance_2(){
   if (!game.canbuy.upgrade_existance_2()) return;
   game.currency.explosion-=4;
   game.upgrade.existance_2=true;
+}
+function buy_upgrade_convexista_1(){
+  if (!game.canbuy.upgrade_convexista_1()) return;
+  game.currency.explosion-=1;
+  game.currency.experience-=12;
+  game.upgrade.convexista_1.bought=true;
 }
 function buy_upgrade_etime_1(){
   if (!game.canbuy.upgrade_etime_1()) return;
