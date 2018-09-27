@@ -3,6 +3,7 @@
 .large {color:#000000;font-size:20px;}
 .footer {color:#a6a6a6;font-size:12px;position:fixed;bottom:0px;}
 .hidden {display:none;}
+.invisible {visibility:hidden;}
 .box {border:1px solid black;}
 button.unavailable {
   opacity:0.6;
