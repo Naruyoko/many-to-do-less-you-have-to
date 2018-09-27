@@ -95,7 +95,7 @@ function initializevars(){
           }),
           each:(function (){
             var m=1;
-            if (game.upgrade.etime_1.bought){
+            if (game.upgrade.etime_1.ison()){
               m=1.44;
             }else{
               m=1.2;
@@ -1159,8 +1159,8 @@ function convexista(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=game.currency.etimebought;
-  if (game.upgrade.convexista_1.bought) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
-  if (game.upgrade.etime_1.bought) game.currency.existance+=5;
+  if (game.upgrade.convexista_1.ison()) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
+  if (game.upgrade.etime_1.ison()) game.currency.existance+=5;
   game.unlocked.etime=true;
   updateprod();
   if (game.currency.etime>=2) game.unlocked.convetime=true;
@@ -1177,8 +1177,8 @@ function convetime(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (game.upgrade.convexista_1.bought) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
-  if (game.upgrade.etime_1.bought) game.currency.existance+=5;
+  if (game.upgrade.convexista_1.ison()) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
+  if (game.upgrade.etime_1.ison()) game.currency.existance+=5;
   game.unlocked.thought=true;
   updateprod();
   if (game.currency.thought>=2) game.unlocked.convthought=true;
@@ -1221,8 +1221,8 @@ function convthought(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (game.upgrade.convexista_1.bought) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
-  if (game.upgrade.etime_1.bought) game.currency.existance+=5;
+  if (game.upgrade.convexista_1.ison()) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
+  if (game.upgrade.etime_1.ison()) game.currency.existance+=5;
   game.unlocked.energy=true;
   updateprod();
   game.unlocked.upgrade.existance_1=true;
@@ -1241,8 +1241,8 @@ function convenergy(){
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=0;
-  if (game.upgrade.convexista_1.bought) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
-  if (game.upgrade.etime_1.bought) game.currency.existance+=5;
+  if (game.upgrade.convexista_1.ison()) game.currency.existance+=Math.floor(Math.pow(Math.floor(game.currency.etime),2)/5);
+  if (game.upgrade.etime_1.ison()) game.currency.existance+=5;
   if (game.currency.existance===0) game.unlocked.existance=false;
   game.unlocked.etime=false;
   game.unlocked.thought=false;
