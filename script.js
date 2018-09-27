@@ -1424,7 +1424,10 @@ function achievementupdate(){
           for (var u=-2;u<=2;u++){
             for (var v=-2+Math.abs(u);v<=2-Math.abs(u);v++){
               if (typeof game.achievement.arrangement[y+u]!=="undefined"){
-                if (game.achievement.done[game.achievement.arrangement[y+u][x+v]]) t=true;break;
+                if (game.achievement.done[game.achievement.arrangement[y+u][x+v]]){
+                  t=true;
+                  break;
+                }
               }
             }
           }
