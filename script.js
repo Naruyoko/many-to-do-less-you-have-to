@@ -549,7 +549,7 @@ function savegame(){
 function loadgame(){
   var save=localStorage.getItem("MtdLYHt.save");
   if (!save){
-    if (document.cookie){
+    if (getCookie("game.currency.existivity")){
       if (getCookie("game.datainfo.release")>=201808151){
         alert("Something seems wrong with your old save... Did you modify it?");
       }
