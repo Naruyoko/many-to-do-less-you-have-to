@@ -1428,7 +1428,7 @@ function achievementupdate(){
               }
             }
           }
-          if (!t) o.className+=" hidden";
+          if (!t) o.className+=" invisible";
         }
       }
     }
