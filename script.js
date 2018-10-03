@@ -933,7 +933,7 @@ function updatedisp(){
   }
   if (game.upgrade.word_1.bought){
     showhide("div.upgrade.word_1.bottom",true);
-    document.getElementById("disp.upgrade.word_1.1").innerHTML=notation(Math.round(Math.max(Math.pow(1.3,Math.pow(game.currency.existance,0.05)),1)*1000)/1000);
+    document.getElementById("disp.upgrade.word_1.1").innerHTML=notation(Math.round(Math.max(Math.min(Math.pow(1.4,Math.pow(game.currency.existance,0.16)),200),1)*1000)/1000);
     document.getElementById("disp.upgrade.word_1.2").innerHTML=notation(Math.round(game.production.existanceboost.upgrade_word_1()*1000)/1000);
     document.getElementById("button.upgrade.word_1").innerHTML="Bought";
   }
