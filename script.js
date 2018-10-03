@@ -38,7 +38,9 @@ function initializevars(){
         }),
         base:(function (){
           if (game.upgrade.convexisti_1.ison()&&game.upgrade.convexisti_3.ison()){
-            return Math.pow(Math.sin(Math.pow(game.currency.existivity,0.392)/51.9372)/(10.3+Math.exp(Math.log(Math.pow(game.currency.existivity,0.34))/Math.log(6.72)))+1/(1.1+Math.exp(-Math.pow(Math.log(Math.pow(game.currency.existivity,0.8)/421337)/Math.log(49),8.4)))-1/(1+Math.exp(game.currency.existivity-1e6)),42*Math.PI/Math.E);
+            var r=Math.pow(Math.sin(Math.pow(game.currency.existivity,0.392)/51.9372)/(10.3+Math.exp(Math.log(Math.pow(game.currency.existivity,0.34))/Math.log(6.72)))+1/(1.1+Math.exp(-Math.pow(Math.log(Math.pow(game.currency.existivity,0.8)/421337)/Math.log(49),8.4)))-1/(1+Math.exp(game.currency.existivity-1e6)),42*Math.PI/Math.E);
+            if (isNaN(r)||!isFinite(r)) return 0;
+            return Math.min(Math.max(r,0),1);
           }else if (game.upgrade.convexisti_1.ison()){
             return Math.pow(Math.log(Math.sqrt(game.currency.existivity+1)),1.35)/(10+Math.exp(game.currency.convexistiearn.upgrade_convexisti_1()/50));
           }else{
