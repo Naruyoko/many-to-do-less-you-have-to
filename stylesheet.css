@@ -28,6 +28,11 @@ button.changescr {
   font:bold;
   font-size:16px;
 }
+.alternate_universe {
+  background-color:#99cfff;
+  border-color:#1c216f;
+  color:#4e2b90;
+}
 td.achievement {
   border-radius:4px;
   border:2px solid black;

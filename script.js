@@ -154,7 +154,8 @@ function initializevars(){
       },
       autobuyshop:false,
       buyautoconvexista:false,
-      buyautoconvetime:false
+      buyautoconvetime:false,
+      alternate_universe:false
     },
     canbuy:{
       existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
@@ -167,6 +168,7 @@ function initializevars(){
       }),
       explosion:(function (){return (game.currency.energy>=5)&&(game.currency.existivity>=1e+9);}),
       residue:(function (){return !game.unlocked.residue&&(game.currency.explosion>=1000);}),
+      alternate_universe:(function (){return !game.unlocked.alternate_universe&&(game.currency.residue>=1e6);}),
       upgrade_convexisti_1:(function (){return (game.currency.existivity>=200000)&&!game.upgrade.convexisti_1.bought;}),
       upgrade_convexisti_2:(function (){return (game.currency.existance>=150)&&!game.upgrade.convexisti_2.bought;}),
       upgrade_convexisti_3:(function (){return (game.currency.explosion>=3)&&(game.currency.existivity>=614.778e12)&&!game.upgrade.convexisti_3.bought;}),
@@ -295,7 +297,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201809263, //YYYYMMDDX
+      release:201811211, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -886,6 +888,7 @@ function updatedisp(){
     document.getElementById("disp.residue").innerHTML=game.currency.residue[0]>=3?notation(game.currency.residue):(Math.pow(10,game.currency.residue[0]).toFixed(3));
     document.getElementById("disp.residue.production").innerHTML=game.production.residue[0]>=3?notation(game.production.residue):(Math.pow(10,game.production.residue[0]).toFixed(3));
   }
+  if (game.unlocked.alternate_universe) showhide("button.changescr_alternate_universe",true);
   document.getElementById("disp.status.timeplayed").innerHTML=timeFormat(game.status.timeplayed);
   document.getElementById("disp.status.totaltime").innerHTML=timeFormat(game.status.totaltime);
   if (game.upgrade.convexisti_1.bought){
@@ -1036,6 +1039,7 @@ function updatebutton(){
   toggleclass("button.upgrade.energy_1","unavailable",!game.canbuy.upgrade_energy_1());
   toggleclass("button.upgrade.energy_2","unavailable",!game.canbuy.upgrade_energy_2());
   toggleclass("button.unlock.residue","unavailable",!game.canbuy.residue());
+  toggleclass("button.unlock.alternate_universe","unavailable",!game.canbuy.alternate_universe());
   if (game.unlocked.changescr()) showhide("changescr",true);
   if (game.unlocked.upgrade.shop()) document.getElementById("button.changescr_shop_upgrade").className="changescr";
   if (game.unlocked.upgrade.convexisti_1) showhide("upgrade.convexisti_1",true);
@@ -1052,6 +1056,7 @@ function updatebutton(){
   if (game.upgrade.etime_1.bought) showhide("upgrade.energy_1",true);
   if (game.upgrade.energy_1) showhide("upgrade.existance_2",true);
   if (game.status.explosion>=10) showhide("unlock.residue",true);
+  if (game.currency.residue>=2e5) showhide("unlock.alternate_universe",true);
   if (game.unlocked.autobuyshop) showhide("button.changescr_shop_autoconv",true);
   if (game.achievement.done[4]) showhide("button.changescr_status",true);
   if (game.achievement.done[6]) showhide("button.changescr_achievement",true);
@@ -1062,41 +1067,36 @@ function updatebutton(){
   if (game.upgrade.convthought_1) a=Math.ceil(a/4);
   document.getElementById("button.convthought").innerHTML="Be energetic!!<br/>Cost: "+notation(Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))+" thoughts,<br/>  "+notation(a)+" words thought";
 }
-function changescr_shop_general(){
-  showhide("scr.shop.general",true);
+function changescr_setup(){
+  showhide("scr.shop.general",false);
   showhide("scr.shop.upgrade",false);
   showhide("scr.shop.autoconv",false);
+  showhide("scr.alternate_universe",false);
   showhide("scr.status",false);
   showhide("table.achievement",false);
+}
+function changescr_shop_general(){
+  changescr_setup();
+  showhide("scr.shop.general",true);
 }
 function changescr_shop_upgrade(){
-  showhide("scr.shop.general",false);
+  changescr_setup();
   showhide("scr.shop.upgrade",true);
-  showhide("scr.shop.autoconv",false);
-  showhide("scr.status",false);
-  showhide("table.achievement",false);
 }
 function changescr_shop_autoconv(){
-  showhide("scr.shop.general",false);
-  showhide("scr.shop.upgrade",false);
+  changescr_setup();
   showhide("scr.shop.autoconv",true);
-  showhide("scr.status",false);
-  showhide("table.achievement",false);
+}
+function changescr_alternate_universe(){
+  changescr_setup();
+  showhide("scr.alternate_universe",true);
 }
 function changescr_status(){
-  showhide("scr.shop.general",false);
-  showhide("scr.shop.upgrade",false);
-  showhide("scr.shop.autoconv",false);
+  changescr_setup();
   showhide("scr.status",true);
-  showhide("table.achievement",false);
 }
 function changescr_achievement(){
-  showhide("scr.shop.general",false);
-  showhide("scr.shop.upgrade",false);
-  showhide("scr.shop.autoconv",false);
-  showhide("scr.status",false);
-  showhide("table.achievement",false);
-  achievementupdate();
+  changescr_setup();
   showhide("table.achievement",true);
 }
 function convexisti(){
@@ -1348,6 +1348,11 @@ function buy_unlock_residue(){
   if (!game.canbuy.residue()) return;
   game.currency.explosion-=1000;
   game.unlocked.residue=true;
+}
+function buy_unlock_alternate_universe(){
+  if (!game.canbuy.alternate_universe()) return;
+  game.currency.residue-=1e6;
+  game.unlocked.alternate_universe=true;
 }
 function buyautoconvexisti(){
   if (!game.canbuy.autoconvexisti()) return;
