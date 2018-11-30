@@ -24,231 +24,175 @@ I can't take responsibility for messing around with code.
 .........................##.....##.##.....##....###....########.......##.....#######..###............
 oof, the above ASCII takes alot of space.*/
 var game;
-function initializevars(){
-  game={
-    currency:{
-      existivity:0,
-      existability:{
-        total:(function (){
-          var r=game.currency.existability.base();
-          if (game.upgrade.existability_1) r=game.currency.existability.upgrade_existability_1(r);
-          if (game.upgrade.existability_2) r=game.currency.existability.upgrade_existability_2(r);
-          if (game.upgrade.existance_2) r=game.currency.existability.upgrade_existance_2(r);
-          return r;
-        }),
-        base:(function (){
-          if (game.upgrade.convexisti_1.ison()&&game.upgrade.convexisti_3.ison()){
-            var r=Math.pow(Math.sin(Math.pow(game.currency.existivity,0.392)/51.9372)/(10.3+Math.exp(Math.log(Math.pow(game.currency.existivity,0.34))/Math.log(6.72)))+1/(1.1+Math.exp(-Math.pow(Math.log(Math.pow(game.currency.existivity,0.8)/421337)/Math.log(49),8.4)))-1/(1+Math.exp(game.currency.existivity-1e6)),42*Math.PI/Math.E);
-            if (isNaN(r)||!isFinite(r)) return 0;
-            return Math.min(Math.max(r,0),1);
-          }else if (game.upgrade.convexisti_1.ison()){
-            return Math.pow(Math.log(Math.sqrt(game.currency.existivity+1)),1.35)/(10+Math.exp(game.currency.convexistiearn.upgrade_convexisti_1()/50));
-          }else{
-            return (2/(1+Math.exp(-game.currency.existivity))-1)*(1-game.currency.existabilityboost)+game.currency.existabilityboost;
-          }
-        }),
-        upgrade_existability_1:(function (r){
-          return game.upgrade.existability_1?Math.cbrt(r):r;
-        }),
-        upgrade_existability_2:(function (r){
-          return game.upgrade.existability_1?Math.cbrt(r):r;
-        }),
-        upgrade_existance_2:(function (r){
-          return game.upgrade.existability_1?Math.pow(r,1/4):r;
-        })
-      },
-      convexistiearn:{
-        total:(function (){
-          var x=1;
-          if (game.upgrade.convexisti_1.ison()) x*=game.currency.convexistiearn.upgrade_convexisti_1();
-          if (game.upgrade.convexisti_2.ison()) x*=game.currency.convexistiearn.upgrade_convexisti_2();
-          return Math.floor(x);
-        }),
-        upgrade_convexisti_1:(function (){return game.upgrade.convexisti_3.ison()?(Math.pow((Math.log(Math.pow(game.currency.existivity,0.2323)/11.642+1))/Math.log(2.512),6.23234)+1):(Math.max(Math.cbrt(game.currency.existivity)/1.5+0.8,1));}),
-        upgrade_convexisti_2:(function (){return Math.max(Math.log(Math.floor(game.currency.existance))+1,1);})
-      },
-      existabilityboost:0,
-      existance:0,
-      etime:0, //experienced time
-      etimebought:0,
-      thought:0,
-      genworddelay:1,
-      word:0,
-      energy:0,
-      explosion:0,
-      residue:[0,false]
-    },
-    production:{
-      existivity:0.01,
-      existance:0,
-      existanceboost:{
-        total:(function (){
-          var r=game.production.existanceboost.etime.total();
-          if (game.upgrade.existance_1) r*=5;
-          if (game.upgrade.existance_2) r*=10;
-          if (game.upgrade.word_1.ison()) r*=game.production.existanceboost.upgrade_word_1();
-          if (game.achievement.done[31]) r*=game.production.existanceboost.achievement_31();
-          if (game.achievement.done[33]) r*=game.production.existanceboost.achievement_33();
-          return r;
-        }),
-        etime:{
-          total:(function (){
-            return Math.pow(game.production.existanceboost.etime.each(),Math.floor(game.currency.etime));
-          }),
-          each:(function (){
-            var m=1;
-            if (game.upgrade.etime_1.ison()){
-              m=1.44;
-            }else{
-              m=1.2;
-            }
-            if (game.achievement.done[33]) m*=1+0.01*game.achievement.completed();
-            if (game.achievement.done[41]) m*=Math.pow(Math.log(game.status.timeplayed/3600+8.6)/Math.log(8.6),0.28);
-            return m;
-          })
-        },
-        upgrade_word_1:(function (){
-          var r=Math.pow(Math.pow(game.currency.word*1.2,0.02),Math.log(Math.pow(game.currency.word*5,0.12))/Math.log(2));
-          if (isNaN(r)||!isFinite(r)) return 1;
-          return Math.max(1,r);
-        }),
-        achievement_31:(function (){return Math.max(Math.pow(1.000001,Math.floor(game.currency.existance))/(Math.log(Math.pow(Math.floor(game.currency.existance)+1,1/1000)+1)+0.3),1);}),
-        achievement_33:(function (){return 1+0.01*game.achievement.completed();})
-      },
-      etime:0,
-      thought:0,
-      genword:(function (){
-        var r=game.currency.thought;
-        if (game.achievement.done[36]&&game.achievement.done[37]){r*=3}
+var defaultGame={
+  currency:{
+    existivity:0,
+    existability:{
+      total:(function (){
+        var r=game.currency.existability.base();
+        if (game.upgrade.existability_1) r=game.currency.existability.upgrade_existability_1(r);
+        if (game.upgrade.existability_2) r=game.currency.existability.upgrade_existability_2(r);
+        if (game.upgrade.existance_2) r=game.currency.existability.upgrade_existance_2(r);
         return r;
       }),
-      energy:0,
-      residue:[-Infinity,false]
-    },
-    unlocked:{
-      existance:false,
-      etime:false,
-      thought:false,
-      energy:false,
-      explosion:false,
-      residue:false,
-      convexista:false,
-      convetime:false,
-      convthought:false,
-      convenergy:false,
-      changescr:(function (){return game.unlocked.upgrade.shop()||game.unlocked.autobuyshop||game.achievement.done[4];}),
-      upgrade:{
-        shop:(function (){return game.unlocked.upgrade.convexisti_1||game.unlocked.upgrade.convexisti_2||game.unlocked.upgrade.existability_1||game.unlocked.upgrade.existance_1||game.unlocked.upgrade.word_1;}),
-        convexisti_1:false,
-        convexisti_2:false,
-        convexisti_3:false,
-        existability_1:false,
-        existability_2:false,
-        existance_1:false,
-        convexista_1:false,
-        etime_1:false,
-        thought_1:false,
-        word_1:false,
-        convthought_1:false,
-        energy_2:false
-      },
-      autobuyshop:false,
-      buyautoconvexista:false,
-      buyautoconvetime:false,
-      alternate_universe:false
-    },
-    canbuy:{
-      existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
-      etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etimebought+4))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4);}),
-      thought:(function (){return (Math.floor(game.currency.etime)>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));}),
-      energy:(function (){
-        var r=Math.floor(Math.pow(game.currency.energy,1.8))*5+15;
-        if (game.upgrade.convthought_1){r=Math.ceil(r/4);}
-        return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=r);
+      base:(function (){
+        if (game.upgrade.convexisti_1.ison()&&game.upgrade.convexisti_3.ison()){
+          var r=Math.pow(Math.sin(Math.pow(game.currency.existivity,0.392)/51.9372)/(10.3+Math.exp(Math.log(Math.pow(game.currency.existivity,0.34))/Math.log(6.72)))+1/(1.1+Math.exp(-Math.pow(Math.log(Math.pow(game.currency.existivity,0.8)/421337)/Math.log(49),8.4)))-1/(1+Math.exp(game.currency.existivity-1e6)),42*Math.PI/Math.E);
+          if (isNaN(r)||!isFinite(r)) return 0;
+          return Math.min(Math.max(r,0),1);
+        }else if (game.upgrade.convexisti_1.ison()){
+          return Math.pow(Math.log(Math.sqrt(game.currency.existivity+1)),1.35)/(10+Math.exp(game.currency.convexistiearn.upgrade_convexisti_1()/50));
+        }else{
+          return (2/(1+Math.exp(-game.currency.existivity))-1)*(1-game.currency.existabilityboost)+game.currency.existabilityboost;
+        }
       }),
-      explosion:(function (){return (game.currency.energy>=5)&&(game.currency.existivity>=1e+9);}),
-      residue:(function (){return !game.unlocked.residue&&(game.currency.explosion>=1000);}),
-      alternate_universe:(function (){return !game.unlocked.alternate_universe&&(game.currency.residue>=1e6);}),
-      upgrade_convexisti_1:(function (){return (game.currency.existivity>=200000)&&!game.upgrade.convexisti_1.bought;}),
-      upgrade_convexisti_2:(function (){return (game.currency.existance>=150)&&!game.upgrade.convexisti_2.bought;}),
-      upgrade_convexisti_3:(function (){return (game.currency.explosion>=3)&&(game.currency.existivity>=614.778e12)&&!game.upgrade.convexisti_3.bought;}),
-      upgrade_existability_1:(function (){return (game.currency.existance>=4000)&&!game.upgrade.existability_1;}),
-      upgrade_existability_2:(function (){return (game.currency.etime>=20)&&(game.currency.existance>=700000)&&!game.upgrade.existability_2;}),
-      upgrade_existance_1:(function (){return (game.currency.energy>=1)&&!game.upgrade.existance_1;}),
-      upgrade_existance_2:(function (){return (game.currency.explosion>=4)&&!game.upgrade.existance_2;}),
-      upgrade_convexista_1:(function (){return (game.currency.explosion>=1)&&(game.currency.experience>=12)&&!game.upgrade.convexista_1.bought;}),
-      upgrade_etime_1:(function (){return (game.currency.explosion>=1)&&!game.upgrade.etime_1.bought;}),
-      upgrade_thought_1:(function (){return (game.currency.explosion>=2)&&(game.currency.thought>=10)&&(game.currency.word>=700)&&!game.upgrade.thought_1.bought;}),
-      upgrade_word_1:(function (){return (game.currency.thought>=2)&&(game.currency.word>=100)&&(game.currency.existance>=1000)&&!game.upgrade.word_1;}),
-      upgrade_convthought_1:(function (){return (game.currency.energy>=4)&&(game.currency.thought>=5)&&!game.upgrade.convthought_1;}),
-      upgrade_energy_1:(function (){return (game.currency.explosion>=2)&&!game.upgrade.energy_1;}),
-      upgrade_energy_2:(function (){return (game.currency.word>=500)&&!game.upgrade.energy_2;}),
-      autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity.bought;}),
-      autoconvexista:(function (){return (game.currency.thought>=6)&&(game.currency.word>=60)&&(game.currency.etime>=10)&&!game.autobuy.existance.bought;}),
-      autoconvetime:(function (){return (game.currency.explosion>=3)&&(game.currency.energy>=4)&&!game.autobuy.etime.bought;})
+      upgrade_existability_1:(function (r){
+        return game.upgrade.existability_1?Math.cbrt(r):r;
+      }),
+      upgrade_existability_2:(function (r){
+        return game.upgrade.existability_1?Math.cbrt(r):r;
+      }),
+      upgrade_existance_2:(function (r){
+        return game.upgrade.existability_1?Math.pow(r,1/4):r;
+      })
     },
+    convexistiearn:{
+      total:(function (){
+        var x=1;
+        if (game.upgrade.convexisti_1.ison()) x*=game.currency.convexistiearn.upgrade_convexisti_1();
+        if (game.upgrade.convexisti_2.ison()) x*=game.currency.convexistiearn.upgrade_convexisti_2();
+        return Math.floor(x);
+      }),
+      upgrade_convexisti_1:(function (){return game.upgrade.convexisti_3.ison()?(Math.pow((Math.log(Math.pow(game.currency.existivity,0.2323)/11.642+1))/Math.log(2.512),6.23234)+1):(Math.max(Math.cbrt(game.currency.existivity)/1.5+0.8,1));}),
+      upgrade_convexisti_2:(function (){return Math.max(Math.log(Math.floor(game.currency.existance))+1,1);})
+    },
+    existabilityboost:0,
+    existance:0,
+    etime:0, //experienced time
+    etimebought:0,
+    thought:0,
+    genworddelay:1,
+    word:0,
+    energy:0,
+    explosion:0,
+    residue:[0,false]
+  },
+  production:{
+    existivity:0.01,
+    existance:0,
+    existanceboost:{
+      total:(function (){
+        var r=game.production.existanceboost.etime.total();
+        if (game.upgrade.existance_1) r*=5;
+        if (game.upgrade.existance_2) r*=10;
+        if (game.upgrade.word_1.ison()) r*=game.production.existanceboost.upgrade_word_1();
+        if (game.achievement.done[31]) r*=game.production.existanceboost.achievement_31();
+        if (game.achievement.done[33]) r*=game.production.existanceboost.achievement_33();
+        return r;
+      }),
+      etime:{
+        total:(function (){
+          return Math.pow(game.production.existanceboost.etime.each(),Math.floor(game.currency.etime));
+        }),
+        each:(function (){
+          var m=1;
+          if (game.upgrade.etime_1.ison()){
+            m=1.44;
+          }else{
+            m=1.2;
+          }
+          if (game.achievement.done[33]) m*=1+0.01*game.achievement.completed();
+          if (game.achievement.done[41]) m*=Math.pow(Math.log(game.status.timeplayed/3600+8.6)/Math.log(8.6),0.28);
+          return m;
+        })
+      },
+      upgrade_word_1:(function (){
+        var r=Math.pow(Math.pow(game.currency.word*1.2,0.02),Math.log(Math.pow(game.currency.word*5,0.12))/Math.log(2));
+        if (isNaN(r)||!isFinite(r)) return 1;
+        return Math.max(1,r);
+      }),
+      achievement_31:(function (){return Math.max(Math.pow(1.000001,Math.floor(game.currency.existance))/(Math.log(Math.pow(Math.floor(game.currency.existance)+1,1/1000)+1)+0.3),1);}),
+      achievement_33:(function (){return 1+0.01*game.achievement.completed();})
+    },
+    etime:0,
+    thought:0,
+    genword:(function (){
+      var r=game.currency.thought;
+      if (game.achievement.done[36]&&game.achievement.done[37]){r*=3}
+      return r;
+    }),
+    energy:0,
+    residue:[-Infinity,false]
+  },
+  unlocked:{
+    existance:false,
+    etime:false,
+    thought:false,
+    energy:false,
+    explosion:false,
+    residue:false,
+    convexista:false,
+    convetime:false,
+    convthought:false,
+    convenergy:false,
+    changescr:(function (){return game.unlocked.upgrade.shop()||game.unlocked.autobuyshop||game.achievement.done[4];}),
     upgrade:{
-      convexisti_1:{
-        bought:false,
-        enable:(function (){return document.getElementById("upgrade.convexisti_1.enable").checked;}),
-        ison:(function (){return game.upgrade.convexisti_1.bought&&game.upgrade.convexisti_1.enable();})
-      },
-      convexisti_2:{
-        bought:false,
-        enable:(function (){return document.getElementById("upgrade.convexisti_2.enable").checked;}),
-        ison:(function (){return game.upgrade.convexisti_2.bought&&game.upgrade.convexisti_2.enable();})
-      },
-      convexisti_3:{
-        bought:false,
-        enable:(function (){return document.getElementById("upgrade.convexisti_3.enable").checked;}),
-        ison:(function (){return game.upgrade.convexisti_3.bought&&game.upgrade.convexisti_3.enable();})
-      },
+      shop:(function (){return game.unlocked.upgrade.convexisti_1||game.unlocked.upgrade.convexisti_2||game.unlocked.upgrade.existability_1||game.unlocked.upgrade.existance_1||game.unlocked.upgrade.word_1;}),
+      convexisti_1:false,
+      convexisti_2:false,
+      convexisti_3:false,
       existability_1:false,
       existability_2:false,
       existance_1:false,
-      existance_2:false,
-      convexista_1:{
-        bought:false,
-        enable:(function (){return document.getElementById("upgrade.convexista_1.enable").checked;}),
-        ison:(function (){return game.upgrade.convexista_1.bought&&game.upgrade.convexista_1.enable();})
-      },
-      etime_1:{
-        bought:false,
-        enable:(function (){return document.getElementById("upgrade.etime_1.enable").checked;}),
-        ison:(function (){return game.upgrade.etime_1.bought&&game.upgrade.etime_1.enable();})
-      },
-      thought_1:{
-        bought:false,
-        enable:(function (){return document.getElementById("upgrade.thought_1.enable").checked;}),
-        ison:(function (){return game.upgrade.thought_1.bought&&game.upgrade.thought_1.enable();})
-      },
-      word_1:{
-        bought:false,
-        enable:(function (){return document.getElementById("upgrade.word_1.enable").checked;}),
-        ison:(function (){return game.upgrade.word_1.bought&&game.upgrade.word_1.enable();})
-      },
+      convexista_1:false,
+      etime_1:false,
+      thought_1:false,
+      word_1:false,
       convthought_1:false,
-      energy_1:false,
       energy_2:false
     },
-    autobuy:{
-      existivity:{
-        bought:false,
-        enable:(function (){return document.getElementById("autobuy.existivity.enable").checked;}),
-        threshold:(function (){return Number(document.getElementById("input.autoconvexisti").value);}),
-        ison:(function (){return game.autobuy.existivity.bought&&game.autobuy.existivity.enable();})
-      },
-      existance:{
-        bought:false,
-        enable:(function (){return document.getElementById("autobuy.existance.enable").checked;}),
-        ison:(function (){return game.autobuy.existance.bought&&game.autobuy.existance.enable();})
-      },
-      etime:{
-        bought:false,
-        enable:(function (){return document.getElementById("autobuy.etime.enable").checked;}),
-        ison:(function (){return game.autobuy.etime.bought&&game.autobuy.etime.enable();})
-      }
+    autobuyshop:false,
+    buyautoconvexista:false,
+    buyautoconvetime:false,
+    alternate_universe:false
+  },
+  canbuy:{
+    existance:(function (){return game.currency.existance<Math.pow(2,game.currency.etimebought+4);}),
+    etime:(function (){return (game.currency.existance>=Math.pow(2,game.currency.etimebought+4))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4);}),
+    thought:(function (){return (Math.floor(game.currency.etime)>=game.currency.thought*2+4)&&(game.currency.existivity>=50*Math.pow(game.currency.thought+2,2))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));}),
+    energy:(function (){
+      var r=Math.floor(Math.pow(game.currency.energy,1.8))*5+15;
+      if (game.upgrade.convthought_1){r=Math.ceil(r/4);}
+      return (game.currency.thought>=Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))&&(game.currency.word>=r);
+    }),
+    explosion:(function (){return (game.currency.energy>=5)&&(game.currency.existivity>=1e+9);}),
+    residue:(function (){return !game.unlocked.residue&&(game.currency.explosion>=1000);}),
+    alternate_universe:(function (){return !game.unlocked.alternate_universe&&(game.currency.residue>=1e6);}),
+    upgrade_convexisti_1:(function (){return (game.currency.existivity>=200000)&&!game.upgrade.convexisti_1.bought;}),
+    upgrade_convexisti_2:(function (){return (game.currency.existance>=150)&&!game.upgrade.convexisti_2.bought;}),
+    upgrade_convexisti_3:(function (){return (game.currency.explosion>=3)&&(game.currency.existivity>=614.778e12)&&!game.upgrade.convexisti_3.bought;}),
+    upgrade_existability_1:(function (){return (game.currency.existance>=4000)&&!game.upgrade.existability_1;}),
+    upgrade_existability_2:(function (){return (game.currency.etime>=20)&&(game.currency.existance>=700000)&&!game.upgrade.existability_2;}),
+    upgrade_existance_1:(function (){return (game.currency.energy>=1)&&!game.upgrade.existance_1;}),
+    upgrade_existance_2:(function (){return (game.currency.explosion>=4)&&!game.upgrade.existance_2;}),
+    upgrade_convexista_1:(function (){return (game.currency.explosion>=1)&&(game.currency.experience>=12)&&!game.upgrade.convexista_1.bought;}),
+    upgrade_etime_1:(function (){return (game.currency.explosion>=1)&&!game.upgrade.etime_1.bought;}),
+    upgrade_thought_1:(function (){return (game.currency.explosion>=2)&&(game.currency.thought>=10)&&(game.currency.word>=700)&&!game.upgrade.thought_1.bought;}),
+    upgrade_word_1:(function (){return (game.currency.thought>=2)&&(game.currency.word>=100)&&(game.currency.existance>=1000)&&!game.upgrade.word_1;}),
+    upgrade_convthought_1:(function (){return (game.currency.energy>=4)&&(game.currency.thought>=5)&&!game.upgrade.convthought_1;}),
+    upgrade_energy_1:(function (){return (game.currency.explosion>=2)&&!game.upgrade.energy_1;}),
+    upgrade_energy_2:(function (){return (game.currency.word>=500)&&!game.upgrade.energy_2;}),
+    autoconvexisti:(function (){return (game.currency.existance>=200)&&!game.autobuy.existivity.bought;}),
+    autoconvexista:(function (){return (game.currency.thought>=6)&&(game.currency.word>=60)&&(game.currency.etime>=10)&&!game.autobuy.existance.bought;}),
+    autoconvetime:(function (){return (game.currency.explosion>=3)&&(game.currency.energy>=4)&&!game.autobuy.etime.bought;})
+  },
+  upgrade:{
+    convexisti_1:{
+      bought:false,
+      enable:(function (){return document.getElementById("upgrade.convexisti_1.enable").checked;}),
+      ison:(function (){return game.upgrade.convexisti_1.bought&&game.upgrade.convexisti_1.enable();})
     },
+<<<<<<< HEAD
     alternate_universe:{
       active:0,
       completed:[]
@@ -294,19 +238,124 @@ function initializevars(){
       energy:0,
       explosion:0,
       residue:[-Infinity,false]
+=======
+    convexisti_2:{
+      bought:false,
+      enable:(function (){return document.getElementById("upgrade.convexisti_2.enable").checked;}),
+      ison:(function (){return game.upgrade.convexisti_2.bought&&game.upgrade.convexisti_2.enable();})
     },
-    option:{
-      disableshake:(function (){return document.getElementById("checkbox.disableshake").checked;}),
-      disablewrap:(function (){return document.getElementById("checkbox.disablewrap").checked;}),
-      smallui:(function (){return document.getElementById("checkbox.smallui").checked;})
+    convexisti_3:{
+      bought:false,
+      enable:(function (){return document.getElementById("upgrade.convexisti_3.enable").checked;}),
+      ison:(function (){return game.upgrade.convexisti_3.bought&&game.upgrade.convexisti_3.enable();})
     },
+    existability_1:false,
+    existability_2:false,
+    existance_1:false,
+    existance_2:false,
+    convexista_1:{
+      bought:false,
+      enable:(function (){return document.getElementById("upgrade.convexista_1.enable").checked;}),
+      ison:(function (){return game.upgrade.convexista_1.bought&&game.upgrade.convexista_1.enable();})
+    },
+    etime_1:{
+      bought:false,
+      enable:(function (){return document.getElementById("upgrade.etime_1.enable").checked;}),
+      ison:(function (){return game.upgrade.etime_1.bought&&game.upgrade.etime_1.enable();})
+    },
+    thought_1:{
+      bought:false,
+      enable:(function (){return document.getElementById("upgrade.thought_1.enable").checked;}),
+      ison:(function (){return game.upgrade.thought_1.bought&&game.upgrade.thought_1.enable();})
+    },
+    word_1:{
+      bought:false,
+      enable:(function (){return document.getElementById("upgrade.word_1.enable").checked;}),
+      ison:(function (){return game.upgrade.word_1.bought&&game.upgrade.word_1.enable();})
+    },
+    convthought_1:false,
+    energy_1:false,
+    energy_2:false
+  },
+  autobuy:{
+    existivity:{
+      bought:false,
+      enable:(function (){return document.getElementById("autobuy.existivity.enable").checked;}),
+      threshold:(function (){return Number(document.getElementById("input.autoconvexisti").value);}),
+      ison:(function (){return game.autobuy.existivity.bought&&game.autobuy.existivity.enable();})
+>>>>>>> baa4ddbd6336659d1ce8000f2572afb690a30b98
+    },
+    existance:{
+      bought:false,
+      enable:(function (){return document.getElementById("autobuy.existance.enable").checked;}),
+      ison:(function (){return game.autobuy.existance.bought&&game.autobuy.existance.enable();})
+    },
+<<<<<<< HEAD
     datainfo:{
       version:"α 0.0.5",
       release:201811291, //YYYYMMDDX
       lasttime:0
+=======
+    etime:{
+      bought:false,
+      enable:(function (){return document.getElementById("autobuy.etime.enable").checked;}),
+      ison:(function (){return game.autobuy.etime.bought&&game.autobuy.etime.enable();})
+>>>>>>> baa4ddbd6336659d1ce8000f2572afb690a30b98
     }
-  };
-}
+  },
+  achievement:{
+    arrangement:[
+      [ 0, 1, 3,10,11,28, 8,25,29,33],
+      [ 2, 4, 5,12,13,16,17,43,44,19],
+      [23,27, 6, 7, 9,14,26,20,30,42],
+      [24,22,18,21,41,15,39,31,36,40],
+      [46,47,53,35,45,32,38,37,34,48],
+      [56,-1,54,52,49,-1,55,57,51,50]
+    ],
+    condition:["true","game.currency.existance>=1","undefined","game.currency.existance>=8","game.currency.etime>=1","Math.pow(1.2,game.currency.etime)>=3","game.currency.thought>=1","game.currency.word>=1","game.currency.existability.total()>0.9999999","(game.currency.thought>=4)&&(game.currency.word>=120)",//0x
+    "undefined","undefined","undefined","undefined","game.currency.energy>=1","game.currency.energy>=4","game.currency.existance>=1000","game.currency.existance>=100000","Math.pow(1.2,game.currency.etime)>=100","game.currency.existance>=1e+7",//1x
+    "game.currency.existivity>=1000","game.currency.existivity>=1e+7","game.currency.thought>=6","undefined","undefined","game.currency.convexistiearn.total()>=100","game.autobuy.existivity.bought","undefined","game.status.timeplayed>=20*60","undefined",//2x
+    "game.currency.existabilityboost>=0.25","Math.floor(game.currency.existance)==123456","game.currency.explosion>=1","function temp(){var it=true;for(var i=0;i<9;i++){if (!game.achievement.done[game.achievement.arrangement[0][i]]){it=false;break;}}return it;}temp();","game.currency.existivity>=1e+15","game.production.existanceboost.etime.total()>=1e+6","(game.currency.word>=150)&&(game.currency.thought<=1)","(game.currency.thought>=8)&&(game.currency.word<=4)","game.status.explosion>=5","game.autobuy.etime.bought",//3x
+    "game.currency.existivity>=1e+9","game.status.etime>=3600","game.status.word>=1000","(game.currency.convexistiearn.total()>=3000)&&(game.currency.existability.total()>=0.9)","game.production.existivity>=1e+12","game.currency.etime>=20","(game.currency.word>=5000)||(game.status.word>=25000)","game.achievement.completed()>=40","game.currency.existabilityboost>=0.35","game.production.existanceboost.etime.total()>=Math.pow(Number.MAX_VALUE,3/100)",//4x
+    "(game.currency.thought>=12)&&(game.currency.word>=1000)","(game.currency.existability.total()>=2e-8)&&(game.currency.existability.total()<=4e-8)","game.status.timeplayed>=172800","(Math.floor(game.currency.etime)>game.currency.etimebought*2)&&(game.currency.etimebought>12)","(game.currency.etime-game.currency.etimebought>=1)&&(game.currency.thought<=1)","game.currency.energy>=6","(game.currency.word>=game.currency.thought*1000)&&(game.currency.thought>=1)","undefined"],//5x
+    name:["Big Bang?,Open game.","There IS Something Rather Than Nothing,Find an existance.","Bad Roll,Fail to find an existance.","Crowding,Find 8 existances.","Time\u2122,Let them experience.","Good experience,Have +200% boost by experiences.","Non-mechanic Integration,Have a thought.\nReward: Unlock Achievemnts","0.6\u2030,Get a word.","Almost Gurantee,Have probability exceed 99.9999%.","Yes Brainer,Have 4 thoughts and 120 words.",//0x
+    "Quantum Fluctuation I,Successfully find existance with less than 5% chance.","Quantum Fluctuation II,Successfully find existance with less than 0.5% chance.","Quantum Fluctuation -I,Fail to find existance with more than 98% chance.","Quantum Fluctuation -II,Fail to find existance with more than 99.5% chance.","W=F·d·cos\u03b8,Have some energy in your system.","Work!,Have 4 joules of energy.","Swarn,A group of 1,000 existances.","Stream,A group of 100,000 existances.","Overpowered,Get ×100 boost by experienced time.","Okay$ You had Enough.,Have 10 million existances.",//1x
+    "You don't need this much.,Reach 1,000 existivity.","Why Would You Need That?!,Reach 10 million existivity.","Confused,Have 6 thoughts.","Quantum Fluctuation III,Successfully find existance with less than 0.01% chance.","Quantum Fluctuation -III,Fail to find existance with more than 99.999% chance.","Gimme More!,Let 100 experiences available in a click.","You have a Coop,Have an autobuyer.","Don't you dare sleep,Be offline for over 6 hours in a row.","You Are In This,Play for 20 minutes","Comeback,Leave game for a week.",//2x
+    "Was this your intention?,Have boost to probability of existances existing exceed 25%.","Nice Work.,Get EXACTLY 123456 existances. No more or no less.\nReward: Your existances are slightly stronger for every existance you have.","Boom, I guess,Explosion","Line up,Complete the 1st row of achievements.\nReward: Each achievement completed give +1% boost to energy,\n  experience and existances.","Do you know this?,Have 1 quadrillion existivity.","You know POWER OF EXPOENTIAL FUNCTION?,Have ×1 million by experienced time.","Would You Mind?,Have 150 words with only 1 thought.\nReward: With achievement \"Wouldn't You Mind?\"$ thoughts will generate triple the strings,\n and thinking will give 5 words.","Wouldn't You Mind?,Have 8 thoughts with at most 4 words.\nReward: With achievement \"Would You Mind?\"$ thoughts will generate triple the strings,\n and thinking will give 5 words.","Something happened,Explode 5 times.","Unconditioned Reflex,Have auto thinker.",//3x
+    "Something is happening,Have 10 billion existivity.","An hour 'round,Experience 3,600 seconds total.\nReward: Experiences are slightly more effective longer you play.","Thoughter,Think 1,000 words in total.\nReward: Words produce quadruple existances.","Thats alot.,Have 3,000 existances available in a click with 90% certainty.","WAAAAAAAAAAAA...,Produce 1 trillion existivity per second.","You've having alot of boost,Have 20 seconds experienced.","You Should Write a Book.,Think of 5,000 words in moment or 25,000 words total.","Good Luck,Complete 40 achievements.","You Must have Tried,Have +35% boost to chance of existing by fails.","3% to Infinity,Have ×1.769 billion boost by experienced time.",//4x
+    "Brain Brainer,Have 12 thoughts and 1,000 words.","Hey$ you done too much,Have between 0.000002% to 0.000004% probability of existances existing.","time_wasted.online = 172800,Play online for 2 days.","Better than Your Clicks,Have more energy produced experienced time than manually experienced time of more than 12 seconds.","Yup$ I'm Sure that It's Better.,Have a second of experience produced by energy with only 1 thought.","You didn't need though...,Have 6 joules of energy.","You didn't have to wait that long...,Have 1,000 times more words than thoughts.","You funny., Follow the direction on import."],//5x
+    done:[],
+    completed:(function (){
+      var a=0;
+      for (var i=0;i<game.achievement.done.length;i++){
+        if (game.achievement.done[i]) a++;
+      }
+      return a;
+    })
+  },
+  status:{
+    timeplayed:0,
+    totaltime:0,
+    existivity:0,
+    existance:0,
+    etime:0,
+    thought:0,
+    word:0,
+    energy:0,
+    explosion:0
+  },
+  option:{
+    disableshake:(function (){return document.getElementById("checkbox.disableshake").checked;}),
+    disablewrap:(function (){return document.getElementById("checkbox.disablewrap").checked;}),
+    smallui:(function (){return document.getElementById("checkbox.smallui").checked;})
+  },
+  datainfo:{
+    version:"α 0.0.5",
+    release:201811221, //YYYYMMDDX
+    lasttime:0
+  }
+};
+function initializevars(){game=defaultGame;}
 initializevars();
 function notation(i){
   if (typeof i=="number") return notations.normalsmall(i);
@@ -314,11 +363,50 @@ function notation(i){
 }
 function timeFormat(t){
   var m="";
-  if (t>=86400*365) m+=notation(Math.floor(t/(86400*365)))+" years ";
-  if (t>=86400) m+=Math.floor(t/86400%365)+" days ";
-  if (t>=3600) m+=Math.floor(t/3600%24)+" hours ";
-  if (t>=60) m+=Math.floor(t/60%60)+" minutes ";
-  if (t>=10){m+=Math.floor(t%60)+" seconds";}else{m=t.toFixed(3)+" seconds";}
+  var day=86400;
+  var year=365*day;
+  function s(i){return i==1?"":"s";}
+  if (t>=10){
+    var units=[
+      ["dark era",year*1e100],
+      ["death",year*1e96],
+      ["void",year*1e90],
+      ["enlightment",year*1e84],
+      ["particle decay",year*1e78],
+      ["ionization",year*1e78],
+      ["sphere",year*1e72],
+      ["evaporation",year*6e66],
+      ["freeze",year*1e63],
+      ["inflamation",year*1e57],
+      ["fixation",year*1e51],
+      ["darkness",year*1e45,"darknesses"],
+      ["proton decay",year*5.1e39],
+      ["recursion",year*1e33],
+      ["cycle",year*4.134105e28],
+      ["purge",year*1e25],
+      ["ejection",year*1e19],
+      ["detachment",year*1e15],
+      ["crunch",year*1e12,"crunches"],
+      ["eon",year*1e9],
+      ["epoch",year*1e6],
+      ["millennium",year*1000],
+      ["century",year*100,"centuries"],
+      ["year",year],
+      ["day",day],
+      ["hour",3600],
+      ["minute",60],
+      ["second",1]
+    ];
+    for (var i=0;i<units.length;i++){
+      if (t>=units[i][1]){
+        m+=" "+notation(Math.floor(t/units[i][1]))+" "+(units[i][2]?units[i][Math.floor(t/units[i][1])==1?0:2]:(units[i][0]+s(Math.floor(t/units[i][1]))));
+        t%=units[i][1];
+      }
+    }
+    m=m.substring(1);
+  }else{
+    m=t.toFixed(3)+" seconds";
+  }
   return m;
 }
 var cookieaccepted=false;
@@ -727,7 +815,8 @@ function passive(){
   }
   timeelapsed=timeelapsedleft;
   tick();
-  updatedisp();
+  updatecurrdisp();
+  updatedivdisp();
   updatebutton();
   updateachiev();
 }
@@ -812,7 +901,7 @@ function updateautosave(){
   if (!saved) return;
   if (d.getTime()-saved>=60000) savegame();
 }
-function updatedisp(){
+function updatecurrdisp(){
   if (game.currency.convexistiearn.total()!=1){
     document.getElementById("disp.existivity2").innerHTML=notation(game.currency.convexistiearn.total());
     showhide("div.disp.existivity2",true);
@@ -899,6 +988,8 @@ function updatedisp(){
   if (game.unlocked.alternate_universe) showhide("button.changescr_alternate_universe",true);
   document.getElementById("disp.status.timeplayed").innerHTML=timeFormat(game.status.timeplayed);
   document.getElementById("disp.status.totaltime").innerHTML=timeFormat(game.status.totaltime);
+}
+function updatedivdisp(){
   if (game.upgrade.convexisti_1.bought){
     showhide("div.upgrade.convexisti_1.bottom",true);
     document.getElementById("disp.upgrade.convexisti_1").innerHTML=notation(Math.round(game.currency.convexistiearn.upgrade_convexisti_1()*1000)/1000);
