@@ -249,6 +249,10 @@ function initializevars(){
         ison:(function (){return game.autobuy.etime.bought&&game.autobuy.etime.enable();})
       }
     },
+    alternate_universe:{
+      active:0,
+      completed:[]
+    },
     achievement:{
       arrangement:[
         [ 0, 1, 3,10,11,28, 8,25,29,33],
@@ -288,7 +292,8 @@ function initializevars(){
       thought:0,
       word:0,
       energy:0,
-      explosion:0
+      explosion:0,
+      residue:[-Infinity,false]
     },
     option:{
       disableshake:(function (){return document.getElementById("checkbox.disableshake").checked;}),
@@ -297,7 +302,7 @@ function initializevars(){
     },
     datainfo:{
       version:"α 0.0.5",
-      release:201811211, //YYYYMMDDX
+      release:201811291, //YYYYMMDDX
       lasttime:0
     }
   };
@@ -608,6 +613,7 @@ function loadgame(){
   delete decodedsave.autobuy.existance.enable;
   document.getElementById("autobuy.etime.enable").checked=decodedsave.autobuy.etime.enable;
   delete decodedsave.autobuy.etime.enable;
+  if (decodedsave.currency.residue&&!decodedsave.status.residue) decodedsave.status.residue=decodedsave.currency.residue;
   document.getElementById("checkbox.disableshake").checked=decodedsave.option.disableshake;
   delete decodedsave.option.disableshake;
   document.getElementById("checkbox.disablewrap").checked=decodedsave.option.disablewrap;
@@ -692,6 +698,7 @@ function toggleclass(x,c,t){
   o=document.getElementById(x).className;
   document.getElementById(x).className=o.replace(/  /g," ");
 }
+
 var timeelapsedleft=0;
 var timeelapsed;
 var d=new Date();
@@ -798,6 +805,7 @@ function updatecurr(){
   game.currency.thought+=game.production.thought*timeelapsed;
   game.currency.energy+=game.production.energy*timeelapsed;
   game.currency.residue=exp.add(game.currency.residue,exp.mult(game.production.residue,exp.conv(timeelapsed)));
+  game.status.residue=exp.add(game.status.residue,exp.mult(game.production.residue,exp.conv(timeelapsed)));
 }
 var saved=false;
 function updateautosave(){
@@ -1067,6 +1075,7 @@ function updatebutton(){
   if (game.upgrade.convthought_1) a=Math.ceil(a/4);
   document.getElementById("button.convthought").innerHTML="Be energetic!!<br/>Cost: "+notation(Math.floor(game.currency.energy*(game.currency.energy+1)/2+3))+" thoughts,<br/>  "+notation(a)+" words thought";
 }
+
 function changescr_setup(){
   showhide("scr.shop.general",false);
   showhide("scr.shop.upgrade",false);
@@ -1099,6 +1108,7 @@ function changescr_achievement(){
   changescr_setup();
   showhide("table.achievement",true);
 }
+
 function convexisti(){
   if (!game.canbuy.existance()) return;
   if (game.upgrade.convexisti_1.ison()){
@@ -1262,6 +1272,7 @@ function convenergy(){
   game.unlocked.upgrade.etime_1=true;
   if (game.status.explosion>=2) game.unlocked.buyautoconvetime=true;
 }
+
 function buy_upgrade_convexisti_1(){
   if (!game.canbuy.upgrade_convexisti_1()) return;
   game.currency.existivity-=200000;
@@ -1372,6 +1383,13 @@ function buyautoconvetime(){
   game.currency.explosion-=3;
   game.currency.energy-=4;
   game.autobuy.etime.bought=true;
+}
+
+function alternate_universe(id){
+  var alternate_universe_cost=[null,5e5,2.5e6,3e7,8e7,6.5e8,2e9,1e10,4e11,3.5e12,1e17];
+  if (![1,2,3,4,5,6,7,8,9,10].includes(id)) throw "Illegal Alternate Universe ID";
+  game.currency.residue-=alternate_universe_cost[id];
+  game.alternate_universe.active=id;
 }
 var achievinterval;
 var achievshown=false;
