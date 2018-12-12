@@ -165,10 +165,15 @@ var defaultGame={
     alternate_universe:false
   },
   canbuy:{
-    existance:(function (){return game.currency.existance<Math.round(Math.pow(game.alternate_universe.active==6?1.3:game.alternate_universe.completed[6]?1.8:2,game.currency.etimebought+4));}),
+    existance:(function (){return game.alternate_universe.completed[10]||(game.currency.existance<Math.round(Math.pow(game.alternate_universe.active==6?1.3:game.alternate_universe.completed[6]?1.8:2,game.currency.etimebought+4)));}),
     etime:(function (){
       if (game.alternate_universe.active==4) return (game.currency.existivity>=1000*Math.pow(game.currency.etimebought+1,2)*Math.pow(2,game.currency.etimebought))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4);
-      return (game.currency.existance>=Math.round(Math.pow(game.alternate_universe.active==6?1.3:game.alternate_universe.completed[6]?1.8:2,game.currency.etimebought+4))/(game.alternate_universe.completed[10]?4:1))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4+(game.alternate_universe.active==3));
+      if (Math.floor(game.currency.etime)>=game.currency.thought*2+4+(game.alternate_universe.active==3)) return 0;
+      if (!game.alternate_universe.completed[10]) return ((game.currency.existance>=Math.round(Math.pow(game.alternate_universe.active==6?1.3:game.alternate_universe.completed[6]?1.8:2,game.currency.etimebought+4))/(game.alternate_universe.completed[10]?4:1))&&(Math.floor(game.currency.etime)<game.currency.thought*2+4+(game.alternate_universe.active==3)))?1:0;
+      var r=0;
+      while (game.currency.existance>=Math.round(Math.pow(game.alternate_universe.active==6?1.3:game.alternate_universe.completed[6]?1.8:2,game.currency.etimebought+4))/(game.alternate_universe.completed[10]?4:1)*(r+1)) r++;
+      //console.log("r:"+r);
+      return r;
     }),
     thought:(function (){
       if (game.alternate_universe.active==4) return (game.currency.existivity>=1e4*Math.pow(game.currency.thought+1,4)*Math.pow(8,game.currency.thought))&&!((game.currency.thought>=(game.currency.energy*(game.currency.energy+1)/2+3)&&(game.currency.word>=Math.floor(Math.pow(game.currency.energy,1.5))*25+100)));
@@ -268,12 +273,17 @@ var defaultGame={
     existance:{
       bought:false,
       enable:(function (){return document.getElementById("autobuy.existance.enable").checked;}),
+      threshold:(function (){return Number(document.getElementById("input.autoconvexista").value);}),
       ison:(function (){return game.autobuy.existance.bought&&game.autobuy.existance.enable();})
     },
     etime:{
       bought:false,
       enable:(function (){return document.getElementById("autobuy.etime.enable").checked;}),
       ison:(function (){return game.autobuy.etime.bought&&game.autobuy.etime.enable();})
+    },
+    thought:{
+      enable:(function (){return document.getElementById("autobuy.thought.enable").checked;}),
+      ison:(function (){return game.alternate_universe.completed[10]&&game.autobuy.thought.enable();})
     }
   },
   alternate_universe:{
@@ -289,8 +299,8 @@ var defaultGame={
       [24,22,18,21,41,15,39,31,36,40],
       [46,47,53,35,45,32,38,37,34,48],
       [56,-1,54,52,49,58,55,57,51,50],
-      [-1,-1,-1,-1,-1,59,60,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,61,-1,-1,-1]
+      [-1,-1,-1,-1,62,59,60,64,-1,-1],
+      [-1,-1,-1,-1,63,-1,61,-1,65,-1]
     ],
     condition:["true","game.currency.existance>=1","undefined","game.currency.existance>=8","game.currency.etime>=1","Math.pow(1.2,game.currency.etime)>=3","game.currency.thought>=1","game.currency.word>=1","game.currency.existability.total()>0.9999999","(game.currency.thought>=4)&&(game.currency.word>=120)",//0x
     "undefined","undefined","undefined","undefined","game.currency.energy>=1","game.currency.energy>=4","game.currency.existance>=1000","game.currency.existance>=100000","Math.pow(1.2,game.currency.etime)>=100","game.currency.existance>=1e+7",//1x
@@ -298,14 +308,14 @@ var defaultGame={
     "game.currency.existabilityboost>=0.25","Math.floor(game.currency.existance)==123456","game.currency.explosion>=1","function temp(){var it=true;for(var i=0;i<9;i++){if (!game.achievement.done[game.achievement.arrangement[0][i]]){it=false;break;}}return it;}temp();","game.currency.existivity>=1e+15","game.production.existanceboost.etime.total()>=1e+6","(game.currency.word>=150)&&(game.currency.thought<=1)","(game.currency.thought>=8)&&(game.currency.word<=4)","game.status.explosion>=5","game.autobuy.etime.bought",//3x
     "game.currency.existivity>=1e+9","game.status.etime>=3600","game.status.word>=1000","(game.currency.convexistiearn.total()>=3000)&&(game.currency.existability.total()>=0.9)","game.production.existivity>=1e+12","game.currency.etime>=20","(game.currency.word>=5000)||(game.status.word>=25000)","game.achievement.completed()>=40","game.currency.existabilityboost>=0.35","game.production.existanceboost.etime.total()>=Math.pow(Number.MAX_VALUE,3/100)",//4x
     "(game.currency.thought>=12)&&(game.currency.word>=1000)","(game.currency.existability.total()>=2e-8)&&(game.currency.existability.total()<=4e-8)","game.status.timeplayed>=172800","(Math.floor(game.currency.etime)>game.currency.etimebought*2)&&(game.currency.etimebought>12)","(game.currency.etime-game.currency.etimebought>=1)&&(game.currency.thought<=1)","game.currency.energy>=6","(game.currency.word>=game.currency.thought*1000)&&(game.currency.thought>=1)","undefined","game.unlocked.residue","game.unlocked.alternate_universe",//5x
-    "game.alternate_universe.completed[1]","game.alternate_universe.completed[10]"],//6x
+    "game.alternate_universe.completed[1]","game.alternate_universe.completed[10]","Number(exp.text(game.currency.residue,\"e+\"))>=1e+6","game.currency.existivity>=Math.pow(Number.MAX_VALUE,0.1)","undefined","undefined"],//6x
     name:["Big Bang?,Open game.","There IS Something Rather Than Nothing,Find an existance.","Bad Roll,Fail to find an existance.","Crowding,Find 8 existances.","Time\u2122,Let them experience.","Good experience,Have +200% boost by experiences.","Non-mechanic Integration,Have a thought.\nReward: Unlock Achievemnts","0.6\u2030,Get a word.","Almost Gurantee,Have probability exceed 99.9999%.","Yes Brainer,Have 4 thoughts and 120 words.",//0x
     "Quantum Fluctuation I,Successfully find existance with less than 5% chance.","Quantum Fluctuation II,Successfully find existance with less than 0.5% chance.","Quantum Fluctuation -I,Fail to find existance with more than 98% chance.","Quantum Fluctuation -II,Fail to find existance with more than 99.5% chance.","W=F·d·cos\u03b8,Have some energy in your system.","Work!,Have 4 joules of energy.","Swarn,A group of 1,000 existances.","Stream,A group of 100,000 existances.","Overpowered,Get ×100 boost by experienced time.","Okay$ You had Enough.,Have 10 million existances.",//1x
     "You don't need this much.,Reach 1,000 existivity.","Why Would You Need That?!,Reach 10 million existivity.","Confused,Have 6 thoughts.","Quantum Fluctuation III,Successfully find existance with less than 0.01% chance.","Quantum Fluctuation -III,Fail to find existance with more than 99.999% chance.","Gimme More!,Let 100 experiences available in a click.","You have a Coop,Have an autobuyer.","Don't you dare sleep,Be offline for over 6 hours in a row.","You Are In This,Play for 20 minutes","Comeback,Leave game for a week.",//2x
     "Was this your intention?,Have boost to probability of existances existing exceed 25%.","Nice Work.,Get EXACTLY 123456 existances. No more or no less.\nReward: Your existances are slightly stronger for every existance you have.","Boom, I guess,Explosion","Line up,Complete the 1st row of achievements.\nReward: Each achievement completed give +1% boost to energy,\n  experience and existances.","Do you know this?,Have 1 quadrillion existivity.","You know POWER OF EXPOENTIAL FUNCTION?,Have ×1 million by experienced time.","Would You Mind?,Have 150 words with only 1 thought.\nReward: With achievement \"Wouldn't You Mind?\"$ thoughts will generate triple the strings,\n and thinking will give 5 words.","Wouldn't You Mind?,Have 8 thoughts with at most 4 words.\nReward: With achievement \"Would You Mind?\"$ thoughts will generate triple the strings,\n and thinking will give 5 words.","Something happened,Explode 5 times.","Unconditioned Reflex,Have auto thinker.",//3x
     "Something is happening,Have 10 billion existivity.","An hour 'round,Experience 3,600 seconds total.\nReward: Experiences are slightly more effective longer you play.","Thoughter,Think 1,000 words in total.\nReward: Words produce quadruple existances.","Thats alot.,Have 3,000 existances available in a click with 90% certainty.","WAAAAAAAAAAAA...,Produce 1 trillion existivity per second.","You've having alot of boost,Have 20 seconds experienced.","You Should Write a Book.,Think of 5,000 words in moment or 25,000 words total.","Good Luck,Complete 40 achievements.","You Must have Tried,Have +35% boost to chance of existing by fails.","3% to Infinity,Have ×1.769 billion boost by experienced time.",//4x
     "Brain Brainer,Have 12 thoughts and 1,000 words.","Hey$ you done too much,Have between 0.000002% to 0.000004% probability of existances existing.","time_wasted.online = 172800,Play online for 2 days.","Better than Your Clicks,Have more energy produced experienced time than manually experienced time of more than 12 seconds.","Yup$ I'm Sure that It's Better.,Have a second of experience produced by energy with only 1 thought.","You didn't need though...,Have 6 joules of energy.","You didn't have to wait that long...,Have 1,000 times more words than thoughts.","You funny.,Follow the direction on import.","You left it behind.,Unlock residue.","Our Universe isn't Powerful Enough!,Unlock Alternate Universe",//5x
-    "\"Rules\" doesn't Rule Me,Complete \"Quantum Thinning\" universe.","Empire of the Multiverse,Complete \"Ultimate Test\" universe."],//6x
+    "\"Rules\" doesn't Rule Me,Complete \"Quantum Thinning\" universe.","Empire of the Multiverse,Complete \"Ultimate Test\" universe.","1 million is a lot,Get 1.000 million residue.","10% to Infinity,Have 6.69 nonillion existivity.","Paranoia,Exit from an Alternate Universe.","Experienced,Experience 10 seconds at once."],//6x
     done:[],
     completed:(function (){
       var a=0;
@@ -619,9 +629,12 @@ function savegame(){
   save.autobuy.existivity.threshold=game.autobuy.existivity.threshold();
   delete save.autobuy.existivity.ison;
   save.autobuy.existance.enable=game.autobuy.existance.enable();
+  save.autobuy.existance.threshold=game.autobuy.existance.threshold();
   delete save.autobuy.existance.ison;
   save.autobuy.etime.enable=game.autobuy.etime.enable();
   delete save.autobuy.etime.ison;
+  save.autobuy.thought.enable=game.autobuy.thought.enable();
+  delete save.autobuy.thought.ison;
   delete save.achievement.arrangement;
   delete save.achievement.condition;
   delete save.achievement.name;
@@ -686,10 +699,16 @@ function loadgame(){
   delete decodedsave.autobuy.existivity.threshold;
   document.getElementById("autobuy.existivity.enable").checked=decodedsave.autobuy.existivity.enable;
   delete decodedsave.autobuy.existivity.enable;
+  document.getElementById("input.autoconvexista").value=decodedsave.autobuy.existance.threshold;
+  delete decodedsave.autobuy.existance.threshold;
   document.getElementById("autobuy.existance.enable").checked=decodedsave.autobuy.existance.enable;
   delete decodedsave.autobuy.existance.enable;
   document.getElementById("autobuy.etime.enable").checked=decodedsave.autobuy.etime.enable;
   delete decodedsave.autobuy.etime.enable;
+  if (decodedsave.autobuy.thought){
+    document.getElementById("autobuy.thought.enable").checked=decodedsave.autobuy.thought.enable;
+    delete decodedsave.autobuy.thought.enable;
+  }
   if (decodedsave.currency.residue&&!decodedsave.status.residue) decodedsave.status.residue=decodedsave.currency.residue;
   document.getElementById("checkbox.disableshake").checked=decodedsave.option.disableshake;
   delete decodedsave.option.disableshake;
@@ -828,8 +847,12 @@ function tick(){
 function updateauto(){
   game.autobuy.interval-=timeelapsed;
   if (game.autobuy.interval<=0){
+    if (game.autobuy.thought.ison()) convthought();
     if (game.autobuy.etime.ison()) convetime();
-    if (game.autobuy.existance.ison()) convexista();
+    //if (game.autobuy.existance.ison()) convexista();
+    if (game.autobuy.existance.ison()&&(game.canbuy.etime()>=(isNaN(game.autobuy.existance.threshold())?1:game.autobuy.existance.threshold()))){
+      convexista();
+    }
     if (game.autobuy.existivity.ison()&&(game.currency.existivity>=game.autobuy.existivity.threshold())&&!isNaN(game.autobuy.existivity.threshold())){
       convexisti();
     }
@@ -875,7 +898,7 @@ function updatecurr(){
   if ((game.alternate_universe.active==9)&&(game.currency.existivity<0)) convenergy(true);
   f=Math.floor(game.currency.existance);
   game.currency.existance+=game.production.existance*timeelapsed;
-  game.currency.existance=Math.min(game.currency.existance,Math.round(Math.pow(game.alternate_universe.active==6?1.3:game.alternate_universe.completed[6]?1.8:2,game.currency.etimebought+4)));
+  if (!game.alternate_universe.completed[10]) game.currency.existance=Math.min(game.currency.existance,Math.round(Math.pow(game.alternate_universe.active==6?1.3:game.alternate_universe.completed[6]?1.8:2,game.currency.etimebought+4)));
   game.status.existance+=Math.max(Math.floor(game.currency.existance)-f,0);
   f=Math.floor(game.currency.etime);
   game.currency.etime+=game.production.etime*timeelapsed;
@@ -1153,8 +1176,13 @@ function updatebutton(){
     toggleclass("button.buyautoconvetime","unavailable",!game.canbuy.autoconvetime());
   }
   if ((document.getElementById("form.autoconvexisti").className=="hidden")&&game.autobuy.existivity.bought) showhide("form.autoconvexisti",true);
-  if ((document.getElementById("div.autobuy.existance.enable").className=="hidden")&&game.autobuy.existance.bought) showhide("div.autobuy.existance.enable",true);
+  if ((document.getElementById("form.autoconvexista").className=="hidden")&&game.autobuy.existance.bought) showhide("form.autoconvexista",true);
+  if ((document.getElementById("div.input.autoconvexista").className=="hidden")&&game.alternate_universe.completed[10]) showhide("div.input.autoconvexista",true);
   if ((document.getElementById("div.autobuy.etime.enable").className=="hidden")&&game.autobuy.etime.bought) showhide("div.autobuy.etime.enable",true);
+  if ((document.getElementById("div.autobuy.thought.enable").className=="hidden")&&game.alternate_universe.completed[10]){
+    showhide("button.buyautoconvthought",true);
+    showhide("div.autobuy.thought.enable",true);
+  }
   toggleclass("button.upgrade.convexisti_1","unavailable",!game.canbuy.upgrade_convexisti_1());
   toggleclass("button.upgrade.convexisti_2","unavailable",!game.canbuy.upgrade_convexisti_2());
   toggleclass("button.upgrade.convexisti_3","unavailable",!game.canbuy.upgrade_convexisti_3());
@@ -1313,9 +1341,10 @@ function convexisti(){
 }
 function convexista(){
   if (!game.canbuy.etime()) return;
-  game.currency.etime++;
-  game.status.etime++;
-  game.currency.etimebought++;
+  var i=game.canbuy.etime();
+  game.currency.etime+=i;
+  game.status.etime+=i;
+  game.currency.etimebought+=i;
   game.currency.existivity=0;
   game.currency.existabilityboost=0;
   game.currency.existance=game.currency.etimebought;
@@ -1326,6 +1355,7 @@ function convexista(){
   if (game.currency.etime>=2) game.unlocked.convetime=true;
   if (game.currency.etime>=20) game.unlocked.upgrade.existability_2=true;
   if (game.unlocked.explosion&&(game.currency.experience>=8)) game.unlocked.upgrade.convexisti_3=true;
+  if (i>=10) earnachevement(65);
   game.status.etimetime=0;
   game.status.existancetime=0;
 }

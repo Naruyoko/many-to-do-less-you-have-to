@@ -248,8 +248,9 @@
       </div>
       <div style="clear:both"></div>
       <div>
-        <button id="button.buyautoconvexista" type="button" class="hidden" onclick="buyautoconvexista()" title="The experienced thoughts experiences more.">Auto experiencing<br/>Cost: 6 thoughts,<br/>  60 words thought,<br/>  10 experienced time</button>
-        <span id="div.autobuy.existance.enable" class="hidden">
+        <button id="button.buyautoconvexista" type="button" class="hidden" onclick="buyautoconvexista()" title="The experienced thoughts experiences more." style="float:left">Auto experiencing<br/>Cost: 6 thoughts,<br/>  60 words thought,<br/>  10 experienced time</button>
+        <span id="form.autoconvexista" class="hidden" style="float:left">
+          <span id="div.input.autoconvexista" class="hidden">Find existance when you can experience <input id="input.autoconvexista" type="text"> seconds at a time.<br></span>
           Enable:
           <label class="switch">
             <input type="checkbox" id="autobuy.existance.enable">
@@ -257,6 +258,7 @@
           </label>
         </span>
       </div>
+      <div style="clear:both"></div>
       <div>
         <button id="button.buyautoconvetime" type="button" class="hidden" onclick="buyautoconvetime()" title="The circulating forms of energy created a central system to reflex.">Auto thinker<br/>Cost: 3 explosion points,<br/>  4 energy</button>
         <span id="div.autobuy.etime.enable" class="hidden">
@@ -267,9 +269,20 @@
           </label>
         </span>
       </div>
+      <div style="clear:both"></div>
+      <div>
+        <button id="button.buyautoconvthought" type="button" class="hidden unavailable" onclick="" title="The former monarchy of the multiverse &quot;gifted&quot; us this.">Auto energizer</button>
+        <span id="div.autobuy.thought.enable" class="hidden">
+          Enable:
+          <label class="switch">
+            <input type="checkbox" id="autobuy.thought.enable">
+            <span class="slider" style="width:32px;height:16px;"></span>
+          </label>
+        </span>
+      </div>
     </div>
     <div id="scr.alternate_universe" class="hidden">
-      <button style="position:relative;margin:auto;width:200px;padding:2px;display:block;" class="alternate_universe" onclick="if (game.alternate_universe.active) convenergy(true)">Return To Your Universe</button><br>
+      <button style="position:relative;margin:auto;width:200px;padding:2px;display:block;" class="alternate_universe" onclick="if (game.alternate_universe.active){convenergy(true);earnachievement(64);}">Return To Your Universe</button><br>
       <div id="alternate_universe.1" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Quantum Thinning</p>
         <p class="alternate_universe">Chance of finding existances are 20 times lower, and words find 30 times less existances.</p>
@@ -328,7 +341,7 @@
         <p class="alternate_universe">Ultimate Test</p>
         <p class="alternate_universe">Existivity increases 20 times slower. You will find 5 times less existances. Experience effects are 50% that of normal. The residue will decay twice as fast as if it were produces normally, and when residue runs out, it will obliterate the universe. You get a tenth of a word for every word thought while being energetic requires 4 times more words. Thought thinks at half of the normal speed. The effect of words is removed. Energy is 20 times slower.</p>
         <button id="button.alternate_universe.10" type="button alternate_universe" onclick="start_alternate_universe(10)">Cost: 100.000 quadrillion residues</button>
-        <p class="alternate_universe" style="font-size:12px">Reward: Experiencing requires 4 times less experience. You need 1 joule less energy to explode. !inplement from here-> You can go past the limit of the number of existances by experience. Experiencing with excess of existances would give multiple seconds of experience, but experiencing x seconds requires x times more existances than what would normally take for getting 1 second from its previous experience. Unlock Auto Energizer.</p>
+        <p class="alternate_universe" style="font-size:12px">Reward: Experiencing requires 4 times less experience. You need 1 joule less energy to explode. You can go past the limit of the number of existances by experience. Experiencing with excess of existances would give multiple seconds of experience, but experiencing x seconds requires x times more existances than what would normally take for getting 1 second from its previous experience. Unlock Auto Energizer.</p>
       </div>
     </div>
 
