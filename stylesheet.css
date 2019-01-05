@@ -7,8 +7,11 @@
 .box {border:1px solid black;}
 button.unavailable {
   opacity:0.6;
-  cursor: not-allowed;
+  cursor:not-allowed;
   color:#ff0000;
+}
+button.unavailable.alternate_universe {
+  color:#bb2525;
 }
 button * {
   display:inline-block;
@@ -29,9 +32,28 @@ button.changescr {
   font-size:16px;
 }
 .alternate_universe {
+  animation:hue_fluctuate linear infinite 2s;
   background-color:#99cfff;
   border-color:#1c216f;
   color:#4e2b90;
+  text-shadow:0px 0px 12px rgba(27,111,166,0.75);
+}
+button.alternate_universe {
+  animation:hue_fluctuate linear infinite 2s;
+  background-color:#bac9ff;
+  color:#4e2b90;
+  border-color:#272d8e;
+  border-radius:1px;
+  box-shadow:0px 0px 5px 0px rgba(62,142,240,0.69);
+}
+@keyframes hue_fluctuate{
+  0% {filter:hue-rotate(0deg);}
+  15% {filter:hue-rotate(3.333deg);}
+  35% {filter:hue-rotate(6.667deg);}
+  50% {filter:hue-rotate(10deg);}
+  65% {filter:hue-rotate(6.667deg);}
+  85% {filter:hue-rotate(3.333deg);}
+  100% {filter:hue-rotate(0deg);}
 }
 td.achievement {
   border-radius:4px;

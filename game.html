@@ -98,10 +98,10 @@
           <p>Grows based on the existivity.</p>
           <button id="button.unlock.residue" onclick="buy_unlock_residue()">Cost: 1,000 Explosion points</button>
         </div>
-        <div id="unlock.alternate_universe" class="box hidden" style="padding:3px;margin:2px;">
-          <p>Alternate Universes</p>
-          <p>Harvest energy and earn boosts from those universes!</p>
-          <button id="button.unlock.alternate_universe" onclick="buy_unlock_alternate_universe()">Cost: 1.000 million residues</button>
+        <div id="unlock.alternate_universe" class="box alternate_universe hidden" style="padding:3px;margin:2px;">
+          <p class="alternate_universe">Alternate Universes</p>
+          <p class="alternate_universe">Harvest energy and earn boosts from those universes!</p>
+          <button id="button.unlock.alternate_universe" class="alternate_universe" onclick="buy_unlock_alternate_universe()">Cost: 1.000 million residues</button>
         </div>
       </div>
     </div>
@@ -286,61 +286,61 @@
       <div id="alternate_universe.1" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Quantum Thinning</p>
         <p class="alternate_universe">Chance of finding existances are 20 times lower, and words find 30 times less existances.</p>
-        <button id="button.alternate_universe.1" type="button alternate_universe" onclick="start_alternate_universe(1)">Cost: 500,000 residues</button>
+        <button id="button.alternate_universe.1" type="button" class="alternate_universe" onclick="start_alternate_universe(1)">Cost: 500,000 residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: You will get 3 times more existances from finding them and words.</p>
       </div>
       <div id="alternate_universe.2" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Illiteracy</p>
         <p class="alternate_universe">Getting energy requires 10 times more words.</p>
-        <button id="button.alternate_universe.2" type="button alternate_universe" onclick="start_alternate_universe(2)">Cost: 2.500 million residues</button>
+        <button id="button.alternate_universe.2" type="button" class="alternate_universe" onclick="start_alternate_universe(2)">Cost: 2.500 million residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: Getting energy requires 1 less thought.</p>
       </div>
       <div id="alternate_universe.3" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Dark World</p>
         <p class="alternate_universe">Energy degenerate 30% experience of its normal production.</p>
-        <button id="button.alternate_universe.3" type="button alternate_universe" onclick="start_alternate_universe(3)">Cost: 30.000 million residues</button>
+        <button id="button.alternate_universe.3" type="button" class="alternate_universe" onclick="start_alternate_universe(3)">Cost: 30.000 million residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: Energies are 50% stronger.</p>
       </div>
       <div id="alternate_universe.4" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Everything is Existivity</p>
         <p class="alternate_universe">All prestige costs are replaced with existivity except for energy. Can not access Upgrade and Autobuyer tabs.</p>
-        <button id="button.alternate_universe.4" type="button alternate_universe" onclick="start_alternate_universe(4)">Cost: 80.000 million residues</button>
+        <button id="button.alternate_universe.4" type="button" class="alternate_universe" onclick="start_alternate_universe(4)">Cost: 80.000 million residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: Energy is boosted by existivity.</p>
       </div>
       <div id="alternate_universe.5" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Slow Light</p>
         <p class="alternate_universe">Game is 60 times slower. The autobuyers are also effected.</p>
-        <button id="button.alternate_universe.5" type="button alternate_universe" onclick="start_alternate_universe(5)">Cost: 650.000 million residues</button>
+        <button id="button.alternate_universe.5" type="button" class="alternate_universe" onclick="start_alternate_universe(5)">Cost: 650.000 million residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: Existances and words are 50% more efficient.</p>
       </div>
       <div id="alternate_universe.6" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Betrayal of Experience</p>
         <p class="alternate_universe">Experiences are 10 times inefficient, but the cost of experiencing increases by 1.3 incread of 2.</p>
-        <button id="button.alternate_universe.6" type="button alternate_universe" onclick="start_alternate_universe(6)">Cost: 2.000 billion residues</button>
+        <button id="button.alternate_universe.6" type="button" class="alternate_universe" onclick="start_alternate_universe(6)">Cost: 2.000 billion residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: The cost of experiencing increases by 1.8 instead of 2.</p>
       </div>
       <div id="alternate_universe.7" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">You are Alone</p>
         <p class="alternate_universe">Existances do nothing.</p>
-        <button id="button.alternate_universe.7" type="button alternate_universe" onclick="start_alternate_universe(7)">Cost: 10.000 billion residues</button>
+        <button id="button.alternate_universe.7" type="button" class="alternate_universe" onclick="start_alternate_universe(7)">Cost: 10.000 billion residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: Existances are 10% more efficient for each thought.</p>
       </div>
       <div id="alternate_universe.8" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Exotic Universe</p>
         <p class="alternate_universe">Game runs 20 times faster, but the universe will obliterated in real-life 10 minutes.</p>
-        <button id="button.alternate_universe.8" type="button alternate_universe" onclick="start_alternate_universe(8)">Cost: 400.000 billion residues</button>
+        <button id="button.alternate_universe.8" type="button" class="alternate_universe" onclick="start_alternate_universe(8)">Cost: 400.000 billion residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: Energy is slightly more efficient based on time played.</p>
       </div>
       <div id="alternate_universe.9" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Time is Money</p>
         <p class="alternate_universe">You start to lose existivity exponentially faster, and the universe will be obliterated when it turns negative. The speed resets on experiencing.</p>
-        <button id="button.alternate_universe.9" type="button alternate_universe" onclick="start_alternate_universe(9)">Cost: 3.500 trillion residues</button>
+        <button id="button.alternate_universe.9" type="button" class="alternate_universe" onclick="start_alternate_universe(9)">Cost: 3.500 trillion residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: Existances are slightly powerful based on time spent since the last explosion.</p>
       </div>
       <div id="alternate_universe.10" class="box alternate_universe" style="text-align:center;width:44%;padding:5px;margin:1%;float:left;">
         <p class="alternate_universe">Ultimate Test</p>
         <p class="alternate_universe">Existivity increases 20 times slower. You will find 5 times less existances. Experience effects are 50% that of normal. The residue will decay twice as fast as if it were produces normally, and when residue runs out, it will obliterate the universe. You get a tenth of a word for every word thought while being energetic requires 4 times more words. Thought thinks at half of the normal speed. The effect of words is removed. Energy is 20 times slower.</p>
-        <button id="button.alternate_universe.10" type="button alternate_universe" onclick="start_alternate_universe(10)">Cost: 100.000 quadrillion residues</button>
+        <button id="button.alternate_universe.10" type="button" class="alternate_universe" onclick="start_alternate_universe(10)">Cost: 100.000 quadrillion residues</button>
         <p class="alternate_universe" style="font-size:12px">Reward: Experiencing requires 4 times less experience. You need 1 joule less energy to explode. You can go past the limit of the number of existances by experience. Experiencing with excess of existances would give multiple seconds of experience, but experiencing x seconds requires x times more existances than what would normally take for getting 1 second from its previous experience. Unlock Auto Energizer.</p>
       </div>
     </div>

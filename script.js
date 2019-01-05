@@ -1124,6 +1124,8 @@ var exa=[];
     document.body.style.height="";
     showhide("div.disableshake",false);
   }
+  if (game.unlocked.residue) document.getElementById("button.unlock.residue").innerHTML="Bought";
+  if (game.unlocked.alternate_universe) document.getElementById("button.unlock.alternate_universe").innerHTML="Bought";
   if (game.alternate_universe.active==8){
     document.getElementById("bottombar.bar").innerHTML=timeFormat(600-game.status.explosiontime)+" left";
     document.getElementById("bottombar.bar").style.width=(600-game.status.explosiontime)/6+"%";
@@ -1222,7 +1224,7 @@ function updatebutton(){
   if (game.upgrade.etime_1.bought) showhide("upgrade.energy_1",true);
   if (game.upgrade.energy_1) showhide("upgrade.existance_2",true);
   if (game.status.explosion>=10) showhide("unlock.residue",true);
-  if (game.currency.residue>=2e5) showhide("unlock.alternate_universe",true);
+  if (game.currency.residue[0]>=Math.log10(2e5)) showhide("unlock.alternate_universe",true);
   if (game.unlocked.autobuyshop) showhide("button.changescr_shop_autoconv",true);
   if (game.achievement.done[4]) showhide("button.changescr_status",true);
   if (game.achievement.done[6]) showhide("button.changescr_achievement",true);
