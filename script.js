@@ -1652,9 +1652,7 @@ function achievementupdate(){
       var a=game.achievement.arrangement[y][x];
       if (a!=-1){
         var m=game.achievement.name[a];
-        var s=m.search(",");
-        m=m.replace("$",",");
-        o.innerHTML=m.substr(0,s)+"<span class=\"tooltiptext\">"+m.substr(s+1,m.length-s-1)+"</span>";
+        o.innerHTML=m[0]+"<span class=\"tooltiptext\">"+m[1]+"</span>";
         o.className="achievement tooltip";
         if (game.achievement.done[a]){
           o.className+=" done";
