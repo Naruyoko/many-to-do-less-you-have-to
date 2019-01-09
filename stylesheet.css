@@ -55,17 +55,6 @@ button.unavailable.alternate_universe {
 .alternate_universe.completed.entered {
   border-color:#7f08ab;
 }
-/*
-.alternate_universe.unavailable.entered {
-  border-color:#0a7a32;
-}
-.alternate_universe.unavailable.completed {
-  border-color:#c26b1e;
-}
-.alternate_universe.unavailable.completed.entered {
-  border-color:#7f08ab;
-}
-*/
 @keyframes hue_fluctuate{
   0% {filter:hue-rotate(0deg);}
   15% {filter:hue-rotate(3.333deg);}
