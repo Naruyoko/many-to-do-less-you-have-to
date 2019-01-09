@@ -1687,7 +1687,7 @@ function onload(){
   console.log("Script Initilizing:"+(new Date).getTime());
   console.time("took");
   window.onerror=function (message,source,lineno,colno,error){if (game.option.errornotify){document.getElementById("error").value+=(document.getElementById("error").value?"\n\n":"")+new Date().getTime()+"ms, "+new Date().toTimeString()+"\n"+message+"@"+lineno+":"+colno+"\n"+error.name+": "+error.message;}};
-  if (game.option.errornotify) showhide("openerror");
+  showhide("openerror",game.option.errornotify);
   loadgame();
   saved=new Date().getTime();
   if (!Math.cbrt){ //define Math.cbrt() for older enviroments
