@@ -1208,8 +1208,8 @@ function updatebutton(){
   toggleclass("button.unlock.alternate_universe","unavailable",!game.canbuy.alternate_universe());
   for (var i=1;i<=10;i++){
     toggleclass("button.alternate_universe."+i,"unavailable",!game.canbuy.alternate_universe(i));
-    if (game.alternate_universe.active==i) toggleclass("button.alternate_universe."+i,"entered",!game.canbuy.alternate_universe(i));
-    if (game.alternate_universe.completed[i]) toggleclass("button.alternate_universe."+i,"completed",!game.canbuy.alternate_universe(i));
+    toggleclass("button.alternate_universe."+i,"entered",game.alternate_universe.active==i);
+    toggleclass("button.alternate_universe."+i,"completed",game.alternate_universe.completed[i]);
     var s="";
     if (game.alternate_universe.completed[i]) s+="Completed";
     if (game.alternate_universe.active==i) s+=(s?", ":"")+"Entered";
