@@ -49,6 +49,7 @@
       <button type="button" id="button.changescr_alternate_universe" onclick="changescr_alternate_universe()" class="changescr alternate_universe hidden">Alternate Universes</button>
       <button type="button" id="button.changescr_status" onclick="changescr_status()" class="changescr hidden">Status</button>
       <button type="button" id="button.changescr_achievement" onclick="changescr_achievement()" class="changescr hidden">Achievements</button>
+      <button type="button" id="button.changescr_debug" onclick="changescr_debug()" class="changescr debug hidden">Debug</button>
       <br>
       <br>
     </p>
@@ -359,6 +360,20 @@
       Since the beginning, it has been <span id="disp.status.totaltime" class="middle"></span>.
     </div>
     <table id="table.achievement" style="margin:auto;width:95%;" class="hidden"></table><br>
+    <div id="scr.debug" class="hidden">
+      <p style="text-decoration:bold;color:red;">How are you seeing this?</p>
+      <p>
+        Buttons:
+        <button>[normal]</button>
+        <button class="unavailable">unavailabe</button>
+        <button class="alternate_universe">altername_universe</button>
+        <button class="alternate_universe unavailable">altername_universe unavailable</button>
+        <button class="alternate_universe entered">altername_universe entered</button>
+        <button class="alternate_universe completed">altername_universe completed</button>
+        <button class="alternate_universe completed entered">altername_universe completed entered</button>
+        <button class="debug">debug</button>
+      </p>
+    </div>
     <div id="achievementearned" class="hidden" style="position:absolute;top:0px;right:0px;background-color:#87cefa;color:#202020;font-size:14px;padding:4px;border-radius:2px;border:2px darkgray solid;">
       Insert text
     </div>
@@ -375,6 +390,7 @@
         Incremental game subreddit: <a href="https://www.reddit.com/r/incremental_games/" target="_blank">/r/incremental_games</a><br>
         This game's subreddit: <a href="https://www.reddit.com/r/MtdLYHt/" target="_blank">/r/MtdLYHt</a><br/><br>
         <u onclick="changelogtoggle(true)">Changelog</u><br>
+        <u id="openerror" style="hidden" onclick="showhide(&quot;errorcontainer&quot;,true)">Error Prone</u><br>
         Have an issue? Report it <a href="https://github.com/Naruyoko/many-to-do-less-you-have-to/issues/new" target="_blank">here</a>!
         <div id="div.disablewrap"><input type="checkbox" id="checkbox.disablewrap" ckecked> Disable wrapping</div>
         <div id="div.smallui"><input type="checkbox" id="checkbox.smallui" ckecked> Smaller currency display</div>
@@ -415,9 +431,14 @@
       </p>
     </div>
     -->
-    <div id="changelog" class="hidden" style="margin:auto;width:80%;min-width:200px;height:90%;min-height:150px;position:absolute;top:30px;border:2px solid black;background-color:#f0f0f0;">
+    <div id="changelog" class="hidden" style="margin:auto;width:90%;min-width:200px;height:90%;min-height:150px;position:absolute;top:30px;left:5%;border:2px solid black;background-color:#f0f0f0;">
       <button type="button" onclick="changelogtoggle(false)" style="position:absolute;right:15px;top:10px;">X</button>
-      <object type="text/html" data="./changelog.html" style="margin:auto;width:95%;height:85%;position:absolute;top:30px;background-color:#ffffff"></object>
+      <object type="text/html" data="./changelog.html" style="margin:auto;width:95%;height:85%;position:absolute;top:30px;background-color:#ffffff;border:1px solid black;margin:6px;"></object>
+    </div>
+    <div id="errorcontainer" class="debug hidden" style="margin:auto;width:90%;min-width:200px;height:90%;min-height:150px;position:absolute;top:30px;left:5%;border:2px solid black;background-color:#6a6945;">
+      <button type="button" class="debug" onclick="throw &quot;testError&quot;" style="position:absolute;left:15px;top:10px;">Test throw</button>
+      <button type="button" class="debug" onclick="showhide(&quot;errorcontainer&quot;,false)" style="position:absolute;right:15px;top:10px;">X</button>
+      <textarea id="error" class="debug" style="margin:auto;width:95%;height:85%;position:absolute;top:30px;background-color:#38371a;border:1px solid black;margin:6px;" readonly></textarea>
     </div>
     <input id="clipboard" type="text" class="hidden"></input>
   </body>

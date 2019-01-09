@@ -10,9 +10,6 @@ button.unavailable {
   cursor:not-allowed;
   color:#ff0000;
 }
-button.unavailable.alternate_universe {
-  color:#bb2525;
-}
 button * {
   display:inline-block;
   background-color:#f7f7f7;
@@ -46,6 +43,29 @@ button.alternate_universe {
   border-radius:1px;
   box-shadow:0px 0px 5px 0px rgba(62,142,240,0.69);
 }
+button.unavailable.alternate_universe {
+  color:#bb2525;
+}
+.alternate_universe.entered {
+  border-color:#0a7a32;
+}
+.alternate_universe.completed {
+  border-color:#c26b1e;
+}
+.alternate_universe.completed.entered {
+  border-color:#7f08ab;
+}
+/*
+.alternate_universe.unavailable.entered {
+  border-color:#0a7a32;
+}
+.alternate_universe.unavailable.completed {
+  border-color:#c26b1e;
+}
+.alternate_universe.unavailable.completed.entered {
+  border-color:#7f08ab;
+}
+*/
 @keyframes hue_fluctuate{
   0% {filter:hue-rotate(0deg);}
   15% {filter:hue-rotate(3.333deg);}
@@ -79,6 +99,16 @@ td.achievement {
 }
 td.done {
   background-color:#80df80;
+}
+.debug {
+  border-color:#e0ed2f;
+  background-color:#292808;
+  color:#f5cf6a;
+}
+.changescr.debug {
+  border-color:#e0ed2f;
+  background-color:#292808;
+  color:#f5cf6a;
 }
 .switch{
   position:relative;

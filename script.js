@@ -347,10 +347,11 @@ var defaultGame={
     disablewrap:(function (){return document.getElementById("checkbox.disablewrap").checked;}),
     smallui:(function (){return document.getElementById("checkbox.smallui").checked;}),
     errornotify:false,
+    debugscreen:false//Why?
   },
   datainfo:{
     version:"α 0.0.5",
-    release:201901081, //YYYYMMDDX
+    release:201901082, //YYYYMMDDX
     lasttime:0
   }
 };
@@ -1038,7 +1039,7 @@ function updatecurrdisp(){
   document.getElementById("disp.status.totaltime").innerHTML=timeFormat(game.status.totaltime);
 }
 function updatedivdisp(){
-var exa=[];
+  var exa=[];
   exa.push(game.currency.existability.base());
   exa.push(game.currency.existability.upgrade_existability_1(exa[0]));
   exa.push(game.currency.existability.upgrade_existability_2(exa[1]));
@@ -1146,7 +1147,8 @@ var exa=[];
   }else{
     document.getElementById("disp.currency").style.zoom="";
   }
-  if (saved) document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved)/10)/100+" seconds ago"
+  if (saved) document.getElementById("disp.saved").innerHTML="Saved "+Math.floor((d.getTime()-saved)/10)/100+" seconds ago";
+  showhide("button.changescr_debug",game.option.debugscreen);
 }
 function updatebutton(){
   toggleclass("button.convexisti","unavailable",!game.canbuy.existance());
@@ -1207,6 +1209,8 @@ function updatebutton(){
   toggleclass("button.unlock.alternate_universe","unavailable",!game.canbuy.alternate_universe());
   for (var i=1;i<=10;i++){
     toggleclass("button.alternate_universe."+i,"unavailable",!game.canbuy.alternate_universe(i));
+    if (game.alternate_universe.active==i) toggleclass("button.alternate_universe."+i,"entered",!game.canbuy.alternate_universe(i));
+    if (game.alternate_universe.completed[i]) toggleclass("button.alternate_universe."+i,"completed",!game.canbuy.alternate_universe(i));
     var s="";
     if (game.alternate_universe.completed[i]) s+="Completed";
     if (game.alternate_universe.active==i) s+=(s?", ":"")+"Entered";
@@ -1259,6 +1263,7 @@ function changescr_setup(){
   showhide("scr.alternate_universe",false);
   showhide("scr.status",false);
   showhide("table.achievement",false);
+  showhide("scr.debug",false);
 }
 function changescr_shop_general(){
   changescr_setup();
@@ -1292,6 +1297,10 @@ function changescr_achievement(){
   changescr_setup();
   achievementupdate();
   showhide("table.achievement",true);
+}
+function changescr_debug(){
+  changescr_setup();
+  showhide("scr.debug",true);
 }
 
 function convexisti(){
@@ -1677,6 +1686,8 @@ var passiveinterval;
 function onload(){
   console.log("Script Initilizing:"+(new Date).getTime());
   console.time("took");
+  window.onerror=function (message,source,lineno,colno,error){if (game.option.errornotify){document.getElementById("error").value+=(document.getElementById("error").value?"\n\n":"")+new Date().getTime()+"ms, "+new Date().toTimeString()+"\n"+message+"@"+lineno+":"+colno+"\n"+error.name+": "+error.message;}};
+  if (game.option.errornotify) showhide("openerror");
   loadgame();
   saved=new Date().getTime();
   if (!Math.cbrt){ //define Math.cbrt() for older enviroments
