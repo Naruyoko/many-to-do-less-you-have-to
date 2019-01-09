@@ -907,8 +907,7 @@ function updatecurr(){
   game.status.existance+=Math.max(Math.floor(game.currency.existance)-f,0);
   f=Math.floor(game.currency.etime);
   game.currency.etime+=game.production.etime*timeelapsed;
-  if (game.currency.etime>Math.round(game.currency.thought*2+4)) game.currency.etime=Math.round(game.currency.thought*2+4);
-  game.currency.etime=Math.max(game.currency.etime,0);
+  game.currency.etime=Math.min(Math.max(game.currency.etime,0),Math.round(game.currency.thought*2+4+(game.alternate_universe.active==3)));
   game.currency.etimebought=Math.min(game.currency.etimebought,game.currency.etime);
   game.status.etime+=Math.max(Math.floor(game.currency.etime)-f,0);
   game.currency.genworddelay-=game.production.genword()*timeelapsed;
