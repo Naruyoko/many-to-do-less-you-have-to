@@ -711,10 +711,8 @@ function loadgame(){
     delete decodedsave.autobuy.thought.enable;
   }
   if (decodedsave.currency.residue&&!decodedsave.status.residue) decodedsave.status.residue=decodedsave.currency.residue;
-  if ((typeof decodedsave.currency.residue=="object")||(typeof decodedsave.status.residue=="object")){
-    decodedsave.currency.residue=Number(exp.text(decodedsave.currency.residue,"e"));
-    decodedsave.status.residue=Number(exp.text(decodedsave.status.residue,"e"));
-  }
+  if ((typeof decodedsave.currency.residue=="object")&&decodedsave.currency.residue) decodedsave.currency.residue=Number(exp.text(decodedsave.currency.residue,"e"));
+  if ((typeof decodedsave.status.residue=="object")&&decodedsave.status.residue) decodedsave.status.residue=Number(exp.text(decodedsave.status.residue,"e"));
   document.getElementById("checkbox.disableshake").checked=decodedsave.option.disableshake;
   delete decodedsave.option.disableshake;
   document.getElementById("checkbox.disablewrap").checked=decodedsave.option.disablewrap;

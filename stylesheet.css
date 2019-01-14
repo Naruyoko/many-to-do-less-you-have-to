@@ -37,11 +37,15 @@ button.changescr {
 }
 button.alternate_universe {
   animation:hue_fluctuate linear infinite 2s;
+  transition:all 0.5s ease-out;
   background-color:#bac9ff;
   color:#4e2b90;
   border-color:#272d8e;
   border-radius:1px;
   box-shadow:0px 0px 5px 0px rgba(62,142,240,0.69);
+}
+button.alternate_universe:hover {
+  background-color:#81c3f5;
 }
 button.unavailable.alternate_universe {
   color:#bb2525;
@@ -90,6 +94,7 @@ td.done {
   background-color:#80df80;
 }
 .debug {
+  transition:all 0.5s ease-out;
   border-color:#e0ed2f;
   background-color:#292808;
   color:#f5cf6a;
@@ -98,6 +103,11 @@ td.done {
   border-color:#e0ed2f;
   background-color:#292808;
   color:#f5cf6a;
+}
+button.debug:hover {
+  border-color:#292808;
+  background-color:#f5cf6a;
+  color:#47370b;
 }
 .switch{
   position:relative;
