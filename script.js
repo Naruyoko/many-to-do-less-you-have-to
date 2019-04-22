@@ -351,7 +351,7 @@ var defaultGame={
   },
   datainfo:{
     version:"α 0.0.5",
-    release:201901151, //YYYYMMDDX
+    release:201901171, //YYYYMMDDX
     lasttime:0
   }
 };
@@ -634,6 +634,7 @@ function savegame(){
   delete save.autobuy.etime.ison;
   save.autobuy.thought.enable=game.autobuy.thought.enable();
   delete save.autobuy.thought.ison;
+  delete save.alternate_universe.cost;
   delete save.achievement.arrangement;
   delete save.achievement.condition;
   delete save.achievement.name;
@@ -803,6 +804,8 @@ function passive(){
   if (game.datainfo.lasttime!==0){
     d=new Date();
     timeelapsedleft=(d.getTime()-game.datainfo.lasttime)/1000;
+    var i=Math.max(0,Math.min(1e6,document.getElementById("debug.speedhack").value));
+    timeelapsedleft*=i?i:1;
   }
   game.datainfo.lasttime=d.getTime();
   if (timeelapsedleft<=0) return;
@@ -870,7 +873,8 @@ function updateprod(){
   if (game.alternate_universe.completed[5]) game.production.existance*=1.5;
   if (game.alternate_universe.active==10) game.production.existance*=0;
   if (game.achievement.done[42]) game.production.existance*=4;
-  game.production.etime=(game.currency.energy*(Math.max(Math.pow(Math.floor(game.currency.existance),0.03)-1.2,0)+Math.max(Math.pow(game.currency.existivity,0.003)-1.016,0)))/40;
+  var x=game.currency.etime;
+  game.production.etime=(game.currency.energy*(Math.max(Math.pow(Math.floor(game.currency.existance),0.03)-1.2,0)+Math.max(Math.pow(game.currency.existivity,0.003)-1.016,0)))/40/(x<2?1:(1/(1+Math.exp(-x/4+4))-2.3/(1+Math.exp(-x/4+4))+2/(x+1)+Math.pow(x,0.5)+0.1*Math.pow(x,0.7)+0.1*Math.pow(Math.max(x-60,0),1.2)+0.06*Math.pow(Math.max(x-120,0),1.8)+0.1*Math.pow(1.045,x)+1));
   if (game.achievement.done[33]){
     game.production.etime*=1+0.01*game.achievement.completed();
   }
@@ -1365,7 +1369,7 @@ function convexista(){
   if (game.currency.etime>=2) game.unlocked.convetime=true;
   if (game.currency.etime>=20) game.unlocked.upgrade.existability_2=true;
   if (game.unlocked.explosion&&(game.currency.experience>=8)) game.unlocked.upgrade.convexisti_3=true;
-  if (i>=10) earnachevement(65);
+  if (i>=10) earnachievement(65);
   game.status.etimetime=0;
   game.status.existancetime=0;
 }

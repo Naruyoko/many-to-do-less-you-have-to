@@ -11,7 +11,7 @@
       gtag('config', 'UA-117589993-1');
     </script>
     <title>Many to do, Less You have to.</title>
-    <meta name="description" content="Incremental made.">
+    <meta name="description" content="Incremental made by Naruyoko.">
     <meta name="keywords" content="Game,Incremental,Online,HTML,JavaScript,MtdLYHt">
     <meta name="author" content="Naruyoko">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -362,6 +362,13 @@
     <table id="table.achievement" style="margin:auto;width:95%;" class="hidden"></table><br>
     <div id="scr.debug" class="hidden">
       <p style="text-decoration:bold;color:red;">How are you seeing this?</p>
+      <p>
+        Time:
+        <ul>
+          <li>Speedhack(<span id="debug.speedhack.disp">1 second</span> per second): <input id="debug.speedhack" onchange="document.getElementById(&quot;debug.speedhack.disp&quot;).innerHTML=timeFormat(Number(document.getElementById(&quot;debug.speedhack&quot;).value))" value=1></li>
+          <li>Time Travel(<span id="debug.timetravel.disp">1 second</span>): <input id="debug.timetravel" onchange="document.getElementById(&quot;debug.timetravel.disp&quot;).innerHTML=timeFormat(Number(document.getElementById(&quot;debug.timetravel&quot;).value))" value=1><button onclick="game.datainfo.lasttime-=document.getElementById(&quot;debug.timetravel&quot;).value*1000">Go</button></li>
+        </ul>
+      </p>
       <p>
         Buttons:
         <button>[normal]</button>
