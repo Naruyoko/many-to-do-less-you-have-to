@@ -346,6 +346,7 @@ var defaultGame={
     disableshake:(function (){return document.getElementById("checkbox.disableshake").checked;}),
     disablewrap:(function (){return document.getElementById("checkbox.disablewrap").checked;}),
     smallui:(function (){return document.getElementById("checkbox.smallui").checked;}),
+    achievementimages:(function (){return document.getElementById("checkbox.achievementimages").checked;}),
     errornotify:false,
     debugscreen:false//Why?
   },
@@ -642,6 +643,7 @@ function savegame(){
   save.option.disableshake=game.option.disableshake();
   save.option.disablewrap=game.option.disablewrap();
   save.option.smallui=game.option.smallui();
+  save.option.achievementimages=game.option.achievementimages();
   localStorage.setItem("MtdLYHt.save",encodedata(JSON.stringify(save)));
   saved=new Date().getTime();
 }
@@ -718,6 +720,8 @@ function loadgame(){
   delete decodedsave.option.disablewrap;
   document.getElementById("checkbox.smallui").checked=decodedsave.option.smallui;
   delete decodedsave.option.smallui;
+  document.getElementById("checkbox.achievementimages").checked=decodedsave.option.achievementimages;
+  delete decodedsave.option.achievementimages;
   function isObject(item){
     return (item&&typeof item==='object'&&!Array.isArray(item));
   }
@@ -1611,6 +1615,7 @@ function start_alternate_universe(id){
   changescr_shop_general();
   console.log(game.alternate_universe.active);
 }
+
 var achievinterval;
 var achievshown=false;
 function updateachiev(){
@@ -1653,6 +1658,7 @@ function achievementupdate(){
       if (a!=-1){
         var m=game.achievement.name[a];
         o.innerHTML=m[0]+"<span class=\"tooltiptext\">"+m[1]+"</span>";
+        if (game.option.achievementimages) o.innerHTML+="<img src=\"./files/pictures/achievements/"+game.achievement.arrangement[y][x]+".png\" style=\"opacity:0.6\">";
         o.className="achievement tooltip";
         if (game.achievement.done[a]){
           o.className+=" done";
