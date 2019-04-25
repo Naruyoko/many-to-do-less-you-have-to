@@ -1238,7 +1238,10 @@ function updatebutton(){
   if (game.currency.residue>=2e5) showhide("unlock.alternate_universe",true);
   if (game.unlocked.autobuyshop) showhide("button.changescr_shop_autoconv",true);
   if (game.achievement.done[4]) showhide("button.changescr_status",true);
-  if (game.achievement.done[6]) showhide("button.changescr_achievement",true);
+  if (game.achievement.done[6]){
+    showhide("button.changescr_achievement",true);
+    showhide("div.achievementimages",true);
+  }
   if (game.autobuy.existivity.bought) document.getElementById("form.autoconvexisti").className="";
   if (game.alternate_universe.active==4){
     document.getElementById("button.convexista").innerHTML="Experience.<br/>Cost: "+notation(1000*Math.pow(game.currency.etimebought+1,2)*Math.pow(2,game.currency.etimebought))+" existivity";
@@ -1299,7 +1302,7 @@ function changescr_status(){
 function changescr_achievement(){
   changescr_setup();
   achievementupdate();
-  showhide("table.achievement",true);
+  showhide("achievementupdate",true);
 }
 function changescr_debug(){
   changescr_setup();
