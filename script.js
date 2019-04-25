@@ -1302,7 +1302,7 @@ function changescr_status(){
 function changescr_achievement(){
   changescr_setup();
   achievementupdate();
-  showhide("achievementupdate",true);
+  showhide("table.achievement",true);
 }
 function changescr_debug(){
   changescr_setup();
