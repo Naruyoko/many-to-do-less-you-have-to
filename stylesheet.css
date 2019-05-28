@@ -83,6 +83,9 @@ td.done {
   background-color:#80df80;
 }
 span.achievement {
+  position:absolute;
+  top:0;
+  margin:4px;
   text-align:center;
   font-size:10px;
   font-family:"Lucida Console", Monaco, monospace;
