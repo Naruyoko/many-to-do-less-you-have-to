@@ -1661,7 +1661,7 @@ function achievementupdate(){
       if (a!=-1){
         var m=game.achievement.name[a];
         o.innerHTML=m[0]+"<span class=\"tooltiptext\" style=\"z-index:1\">"+m[1]+"</span>";
-        if (game.option.achievementimages()) o.innerHTML+="<img src=\"./files/pictures/achievements/"+game.achievement.arrangement[y][x]+".png\" style=\"position:relative;margin:auto;opacity:0.4;-ms-transform: translateY(-50%);transform: translateY(-50%);\">";
+        if (game.option.achievementimages()) o.innerHTML+="<img src=\"./files/pictures/achievements/"+game.achievement.arrangement[y][x]+".png\" class=\"achiev_img\">";
         o.className="achievement tooltip";
         if (game.achievement.done[a]){
           o.className+=" done";
