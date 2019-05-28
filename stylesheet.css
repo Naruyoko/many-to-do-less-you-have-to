@@ -69,19 +69,25 @@ button.unavailable.alternate_universe {
   100% {filter:hue-rotate(0deg);}
 }
 td.achievement {
+  position:relative;
   border-radius:4px;
   border:2px solid black;
-  background-color:#dfdfdf;
-  text-align:center;
-  font-size:10px;
-  font-family:"Lucida Console", Monaco, monospace;
-  color:#101010;
-  text-shadow: 0px 0px 4px #ffffff;
+  background-color:#dfdfdf
   width:9%;
   min-width:60px;
   height:60px;
   margin:1px;
   padding:2px;
+}
+td.done {
+  background-color:#80df80;
+}
+span.achievement {
+  text-align:center;
+  font-size:10px;
+  font-family:"Lucida Console", Monaco, monospace;
+  color:#101010;
+  text-shadow: 0px 0px 4px #ffffff;
   word-wrap:break-word;
   -ms-word-break:break-word;
   word-break: break-word;
@@ -89,9 +95,6 @@ td.achievement {
   -moz-hyphens:auto;
   -webkit-hyphens:auto;
   hyphens:auto;
-}
-td.done {
-  background-color:#80df80;
 }
 img.achievement {
   position: absolute;
